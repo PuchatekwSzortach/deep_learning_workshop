@@ -2,6 +2,8 @@
 Tests module
 """
 
+import mock
+
 import numpy as np
 
 import network.net
@@ -26,3 +28,23 @@ def test_cost():
     actual = network.net.get_cost(y, a)
 
     assert expected == actual
+
+
+def test_get_statistics():
+
+    mock_model = mock.Mock()
+    mock_model.predict = mock.Mock(return_value=np.array([0.8, 0.6]).reshape(2, 1))
+
+    # x is not important, since we use mock model with constant output
+    x = np.array([0, 0]).reshape(2, 1)
+
+    # two one-hot encoded labels
+    y = np.array([[1, 0], [0, 1]])
+
+    expected_loss = 0.15
+    expected_accuracy = 0.5
+
+    actual_loss, actual_accuracy = network.net.get_statistics(mock_model, x, y)
+
+    assert np.isclose(expected_loss, actual_loss)
+    assert expected_accuracy == actual_accuracy

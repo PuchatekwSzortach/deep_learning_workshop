@@ -15,6 +15,32 @@ def get_cost(y, a):
     return np.mean(0.5 * (y.flatten() - a.flatten())**2)
 
 
+def get_statistics(model, x_data, y_data):
+
+    costs = []
+
+    labels = []
+    predicted_labels = []
+
+    for x, y in zip(x_data, y_data):
+
+        prediction = model.predict(x)
+
+        sample_cost = get_cost(y, prediction)
+        costs.append(sample_cost)
+
+        label = np.argmax(y)
+        labels.append(label)
+
+        predicted_label = np.argmax(prediction)
+        predicted_labels.append(predicted_label)
+
+    cost = np.mean(costs)
+    accuracy = np.mean((np.array(labels) == np.array(predicted_labels)).astype(np.float32))
+
+    return cost, accuracy
+
+
 class Network:
 
     def __init__(self, layers):
@@ -31,7 +57,7 @@ class Network:
         for input_size, output_size in zip(layers[:-1], layers[1:]):
 
             weights_kernel = np.random.randn(output_size, input_size)
-            bias_kernel = np.zeros(shape=(output_size,1), dtype=np.float32)
+            bias_kernel = np.zeros(shape=(output_size, 1), dtype=np.float32)
 
             weights.append(weights_kernel)
             biases.append(bias_kernel)
@@ -63,13 +89,31 @@ class Network:
 
     def _backpropagation(self, activations, preactivations, y, learining_rate):
 
-        cost_derivative = 1
+        activation_error = activations[-1] - y
 
-    def train(self, x_data, y_data, epochs, learning_rate):
+        for index in reversed(range(self.layers_count)):
 
-        for x, y in zip(x_data, y_data):
+            preactivation_error = activation_error * activations[index] * (1 - activations[index])
 
-            activations, preactivations = self._feed_forward(x)
-            self._backpropagation(activations, preactivations, y, learning_rate)
+            # weights_error =
+
+    def train(self, x_train, y_train, epochs, learning_rate, x_test, y_test):
+
+        train_cost, train_accuracy = get_statistics(self, x_train, y_train)
+        print("train cost: {}, train accuracy: {}".format(train_cost, train_accuracy))
+
+        test_cost, test_accuracy = get_statistics(self, x_test, y_test)
+        print("test cost: {}, test accuracy: {}".format(test_cost, test_accuracy))
+
+        # for x, y in zip(x_train, y_train):
+        #
+        #     activations, preactivations = self._feed_forward(x)
+        #     # self._backpropagation(activations, preactivations, y, learning_rate)
+
+
+
+
+
+
 
 

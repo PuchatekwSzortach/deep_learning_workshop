@@ -79,13 +79,16 @@ def main():
 
     # ys are scalars, convert them to one-hot encoded vectors
     y_train_categorical = keras.utils.to_categorical(y_train, num_classes=10)
+    y_test_categorical = keras.utils.to_categorical(y_test, num_classes=10)
 
     model = network.net.Network(layers=[784, 100, 50, 10])
 
     # Log untrained model predictions
     log_predictions(logger, model, x_test, y_test, header="Untrained model")
 
-    model.train(x_train_flat, y_train_categorical, epochs=10, learning_rate=0.1)
+    model.train(
+        x_train_flat, y_train_categorical, epochs=10, learning_rate=0.1,
+        x_test=x_test_flat, y_test=y_test_categorical)
 
 
 if __name__ == "__main__":
