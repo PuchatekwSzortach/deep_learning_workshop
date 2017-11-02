@@ -11,6 +11,8 @@ import tqdm
 import sklearn.utils
 import cv2
 
+import network.net
+
 
 def get_logger(path):
     """
@@ -37,15 +39,29 @@ def main():
     x_train, y_train = sklearn.utils.shuffle(x_train, y_train)
     x_test, y_test = sklearn.utils.shuffle(x_test, y_test)
 
-    logger = get_logger("/tmp/mnist.html")
+    # logger = get_logger("/tmp/mnist.html")
+    #
+    # # Display a few samples
+    # for index in tqdm.tqdm(range(10)):
+    #
+    #     image = cv2.resize(x_test[index], (64, 64))
+    #     label = y_test[index]
+    #
+    #     logger.info(vlogging.VisualRecord("Sample", image, str(label), fmt='jpg'))
 
-    # Display a few samples
-    for index in tqdm.tqdm(range(10)):
+    # Reshape 28x28 matrices to vectors 784 elements vectors
+    x_train_flat = x_train.reshape(-1, 784, 1)
+    x_test_flat = x_test.reshape(-1, 784, 1)
 
-        image = cv2.resize(x_test[index], (64, 64))
-        label = y_test[index]
+    # ys are scalars, convert them to one-hot encoded vectors
+    y_train_categorical = keras.utils.to_categorical(y_train, num_classes=10)
 
-        logger.info(vlogging.VisualRecord("Sample", image, str(label), fmt='jpg'))
+    model = network.net.Network(layers=[784, 100, 50, 10])
+
+    print("Input shape: {}".format(x_train_flat[0].shape))
+    result = model.predict(x_train_flat[0])
+    print("Output shape: {}".format(result.shape))
+    print(result)
 
 
 if __name__ == "__main__":
