@@ -3,6 +3,7 @@ Module with definition of a basic neural network
 """
 
 import numpy as np
+import tqdm
 
 
 def sigmoid(z):
@@ -67,7 +68,6 @@ class Network:
     def _feed_forward(self, x):
 
         activations = [x]
-        preactivations = []
 
         for index in range(self.layers_count):
 
@@ -77,43 +77,58 @@ class Network:
             z = np.dot(weights, activations[-1]) + bias
             a = sigmoid(z)
 
-            preactivations.append(z)
             activations.append(a)
 
-        return preactivations, activations
+        return activations
 
     def predict(self, x):
 
-        preactivations, activations = self._feed_forward(x)
+        activations = self._feed_forward(x)
         return activations[-1]
 
-    def _backpropagation(self, activations, preactivations, y, learining_rate):
+    def _backpropagation(self, activations, y, learning_rate):
 
-        activation_error = activations[-1] - y
+        # Make sure we work on column vectors
+        activation_error = activations[-1] - y.reshape(-1, 1)
+
+        # Lists to store parameters errors
+        weights_errors = [0] * self.layers_count
+        biases_errors = [0] * self.layers_count
 
         for index in reversed(range(self.layers_count)):
 
-            preactivation_error = activation_error * activations[index] * (1 - activations[index])
+            # Use offset of +1 for activations index, since they are enumerated from input layer up
+            preactivation_error = activation_error * activations[index + 1] * (1 - activations[index + 1])
 
-            # weights_error =
+            weights_errors[index] = np.dot(preactivation_error, activations[index].T)
+            biases_errors[index] = preactivation_error
+
+            activation_error = np.dot(self.weights[index].T, preactivation_error)
+
+        for index in range(self.layers_count):
+
+            self.weights[index] -= learning_rate * weights_errors[index]
+            self.biases[index] -= learning_rate * biases_errors[index]
 
     def train(self, x_train, y_train, epochs, learning_rate, x_test, y_test):
 
         train_cost, train_accuracy = get_statistics(self, x_train, y_train)
-        print("train cost: {}, train accuracy: {}".format(train_cost, train_accuracy))
+        print("Initial training cost: {:.3f}, training accuracy: {:.3f}".format(train_cost, train_accuracy))
 
         test_cost, test_accuracy = get_statistics(self, x_test, y_test)
-        print("test cost: {}, test accuracy: {}".format(test_cost, test_accuracy))
+        print("Initial test cost: {}, test accuracy: {}".format(test_cost, test_accuracy))
 
-        # for x, y in zip(x_train, y_train):
-        #
-        #     activations, preactivations = self._feed_forward(x)
-        #     # self._backpropagation(activations, preactivations, y, learning_rate)
+        for epoch_index in range(epochs):
 
+            for x, y in tqdm.tqdm(list(zip(x_train, y_train))):
 
+                activations = self._feed_forward(x)
+                self._backpropagation(activations, y, learning_rate)
 
+            train_cost, train_accuracy = get_statistics(self, x_train, y_train)
+            print("Epoch {}: training cost: {:.3f}, training accuracy: {:.3f}".format(
+                epoch_index, train_cost, train_accuracy))
 
-
-
-
-
+            test_cost, test_accuracy = get_statistics(self, x_test, y_test)
+            print("Epoch {}: test cost: {:.3f}, test accuracy: {:.3f}".format(
+                epoch_index, test_cost, test_accuracy))

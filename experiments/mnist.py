@@ -63,6 +63,8 @@ def log_predictions(logger, model, x_data, y_data, header):
 
 def main():
 
+    np.set_printoptions(suppress=True)
+
     (x_train, y_train), (x_test, y_test) = keras.datasets.mnist.load_data("/tmp/mnist.npz")
 
     x_train, y_train = sklearn.utils.shuffle(x_train, y_train)
@@ -87,8 +89,11 @@ def main():
     log_predictions(logger, model, x_test, y_test, header="Untrained model")
 
     model.train(
-        x_train_flat, y_train_categorical, epochs=10, learning_rate=0.1,
+        x_train_flat, y_train_categorical, epochs=10, learning_rate=0.01,
         x_test=x_test_flat, y_test=y_test_categorical)
+
+    # Log trained model predictions
+    log_predictions(logger, model, x_test, y_test, header="Trained model")
 
 
 if __name__ == "__main__":
