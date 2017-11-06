@@ -3,10 +3,9 @@ Tests module
 """
 
 import mock
-
 import numpy as np
 
-import network.net
+import net
 
 
 def test_sigmoid():
@@ -14,7 +13,7 @@ def test_sigmoid():
     z = np.array([-10, -0.5, 0, 0.5, 10])
 
     expected = np.array([4.5397e-05, 0.3775, 0.5, 0.6224, 0.99995])
-    actual = network.net.sigmoid(z)
+    actual = net.sigmoid(z)
 
     assert np.allclose(expected, actual, rtol=0.01)
 
@@ -25,7 +24,7 @@ def test_cost():
     a = np.array([0.8, 0.4])
 
     expected = 0.05
-    actual = network.net.get_cost(y, a)
+    actual = net.get_cost(y, a)
 
     assert expected == actual
 
@@ -44,7 +43,7 @@ def test_get_statistics():
     expected_loss = 0.15
     expected_accuracy = 0.5
 
-    actual_loss, actual_accuracy = network.net.get_statistics(mock_model, x, y)
+    actual_loss, actual_accuracy = net.get_statistics(mock_model, x, y)
 
     assert np.isclose(expected_loss, actual_loss)
     assert expected_accuracy == actual_accuracy

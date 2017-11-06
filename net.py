@@ -8,7 +8,10 @@ import tqdm
 
 def sigmoid(z):
 
-    return 1 / (1 + np.exp(-z))
+    # Cap z to avoid overflow warnings when extremely small z leads to np.exp(-z) being infinity
+    capped_z = np.maximum(z, -50)
+
+    return 1 / (1 + np.exp(-capped_z))
 
 
 def get_cost(y, a):

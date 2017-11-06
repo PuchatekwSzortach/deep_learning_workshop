@@ -2,17 +2,16 @@
 Script training a network on MNIST dataset
 """
 
-import os
 import logging
+import os
 
-import keras
-import vlogging
-import tqdm
-import sklearn.utils
 import cv2
+import keras
 import numpy as np
+import sklearn.utils
+import vlogging
 
-import network.net
+import net
 
 
 def get_logger(path):
@@ -83,7 +82,7 @@ def main():
     y_train_categorical = keras.utils.to_categorical(y_train, num_classes=10)
     y_test_categorical = keras.utils.to_categorical(y_test, num_classes=10)
 
-    model = network.net.Network(layers=[784, 100, 50, 10])
+    model = net.Network(layers=[784, 100, 50, 10])
 
     # Log untrained model predictions
     log_predictions(logger, model, x_test, y_test, header="Untrained model")
