@@ -1,4 +1,4 @@
-# simple_\_neural_\_network
+# simple_neural_network
 
 A basic implementation of a neural network.
 Two files are provided:
