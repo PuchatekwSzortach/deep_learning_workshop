@@ -119,7 +119,7 @@ class Network:
         print("Initial training cost: {:.3f}, training accuracy: {:.3f}".format(train_cost, train_accuracy))
 
         test_cost, test_accuracy = get_statistics(self, x_test, y_test)
-        print("Initial test cost: {}, test accuracy: {}".format(test_cost, test_accuracy))
+        print("Initial test cost: {:.3f}, test accuracy: {:.3f}".format(test_cost, test_accuracy))
 
         for epoch_index in range(epochs):
 
