@@ -88,7 +88,7 @@ def main():
     log_predictions(logger, model, x_test, y_test, header="Untrained model")
 
     model.train(
-        x_train_flat, y_train_categorical, epochs=10, learning_rate=0.01,
+        x_train_flat, y_train_categorical, epochs=10, learning_rate=0.1,
         x_test=x_test_flat, y_test=y_test_categorical)
 
     # Log trained model predictions
