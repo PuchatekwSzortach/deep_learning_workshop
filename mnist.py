@@ -79,8 +79,8 @@ def main():
     x_test_flat = x_test.reshape(-1, 784, 1)
 
     # ys are scalars, convert them to one-hot encoded vectors
-    y_train_categorical = keras.utils.to_categorical(y_train, num_classes=10)
-    y_test_categorical = keras.utils.to_categorical(y_test, num_classes=10)
+    y_train_categorical = keras.utils.to_categorical(y_train, num_classes=10).reshape(-1, 10, 1)
+    y_test_categorical = keras.utils.to_categorical(y_test, num_classes=10).reshape(-1, 10, 1)
 
     model = net.Network(layers=[784, 100, 50, 10])
 

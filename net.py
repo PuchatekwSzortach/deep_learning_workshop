@@ -16,7 +16,7 @@ def sigmoid(z):
 
 def get_cost(y, a):
 
-    return np.mean(0.5 * (y.flatten() - a.flatten())**2)
+    return np.mean(0.5 * (y - a)**2)
 
 
 def get_statistics(model, x_data, y_data):
@@ -92,7 +92,7 @@ class Network:
     def _backpropagation(self, activations, y, learning_rate):
 
         # Make sure we work on column vectors
-        activation_error = activations[-1] - y.reshape(-1, 1)
+        activation_error = activations[-1] - y
 
         # Lists to store parameters errors
         weights_errors = [0] * self.layers_count
