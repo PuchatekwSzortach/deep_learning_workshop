@@ -1,0 +1,193 @@
+"""
+Script training a network on MNIST dataset using tensorflow
+"""
+
+import tensorflow as tf
+import tensorflow.contrib.keras as keras
+import numpy as np
+import sklearn.utils
+import tqdm
+import cv2
+import vlogging
+
+import utilities
+
+
+class Model:
+
+    def __init__(self):
+
+        self.x_placeholder = tf.placeholder(dtype=tf.float32, shape=(None, 784))
+        self.y_placeholder = tf.placeholder(dtype=tf.float32, shape=(None, 10))
+
+        w = tf.Variable(tf.truncated_normal(shape=(784, 100), stddev=0.01))
+        b = tf.Variable(tf.zeros(shape=100))
+
+        z = tf.matmul(self.x_placeholder, w) + b
+        a = tf.nn.relu(z)
+
+        w = tf.Variable(tf.truncated_normal(shape=(100, 50), stddev=0.01))
+        b = tf.Variable(tf.zeros(shape=50))
+
+        z = tf.matmul(a, w) + b
+        a = tf.nn.relu(z)
+
+        w = tf.Variable(tf.truncated_normal(shape=(50, 10), stddev=0.01))
+        b = tf.Variable(tf.zeros(shape=10))
+
+        logits = tf.matmul(a, w) + b
+        self.prediction = tf.nn.sigmoid(logits)
+
+        element_wise_losses = tf.nn.sigmoid_cross_entropy_with_logits(labels=self.y_placeholder, logits=logits)
+        self.loss_op = tf.reduce_mean(element_wise_losses)
+
+        self.train_op = tf.train.GradientDescentOptimizer(learning_rate=0.01).minimize(self.loss_op)
+
+
+def log_predictions(logger, model, session, x_data, y_data, header):
+
+    x_batch = x_data[:10].reshape(-1, 784)
+
+    feed_dictionary = {model.x_placeholder: x_batch}
+    prediction = session.run(model.prediction, feed_dictionary)
+
+    for index in range(10):
+
+        image = cv2.resize(x_data[index], (64, 64))
+
+        label = y_data[index]
+        predicted_label = np.argmax(prediction[index])
+
+        message = "True label: {}, predicted label: {}\nRaw predictions:\n{}".format(
+            label, predicted_label, prediction[index].reshape(-1, 1))
+
+        logger.info(vlogging.VisualRecord(header, image, message, fmt='jpg'))
+
+
+def get_batches_generator(x, y, batch_size):
+
+    while True:
+
+        shuffled_x, shuffled_y = sklearn.utils.shuffle(x, y)
+
+        index = 0
+
+        while index + batch_size < x.shape[0]:
+
+            x_batch = shuffled_x[index: index + batch_size]
+            y_batch = shuffled_y[index: index + batch_size]
+
+            yield x_batch, y_batch
+
+            index += batch_size
+
+
+def get_statistics(session, model, x, y, batch_size):
+
+    losses = []
+
+    labels = []
+    predicted_labels = []
+
+    batches_generator = get_batches_generator(x, y, batch_size)
+
+    for _ in range(x.shape[0] // batch_size):
+
+        x_batch, y_batch = next(batches_generator)
+
+        feed_dictionary = {
+            model.x_placeholder: x_batch,
+            model.y_placeholder: y_batch
+        }
+
+        batch_loss, batch_prediction = session.run([model.loss_op, model.prediction], feed_dictionary)
+
+        losses.append(batch_loss)
+
+        labels_batch = np.argmax(y_batch, axis=1).flatten()
+        labels.extend(labels_batch)
+
+        predicted_batch_labels = np.argmax(batch_prediction, axis=1).flatten()
+        predicted_labels.extend(predicted_batch_labels)
+
+    loss = np.mean(losses)
+    accuracy = np.mean((np.array(labels) == np.array(predicted_labels)).astype(np.float32))
+
+    return loss, accuracy
+
+
+def main():
+
+    np.set_printoptions(suppress=True)
+
+    (x_train, y_train), (x_test, y_test) = keras.datasets.mnist.load_data("/tmp/mnist.npz")
+
+    x_train, y_train = sklearn.utils.shuffle(x_train, y_train)
+    x_test, y_test = sklearn.utils.shuffle(x_test, y_test)
+
+    logger = utilities.get_logger("/tmp/mnist.html")
+
+    # Log a few samples
+    utilities.log_samples(logger, x_test, y_test)
+
+    # Reshape 28x28 matrices to vectors 784 elements vectors
+    x_train_flat = x_train.reshape(-1, 784)
+    x_test_flat = x_test.reshape(-1, 784)
+
+    # ys are scalars, convert them to one-hot encoded vectors
+    y_train_categorical = keras.utils.to_categorical(y_train, num_classes=10)
+    y_test_categorical = keras.utils.to_categorical(y_test, num_classes=10)
+
+    model = Model()
+
+    batch_size = 32
+    epochs = 10
+
+    batches_generator = get_batches_generator(x_train_flat, y_train_categorical, batch_size)
+
+    with tf.Session() as session:
+
+        session.run(tf.global_variables_initializer())
+
+        # Log untrained model predictions
+        log_predictions(logger, model, session, x_test, y_test, header="Untrained model")
+
+        training_loss, training_accuracy = get_statistics(
+            session, model, x_train_flat, y_train_categorical, batch_size)
+
+        print("Initial training loss: {:.3f}, training accuracy: {:.3f}".format(training_loss, training_accuracy))
+
+        test_loss, test_accuracy = get_statistics(
+            session, model, x_test_flat, y_test_categorical, batch_size)
+
+        print("Initial test loss: {:.3f}, test accuracy: {:.3f}".format(test_loss, test_accuracy))
+
+        for epoch_index in range(epochs):
+
+            print("Epoch {}".format(epoch_index))
+
+            for _ in tqdm.tqdm(range(x_train_flat.shape[0] // batch_size)):
+
+                x_batch, y_batch = next(batches_generator)
+
+                feed_dictionary = {model.x_placeholder: x_batch, model.y_placeholder: y_batch}
+                session.run(model.train_op, feed_dictionary)
+
+            training_loss, training_accuracy = get_statistics(
+                session, model, x_train_flat, y_train_categorical, batch_size)
+
+            print("Epoch {}: training loss: {:.3f}, training accuracy: {:.3f}".format(
+                epoch_index, training_loss, training_accuracy))
+
+            test_loss, test_accuracy = get_statistics(
+                session, model, x_test_flat, y_test_categorical, batch_size)
+
+            print("Epoch {}: test loss: {:.3f}, test accuracy: {:.3f}".format(epoch_index, test_loss, test_accuracy))
+
+        # Log untrained model predictions
+        log_predictions(logger, model, session, x_test, y_test, header="Trained model")
+
+
+if __name__ == "__main__":
+
+    main()

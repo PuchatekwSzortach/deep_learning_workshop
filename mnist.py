@@ -1,9 +1,6 @@
 """
-Script training a network on MNIST dataset
+Script training a network on MNIST dataset using a numpy-based neural network class
 """
-
-import logging
-import os
 
 import cv2
 import keras
@@ -12,35 +9,7 @@ import sklearn.utils
 import vlogging
 
 import net
-
-
-def get_logger(path):
-    """
-    Returns a logger that writes to an html page
-    :param path: path to log.html page
-    :return: logger instance
-    """
-
-    os.makedirs(os.path.dirname(path), exist_ok=True)
-
-    logger = logging.getLogger("mnist")
-    file_handler = logging.FileHandler(path, mode="w")
-
-    logger.setLevel(logging.INFO)
-    logger.addHandler(file_handler)
-
-    return logger
-
-
-def log_samples(logger, x_data, y_data):
-
-    # Display a few samples
-    for index in range(10):
-
-        image = cv2.resize(x_data[index], (64, 64))
-        label = y_data[index]
-
-        logger.info(vlogging.VisualRecord("Sample", image, str(label), fmt='jpg'))
+import utilities
 
 
 def log_predictions(logger, model, x_data, y_data, header):
@@ -69,10 +38,10 @@ def main():
     x_train, y_train = sklearn.utils.shuffle(x_train, y_train)
     x_test, y_test = sklearn.utils.shuffle(x_test, y_test)
 
-    logger = get_logger("/tmp/mnist.html")
+    logger = utilities.get_logger("/tmp/mnist.html")
 
     # Log a few samples
-    log_samples(logger, x_test, y_test)
+    utilities.log_samples(logger, x_test, y_test)
 
     # Reshape 28x28 matrices to vectors 784 elements vectors
     x_train_flat = x_train.reshape(-1, 784, 1)
