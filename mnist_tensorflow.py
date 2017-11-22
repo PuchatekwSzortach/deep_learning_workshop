@@ -36,9 +36,9 @@ class Model:
         b = tf.Variable(tf.zeros(shape=10))
 
         logits = tf.matmul(a, w) + b
-        self.prediction = tf.nn.sigmoid(logits)
+        self.prediction = tf.nn.softmax(logits)
 
-        element_wise_losses = tf.nn.sigmoid_cross_entropy_with_logits(labels=self.y_placeholder, logits=logits)
+        element_wise_losses = tf.nn.softmax_cross_entropy_with_logits(labels=self.y_placeholder, logits=logits)
         self.loss_op = tf.reduce_mean(element_wise_losses)
 
         self.train_op = tf.train.GradientDescentOptimizer(learning_rate=0.01).minimize(self.loss_op)
