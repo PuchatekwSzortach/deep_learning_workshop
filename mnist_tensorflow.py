@@ -45,13 +45,22 @@ class Model:
 
 
 def log_predictions(logger, model, session, x_data, y_data, header):
+    """
+    Log model predictions along with correct answers
+    :param logger: logger instance
+    :param model: model
+    :param session: tensorflow session
+    :param x_data: batch of MNIST images
+    :param y_data: batch of MNIST labels
+    :param header: header for log entries
+    """
 
-    x_batch = x_data[:10].reshape(-1, 784)
-
-    feed_dictionary = {model.x_placeholder: x_batch}
+    feed_dictionary = {model.x_placeholder: x_data.reshape(-1, 784)}
     prediction = session.run(model.prediction, feed_dictionary)
 
-    for index in range(10):
+    data_size = x_data.shape[0]
+
+    for index in range(data_size):
 
         image = cv2.resize(x_data[index], (64, 64))
 
@@ -64,34 +73,26 @@ def log_predictions(logger, model, session, x_data, y_data, header):
         logger.info(vlogging.VisualRecord(header, image, message, fmt='jpg'))
 
 
-def get_batches_generator(x, y, batch_size):
-
-    while True:
-
-        shuffled_x, shuffled_y = sklearn.utils.shuffle(x, y)
-
-        index = 0
-
-        while index + batch_size < x.shape[0]:
-
-            x_batch = shuffled_x[index: index + batch_size]
-            y_batch = shuffled_y[index: index + batch_size]
-
-            yield x_batch, y_batch
-
-            index += batch_size
-
-
-def get_statistics(session, model, x, y, batch_size):
+def get_statistics(session, model, x_data, y_data, batch_size):
+    """
+    Compute model's loss and accuracy over data
+    :param session: tensorflow session
+    :param model: model
+    :param x_data: mnist images in vector format
+    :param y_data: one-hot encoded mnist labels
+    :param batch_size:
+    :return: mean loss and accuracy computed over whole dataset
+    """
 
     losses = []
 
     labels = []
     predicted_labels = []
 
-    batches_generator = get_batches_generator(x, y, batch_size)
+    batches_generator = utilities.get_batches_generator(x_data, y_data, batch_size)
+    data_size = x_data.shape[0]
 
-    for _ in range(x.shape[0] // batch_size):
+    for _ in range(data_size // batch_size):
 
         x_batch, y_batch = next(batches_generator)
 
@@ -130,7 +131,7 @@ def main():
     # Log a few samples
     utilities.log_samples(logger, x_test, y_test)
 
-    # Reshape 28x28 matrices to vectors 784 elements vectors
+    # Reshape 28x28 matrices to 784 elements vectors
     x_train_flat = x_train.reshape(-1, 784)
     x_test_flat = x_test.reshape(-1, 784)
 
@@ -142,15 +143,18 @@ def main():
 
     batch_size = 32
     epochs = 10
+    log_size = 10
 
-    batches_generator = get_batches_generator(x_train_flat, y_train_categorical, batch_size)
+    training_set_size = x_train.shape[0]
+
+    training_batches_generator = utilities.get_batches_generator(x_train_flat, y_train_categorical, batch_size)
 
     with tf.Session() as session:
 
         session.run(tf.global_variables_initializer())
 
         # Log untrained model predictions
-        log_predictions(logger, model, session, x_test, y_test, header="Untrained model")
+        log_predictions(logger, model, session, x_test[:log_size], y_test[:log_size], header="Untrained model")
 
         training_loss, training_accuracy = get_statistics(
             session, model, x_train_flat, y_train_categorical, batch_size)
@@ -166,9 +170,9 @@ def main():
 
             print("Epoch {}".format(epoch_index))
 
-            for _ in tqdm.tqdm(range(x_train_flat.shape[0] // batch_size)):
+            for _ in tqdm.tqdm(range(training_set_size // batch_size)):
 
-                x_batch, y_batch = next(batches_generator)
+                x_batch, y_batch = next(training_batches_generator)
 
                 feed_dictionary = {model.x_placeholder: x_batch, model.y_placeholder: y_batch}
                 session.run(model.train_op, feed_dictionary)
@@ -185,7 +189,7 @@ def main():
             print("Epoch {}: test loss: {:.3f}, test accuracy: {:.3f}".format(epoch_index, test_loss, test_accuracy))
 
         # Log untrained model predictions
-        log_predictions(logger, model, session, x_test, y_test, header="Trained model")
+        log_predictions(logger, model, session, x_test[:log_size], y_test[:log_size], header="Trained model")
 
 
 if __name__ == "__main__":
