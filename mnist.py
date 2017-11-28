@@ -15,18 +15,17 @@ import utilities
 def log_predictions(logger, model, x_data, y_data, header):
 
     # Display a few samples
-    for index in range(10):
+    for image, label in zip(x_data, y_data):
 
-        image = cv2.resize(x_data[index], (64, 64))
-        label = y_data[index]
+        large_image = cv2.resize(image, (64, 64))
 
-        prediction = model.predict(x_data[index].reshape(-1, 1))
+        prediction = model.predict(image.reshape(-1, 1))
         predicted_label = np.argmax(prediction)
 
         message = "True label: {}, predicted label: {}\nRaw predictions:\n{}".format(
             label, predicted_label, prediction)
 
-        logger.info(vlogging.VisualRecord(header, image, message, fmt='jpg'))
+        logger.info(vlogging.VisualRecord(header, large_image, message, fmt='jpg'))
 
 
 def main():
@@ -40,8 +39,10 @@ def main():
 
     logger = utilities.get_logger("/tmp/mnist.html")
 
+    log_size = 10
+
     # Log a few samples
-    utilities.log_samples(logger, x_test, y_test)
+    utilities.log_samples(logger, x_test[:log_size], y_test[:log_size])
 
     # Reshape 28x28 matrices to vectors 784 elements vectors
     x_train_flat = x_train.reshape(-1, 784, 1)
@@ -54,14 +55,14 @@ def main():
     model = net.Network(layers=[784, 100, 50, 10])
 
     # Log untrained model predictions
-    log_predictions(logger, model, x_test, y_test, header="Untrained model")
+    log_predictions(logger, model, x_test[:log_size], y_test[:log_size], header="Untrained model")
 
-    model.train(
+    model.fit(
         x_train_flat, y_train_categorical, epochs=10, learning_rate=0.1,
         x_test=x_test_flat, y_test=y_test_categorical)
 
     # Log trained model predictions
-    log_predictions(logger, model, x_test, y_test, header="Trained model")
+    log_predictions(logger, model, x_test[:log_size], y_test[:log_size], header="Trained model")
 
 
 if __name__ == "__main__":

@@ -31,23 +31,21 @@ def get_logger(path):
 def log_samples(logger, x_data, y_data):
 
     # Display a few samples
-    for index in range(10):
+    for image, label in zip(x_data, y_data):
 
-        image = cv2.resize(x_data[index], (64, 64))
-        label = y_data[index]
-
+        image = cv2.resize(image, (64, 64))
         logger.info(vlogging.VisualRecord("Sample", image, str(label), fmt='jpg'))
 
 
-def get_batches_generator(x, y, batch_size):
+def get_batches_generator(x_data, y_data, batch_size):
 
     while True:
 
-        shuffled_x, shuffled_y = sklearn.utils.shuffle(x, y)
+        shuffled_x, shuffled_y = sklearn.utils.shuffle(x_data, y_data)
 
         index = 0
 
-        while index + batch_size < x.shape[0]:
+        while index + batch_size < x_data.shape[0]:
 
             x_batch = shuffled_x[index: index + batch_size]
             y_batch = shuffled_y[index: index + batch_size]

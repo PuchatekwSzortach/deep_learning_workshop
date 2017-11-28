@@ -35,10 +35,12 @@ class Model:
         w = tf.Variable(tf.truncated_normal(shape=(50, 10), stddev=0.01))
         b = tf.Variable(tf.zeros(shape=10))
 
-        logits = tf.matmul(a, w) + b
-        self.prediction = tf.nn.softmax(logits)
+        z = tf.matmul(a, w) + b
+        a = tf.nn.softmax(z)
 
-        element_wise_losses = tf.nn.softmax_cross_entropy_with_logits(labels=self.y_placeholder, logits=logits)
+        self.prediction = a
+
+        element_wise_losses = tf.nn.softmax_cross_entropy_with_logits(labels=self.y_placeholder, logits=z)
         self.loss_op = tf.reduce_mean(element_wise_losses)
 
         self.train_op = tf.train.GradientDescentOptimizer(learning_rate=0.01).minimize(self.loss_op)
@@ -128,8 +130,10 @@ def main():
 
     logger = utilities.get_logger("/tmp/mnist.html")
 
+    log_size = 10
+
     # Log a few samples
-    utilities.log_samples(logger, x_test, y_test)
+    utilities.log_samples(logger, x_test[:log_size], y_test[:log_size])
 
     # Reshape 28x28 matrices to 784 elements vectors
     x_train_flat = x_train.reshape(-1, 784)
@@ -143,10 +147,8 @@ def main():
 
     batch_size = 32
     epochs = 10
-    log_size = 10
 
     training_set_size = x_train.shape[0]
-
     training_batches_generator = utilities.get_batches_generator(x_train_flat, y_train_categorical, batch_size)
 
     with tf.Session() as session:

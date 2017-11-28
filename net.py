@@ -113,7 +113,7 @@ class Network:
             self.weights[index] -= learning_rate * weights_errors[index]
             self.biases[index] -= learning_rate * biases_errors[index]
 
-    def train(self, x_train, y_train, epochs, learning_rate, x_test, y_test):
+    def fit(self, x_train, y_train, epochs, learning_rate, x_test, y_test):
 
         train_cost, train_accuracy = get_statistics(self, x_train, y_train)
         print("Initial training cost: {:.3f}, training accuracy: {:.3f}".format(train_cost, train_accuracy))
