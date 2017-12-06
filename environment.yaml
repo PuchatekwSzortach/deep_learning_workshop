@@ -1,4 +1,4 @@
-name: simple_neural_network
+name: deep_learning_workshop
 channels: !!python/tuple
 - defaults
 dependencies:
