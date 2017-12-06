@@ -14,7 +14,7 @@ Major dependiencies are:
 - tensorflow 1.3+
 - numpy
 - tqdm
-- https://github.com/dchaplinsky/visual-logging
+- visual-logging (https://github.com/dchaplinsky/visual-logging)
 
 You can install most dependencies with conda using `conda env create -f environment.yml`. 
 One caveat is `visual-logging` library - as of this writing (December 2017), its pip version is out of date, so it's best to install it directly from github with `pip install git+https://github.com/dchaplinsky/visual-logging`.
