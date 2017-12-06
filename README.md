@@ -20,7 +20,7 @@ You can use conda to install all the dependencies:
 ```bash
 conda env create -f environment.yaml
 source activate deep_learning_workshop
-pip install pip install --upgrade git+https://github.com/dchaplinsky/visual-logging
+pip install --upgrade git+https://github.com/dchaplinsky/visual-logging
 ```
 
 Note - as of this writing (December 2017), pip version of visual-logging library is out of date, so you have to update default pip version with version from github - otherwise it doesn't log numpy arrays/OpenCV images correctly.
