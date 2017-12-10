@@ -91,7 +91,7 @@ class Network:
 
     def _backpropagation(self, activations, y, learning_rate):
 
-        # Make sure we work on column vectors
+        # Get cost derivative w.r.t. to output layer activations
         activation_error = (activations[-1] - y) / y.size
 
         # Lists to store parameters errors
