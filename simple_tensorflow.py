@@ -30,8 +30,15 @@ def placeholders_example():
     with tf.Session() as session:
 
         feed_dictionary = {
-            d: np.array([[2, 4, 6], [2, 4, 6]]),
-            e: np.array([[4, 8, 12], [-4, -8, -16]])
+            d: np.array([
+                [2, 4, 6],
+                [2, 4, 6]
+            ]),
+
+            e: np.array([
+                [4, 8, 12],
+                [-4, -8, -16]
+            ])
         }
 
         result = session.run(f, feed_dictionary)
