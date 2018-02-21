@@ -18,7 +18,7 @@ Major dependiencies are:
 
 You can use conda to install all the dependencies:
 ```bash
-conda env create -f environment.yaml
+conda env create -f environment.yml
 source activate deep_learning_workshop
 pip install --upgrade git+https://github.com/dchaplinsky/visual-logging
 ```

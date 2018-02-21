@@ -19,21 +19,39 @@ dependencies:
 - xz=5.2.3=0
 - zlib=1.2.11=0
 - pip:
+  - appnope==0.1.0
+  - attrs==17.4.0
   - bleach==1.5.0
+  - decorator==4.2.1
   - enum34==1.1.6
   - html5lib==0.9999999
+  - ipython==6.2.1
+  - ipython-genutils==0.2.0
+  - jedi==0.11.1
   - keras==2.0.9
   - markdown==2.6.9
+  - parso==0.1.1
+  - pexpect==4.4.0
+  - pickleshare==0.7.4
+  - pluggy==0.6.0
+  - prompt-toolkit==1.0.15
   - protobuf==3.4.0
+  - ptyprocess==0.5.2
+  - py==1.5.2
+  - pygments==2.2.0
+  - pytest==3.4.1
   - pyyaml==3.12
   - scikit-learn==0.19.1
   - scipy==1.0.0
+  - simplegeneric==0.8.1
   - six==1.11.0
   - sklearn==0.0
   - tensorflow==1.4.0
   - tensorflow-tensorboard==0.4.0rc2
   - tqdm==4.19.4
+  - traitlets==4.3.2
   - visual-logging==0.2
+  - wcwidth==0.1.7
   - werkzeug==0.12.2
-prefix: /Users/Kuba/anaconda3/envs/simple_neural_network
+prefix: /Users/Kuba/anaconda3/envs/deep_learning_workshop
 
