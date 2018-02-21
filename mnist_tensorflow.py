@@ -2,6 +2,8 @@
 Script training a network on MNIST dataset using tensorflow
 """
 
+import os
+
 import tensorflow as tf
 import tensorflow.contrib.keras as keras
 import numpy as np
@@ -121,14 +123,17 @@ def get_statistics(session, model, x_data, y_data, batch_size):
 
 def main():
 
+    data_dir = "./data/"
+    os.makedirs(data_dir, exist_ok=True)
+
     np.set_printoptions(suppress=True)
 
-    (x_train, y_train), (x_test, y_test) = keras.datasets.mnist.load_data("/tmp/mnist.npz")
+    (x_train, y_train), (x_test, y_test) = keras.datasets.mnist.load_data()
 
     x_train, y_train = sklearn.utils.shuffle(x_train, y_train)
     x_test, y_test = sklearn.utils.shuffle(x_test, y_test)
 
-    logger = utilities.get_logger("/tmp/mnist.html")
+    logger = utilities.get_logger(os.path.join(data_dir, "mnist_tensorflow.html"))
 
     log_size = 10
 
