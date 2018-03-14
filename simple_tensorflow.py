@@ -13,6 +13,8 @@ def placeholders_example():
 
     c = a + b
 
+    print(c)
+
     with tf.Session() as session:
 
         feed_dictionary = {
@@ -22,7 +24,7 @@ def placeholders_example():
 
         result = session.run(c, feed_dictionary)
         print(result)
-
+    #
     d = tf.placeholder(dtype=tf.float32, shape=[None, 3])
     e = tf.placeholder(dtype=tf.float32, shape=[None, 3])
     f = d + e
@@ -61,7 +63,7 @@ def variables_example():
 def main():
 
     placeholders_example()
-    # variables_example()
+    variables_example()
 
 
 if __name__ == "__main__":

@@ -42,9 +42,7 @@ class Model:
 
         self.prediction = a
 
-        element_wise_losses = tf.nn.softmax_cross_entropy_with_logits(labels=self.y_placeholder, logits=z)
-        self.loss_op = tf.reduce_mean(element_wise_losses)
-
+        self.loss_op = tf.losses.softmax_cross_entropy(onehot_labels=self.y_placeholder, logits=z)
         self.train_op = tf.train.GradientDescentOptimizer(learning_rate=0.01).minimize(self.loss_op)
 
 
