@@ -14,16 +14,13 @@ Major dependiencies are:
 - tensorflow 1.3+
 - numpy
 - tqdm
-- visual-logging (https://github.com/dchaplinsky/visual-logging)
+- visual-logging
 
 You can use conda to install all the dependencies:
 ```bash
-conda env create -f environment.yml
+conda env create -f environment_osx.yml
 source activate deep_learning_workshop
-pip install --upgrade git+https://github.com/dchaplinsky/visual-logging
 ```
-
-Note - as of this writing (December 2017), pip version of visual-logging library is out of date, so you have to update default pip version with version from github - otherwise it doesn't log numpy arrays/OpenCV images correctly.
 
 Make sure your PYTHONPATH environmental variable contains current directory, so Python can find modules you are trying to run. You can set PYTHONPATH by adding following to your `.bash_profile` (OSX) or `.bash_rc` (LINUX) scripts:  
 `export PYTHONPATH="."`
