@@ -3,7 +3,6 @@ channels:
   - menpo
   - defaults
 dependencies:
-  - blas=1.0=mkl
   - certifi=2016.2.28=py35_0
   - hdf5=1.8.17=2
   - mkl=2017.0.3=0
@@ -32,7 +31,9 @@ dependencies:
     - jedi==0.11.1
     - keras==2.0.9
     - markdown==2.6.9
+    - mock==2.0.0
     - parso==0.1.1
+    - pbr==5.0.0
     - pexpect==4.4.0
     - pickleshare==0.7.4
     - pluggy==0.6.0
@@ -55,5 +56,5 @@ dependencies:
     - visual-logging==1.0
     - wcwidth==0.1.7
     - werkzeug==0.12.2
-prefix: /Users/kuba/anaconda3/envs/deep_learning_workshop
+prefix: /Users/Kuba/anaconda3/envs/deep_learning_workshop
 
