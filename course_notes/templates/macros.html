@@ -1,0 +1,43 @@
+{% macro site_header() %}
+<div class="jumbotron text-center card mt-4 p-4 shadow-lg">
+    <h1>Deep Learning Workshop</h1>
+    <h2>AI Okinawa</h2>
+    <h2>Jakub “Kuba” Kolodziejczyk</h2>
+</div>
+{% endmacro %}
+
+
+{% macro card_header_style() %}
+"h3 card-header text-center bg-success text-white"
+{% endmacro %}
+
+{% macro kuba_profile() %}
+<div class="shadow-lg">
+
+    <div class={{ card_header_style() }}>Kuba Kolodziejczyk</div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="m-4 h4">
+                <strong>出身:</strong> ポーランド<br>
+                <strong>大学:</strong> ロンドン大学, 大阪大学<br><br>
+
+                <strong>過去</strong><br>
+                Nanyang Technological University<br>
+                OIST<br>
+                レキサス<br><br>
+
+                <strong>現在</strong><br>
+                AI Okinawa - 代表<br>
+                LiLz株式会社 - CTO<br>
+                琉球大学 - 非常勤講師
+            </div>
+        </div>
+
+        <div class="col-md-4">
+          <img src="/static/images/profile_image.jpg" class="mx-auto d-block" width="100%">
+        </div>
+
+    </div>
+</div>
+{% endmacro %}

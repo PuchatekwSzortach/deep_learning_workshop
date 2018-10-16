@@ -1,0 +1,16 @@
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.centered-column {
+    float: none;
+    margin: 0 auto;
+}
+
+.centered_element {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
