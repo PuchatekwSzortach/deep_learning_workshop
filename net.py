@@ -4,6 +4,7 @@ Module with definition of a basic neural network
 
 import numpy as np
 import tqdm
+import sklearn.utils
 
 
 def sigmoid(z):
@@ -122,6 +123,8 @@ class Network:
         print("Initial test cost: {:.3f}, test accuracy: {:.3f}".format(test_cost, test_accuracy))
 
         for epoch_index in range(epochs):
+
+            x_train, y_train = sklearn.utils.shuffle(x_train, y_train)
 
             for x, y in tqdm.tqdm(list(zip(x_train, y_train))):
 
