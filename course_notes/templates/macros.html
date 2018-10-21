@@ -1,6 +1,6 @@
 {% macro site_header() %}
 <div class="jumbotron text-center card mt-4 p-4 shadow-lg">
-    <h1>Deep Learning Workshop</h1>
+    <h1>Deep Learning Foundation</h1>
     <h2>AI Okinawa</h2>
     <h2>Jakub “Kuba” Kolodziejczyk</h2>
 </div>
@@ -37,6 +37,36 @@
         <div class="col-md-4">
           <img src="/static/images/profile_image.jpg" class="mx-auto d-block" width="100%">
         </div>
+
+    </div>
+</div>
+{% endmacro %}
+
+
+{% macro what_this_course_is_about() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>What this course is about</div>
+    <div class="m-4">
+        <img src="/static/images/neural_network_example.png" width="80%"><br>
+        <div class="h5 text-center text-secondary">neuralnetworksanddeeplearning.com</div>
+        <hr>
+    </div>
+</div>
+{% endmacro %}
+
+
+{% macro deep_learning_overview() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>Deep learning - short overview</div>
+    <div class="m-4">
+        <img src="/static/images/ai_ml_dl.jpg" width="80%"><br>
+        <div class="h5 text-center text-secondary">rapidminer.com</div>
+        <hr>
+        <br>
+        <img src="/static/images/sample_function.jpg" width="80%">
+        <div class="h2">$$ y = ax^3 + bx^2 + cx + d$$</div>
+        <hr>
+        <img src="/static/images/various_deep_learning_examples.jpg" width="100%"><br>
 
     </div>
 </div>
