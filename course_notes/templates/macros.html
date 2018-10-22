@@ -236,3 +236,50 @@
     <br>
 </div>
 {% endmacro %}
+
+
+{% macro neural_network_as_a_universal_function_approximator() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>Neural network as universal function approximator</div>
+    <div class="m-4">
+
+        <div class="row text-center">
+            <div class="col">
+                <a href="http://neuralnetworksanddeeplearning.com/chap4.html"
+                   class="btn btn-primary btn-lg" role="button" target="_blank">
+                    neuralnetworksanddeeplearning.com/chap4.html</a>
+            </div>
+        </div>
+
+        <br>
+
+        <ul class="list-group">
+            <li class="list-group-item">Approximating a function with strips</li>
+            <li class="list-group-item">Influence of weight on sigmoid output</li>
+            <li class="list-group-item">Influence of bias on sigmoid output</li>
+            <li class="list-group-item">Rectangular strip with a pair of neurons</li>
+            <li class="list-group-item">Multiple strips</li>
+            <li class="list-group-item">Computing preactivation for desired sigmoid output</li>
+            <li class="list-group-item">Limitations of neural networks</li>
+        </ul>
+    </div>
+    <br>
+</div>
+{% endmacro %}
+
+
+{% macro batching() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>Batching</div>
+    <div class="m-4">
+        <ul class="list-group">
+            <li class="list-group-item">Problem with optimizing for a single sample</li>
+            <li class="list-group-item">Optimizing for a batch of samples</li>
+            <li class="list-group-item">Matrix notation for training a batch of samples</li>
+            <li class="list-group-item">Computational complexity</li>
+            <li class="list-group-item">Updates count</li>
+        </ul>
+    </div>
+    <br>
+</div>
+{% endmacro %}
