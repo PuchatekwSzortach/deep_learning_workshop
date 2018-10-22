@@ -48,7 +48,7 @@
     <div class={{ card_header_style() }}>What this course is about</div>
     <div class="m-4">
         <img src="/static/images/neural_network_example.png" width="80%"><br>
-        <div class="h5 text-center text-secondary">neuralnetworksanddeeplearning.com</div>
+        <div class="h5 text-center text-secondary small">neuralnetworksanddeeplearning.com</div>
         <hr>
     </div>
 </div>
@@ -60,7 +60,7 @@
     <div class={{ card_header_style() }}>Deep learning - short overview</div>
     <div class="m-4">
         <img src="/static/images/ai_ml_dl.jpg" width="80%"><br>
-        <div class="h5 text-center text-secondary">rapidminer.com</div>
+        <div class="h5 text-center text-secondary small">rapidminer.com</div>
         <hr>
         <br>
         <img src="/static/images/sample_function.jpg" width="80%">
@@ -69,5 +69,170 @@
         <img src="/static/images/various_deep_learning_examples.jpg" width="100%"><br>
 
     </div>
+</div>
+{% endmacro %}
+
+
+{% macro ask_questions_take_notes() %}
+<div class="jumbotron text-center card mt-4 p-4 shadow-lg">
+    <h1>Ask questions</h1>
+    <h1>Take notes</h1>
+</div>
+{% endmacro %}
+
+
+{% macro derivatives_review() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>Derivatives review</div>
+    <div class="m-4">
+        <ul class="list-group">
+            <li class="list-group-item">Derivatives notation</li>
+            <li class="list-group-item">Derivative definition</li>
+            <li class="list-group-item">Differentiation of polynomials</li>
+            <li class="list-group-item">Second derivatives</li>
+            <li class="list-group-item">What information derivatives give us?</li>
+            <li class="list-group-item">Derivative of \( y = e^x \)</li>
+            <li class="list-group-item">Derivative of a product of functions</li>
+            <li class="list-group-item">Derivative of a quotient of functions</li>
+            <li class="list-group-item">Derivative of a function of a function</li>
+
+            <li class="list-group-item">Derivative of \( y = ln(x) \)</li>
+            <li class="list-group-item">Derivative of \( y = ln(u) \)</li>
+        </ul>
+    </div>
+    <br>
+</div>
+{% endmacro %}
+
+
+{% macro forward_propagation() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>Forward propagation</div>
+    <div class="m-4">
+
+        <img src="/static/images/neural_network_example.png" width="80%"><br>
+        <div class="h5 text-center text-secondary small">neuralnetworksanddeeplearning.com</div><br>
+
+        <ul class="list-group">
+            <li class="list-group-item">Simple neural network</li>
+            <li class="list-group-item">Inputs and outputs</li>
+            <li class="list-group-item">Weights and biases</li>
+            <li class="list-group-item">Preactivation</li>
+            <li class="list-group-item">Generic activation</li>
+            <li class="list-group-item">Sigmoid function</li>
+            <li class="list-group-item">Sample computation</li>
+        </ul>
+    </div>
+    <br>
+</div>
+{% endmacro %}
+
+
+{% macro cost_function() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>Cost function</div>
+    <div class="m-4">
+
+        <ul class="list-group">
+            <li class="list-group-item">Why use cost function?</li>
+            <li class="list-group-item">Gradient descent</li>
+            <li class="list-group-item">Why not just use accuracy?</li>
+        </ul>
+    </div>
+    <br>
+</div>
+{% endmacro %}
+
+
+{% macro backpropagation_in_simple_networks() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>Backpropagation - simple networks</div>
+    <div class="m-4">
+
+        <ul class="list-group">
+            <li class="list-group-item">Cost derivative w.r.t. activation</li>
+            <li class="list-group-item">Cost derivative w.r.t. preactivation</li>
+            <li class="list-group-item">Cost derivative w.r.t. bias and weights</li>
+            <li class="list-group-item">One step update of weights and biases</li>
+        </ul>
+    </div>
+    <br>
+</div>
+{% endmacro %}
+
+
+{% macro networks_with_multiple_outputs() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>Networks with multiple outputs</div>
+    <div class="m-4">
+
+        <ul class="list-group">
+            <li class="list-group-item">One-hot encoding</li>
+            <li class="list-group-item">Computing cost over multiple outputs</li>
+        </ul>
+    </div>
+    <br>
+</div>
+{% endmacro %}
+
+
+{% macro backpropagation_in_complex_networks() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>Backpropagation - complex networks</div>
+    <div class="m-4">
+
+        <ul class="list-group">
+            <li class="list-group-item">Cost derivative w.r.t. hidden node activation</li>
+            <li class="list-group-item">Parameters notation for complex networks</li>
+            <li class="list-group-item">Compute layer error on node with multiple children</li>
+        </ul>
+    </div>
+    <br>
+</div>
+{% endmacro %}
+
+
+{% macro deep_learning_with_matrix_notation() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>Deep learning - matrix notation</div>
+    <div class="m-4">
+
+        <ul class="list-group">
+            <li class="list-group-item">Matrix review</li>
+            <li class="list-group-item">Matrix derivative review</li>
+            <li class="list-group-item">Forward pass</li>
+            <li class="list-group-item">Backward pass</li>
+        </ul>
+    </div>
+    <br>
+</div>
+{% endmacro %}
+
+
+{% macro simple_neural_network_implementation() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>A simple neural network implementation</div>
+    <div class="m-4">
+
+        <div class="row text-center">
+            <div class="col">
+                <a href="https://github.com/PuchatekwSzortach/deep_learning_workshop"
+                   class="btn btn-primary btn-lg" role="button" target="_blank">
+                    github.com/PuchatekwSzortach/deep_learning_workshop</a>
+            </div>
+        </div>
+
+        <br>
+
+        <ul class="list-group">
+            <li class="list-group-item">MNIST dataset</li>
+            <li class="list-group-item">Training data vs test data</li>
+            <li class="list-group-item">Shuffling</li>
+            <li class="list-group-item">Forward stage</li>
+            <li class="list-group-item">Backpropagation</li>
+            <li class="list-group-item">Three qualities of deep learning</li>
+        </ul>
+    </div>
+    <br>
 </div>
 {% endmacro %}
