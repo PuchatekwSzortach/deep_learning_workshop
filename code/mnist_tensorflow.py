@@ -121,7 +121,7 @@ def get_statistics(session, model, x_data, y_data, batch_size):
 
 def main():
 
-    data_dir = "./data/"
+    data_dir = "../data/"
     os.makedirs(data_dir, exist_ok=True)
 
     np.set_printoptions(suppress=True)
