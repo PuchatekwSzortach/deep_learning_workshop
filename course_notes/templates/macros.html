@@ -283,3 +283,165 @@
     <br>
 </div>
 {% endmacro %}
+
+
+{% macro optimizing_cost_function() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>Optimizing cost function</div>
+    <div class="m-4">
+        <ul class="list-group">
+            <li class="list-group-item">Sigmoid derivative and slow learning with mean square error function</li>
+            <li class="list-group-item">Binary cross entropy</li>
+            <li class="list-group-item">Preactivation error with binary cross entropy cost function</li>
+        </ul>
+    </div>
+    <br>
+</div>
+{% endmacro %}
+
+
+{% macro softmax() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>Softmax</div>
+    <div class="m-4">
+        <ul class="list-group">
+            <li class="list-group-item">Interpreting result of neural network with multiple output nodes</li>
+            <li class="list-group-item">Softmax function</li>
+            <li class="list-group-item">Cross entropy cost</li>
+            <li class="list-group-item">Cost derivative w.r.t. active node</li>
+            <li class="list-group-item">Cost derivative w.r.t. inactive node</li>
+        </ul>
+    </div>
+    <br>
+</div>
+{% endmacro %}
+
+
+{% macro optimizing_hidden_layer_activation_function() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>Optimizing hidden layer activation function</div>
+    <div class="m-4">
+        <ul class="list-group">
+            <li class="list-group-item">Sigmoid derivative and its effect on gradients across layers</li>
+            <li class="list-group-item">ReLU - rectified linear unit</li>
+            <li class="list-group-item">Derivative of ReLU</li>
+            <li class="list-group-item">Why not use a linear hidden activation?</li>
+        </ul>
+    </div>
+    <br>
+</div>
+{% endmacro %}
+
+
+{% macro importance_of_weights_initialization_scheme() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>Importance of weights initialization scheme</div>
+    <div class="m-4">
+        <ul class="list-group">
+            <li class="list-group-item">Problem with naive weights initialization</li>
+            <li class="list-group-item">Scaling weights initialization w.r.t. input size</li>
+        </ul>
+    </div>
+    <br>
+</div>
+{% endmacro %}
+
+{% macro networks_architectures() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>Networks architectures</div>
+    <div class="m-4">
+        <ul class="list-group">
+            <li class="list-group-item">Why deep networks?</li>
+            <li class="list-group-item">How broad should my layers be?</li>
+            <li class="list-group-item">Should I just use a big network for everything?</li>
+        </ul>
+    </div>
+    <br>
+</div>
+{% endmacro %}
+
+
+{% macro tensorflow_basics() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>Tensorflow basics</div>
+    <div class="m-4">
+        <ul class="list-group">
+            <li class="list-group-item">Why Tensorflow? Popularity, GPU processing, automatic differentiation</li>
+            <li class="list-group-item">Computational graph model</li>
+            <li class="list-group-item">Session</li>
+            <li class="list-group-item">Placeholders</li>
+            <li class="list-group-item">Variables</li>
+        </ul>
+    </div>
+    <br>
+</div>
+{% endmacro %}
+
+
+{% macro good_neural_network_implementation() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>A good neural network implementation</div>
+    <div class="m-4">
+
+        <div class="row text-center">
+            <div class="col">
+                <a href="https://github.com/PuchatekwSzortach/deep_learning_workshop"
+                   class="btn btn-primary btn-lg" role="button" target="_blank">
+                    github.com/PuchatekwSzortach/deep_learning_workshop</a>
+            </div>
+        </div>
+
+        <br>
+
+        <ul class="list-group">
+            <li class="list-group-item">ReLU</li>
+            <li class="list-group-item">Softmax</li>
+            <li class="list-group-item">Cross-entropy cost function</li>
+        </ul>
+    </div>
+    <br>
+</div>
+{% endmacro %}
+
+
+{% macro training_tips() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>Training tips</div>
+    <div class="m-4">
+
+        <img src="/static/images/training_accuracy_vs_test_accuracy.jpg" width="60%"><br>
+        <div class="h5 text-center text-secondary small">neuralnetworksanddeeplearning.com</div><br>
+
+        <ul class="list-group">
+            <li class="list-group-item">Check input and labels</li>
+            <li class="list-group-item">Check model</li>
+            <li class="list-group-item">Check loss definition</li>
+            <li class="list-group-item">Check learning rate</li>
+            <li class="list-group-item">Validation and overfitting</li>
+        </ul>
+    </div>
+    <br>
+</div>
+{% endmacro %}
+
+
+{% macro beyond_categorization_networks() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>Beyond categorization networks</div>
+    <div class="m-4">
+
+        <ul class="list-group">
+            <li class="list-group-item">Regression - real value prediction</li>
+            <li class="list-group-item">Mixing real values and categorical inputs</li>
+            <li class="list-group-item">Convolutional networks</li>
+            <li class="list-group-item">Recurrent networks</li>
+        </ul>
+    </div>
+    <br>
+</div>
+{% endmacro %}
+
+
+{% macro finishing_slide() %}
+<img src="/static/images/ai_okinawa_finishing_slide.jpg" width="100%" class="shadow-lg"></div>
+{% endmacro %}
