@@ -62,6 +62,12 @@ def main():
     # Log untrained model predictions
     log_predictions(logger, model, x_test[:log_size], y_test[:log_size], header="Untrained model")
 
+    train_cost, train_accuracy = net.get_statistics(model, x_train, y_train)
+    print("Initial training cost: {:.3f}, training accuracy: {:.3f}".format(train_cost, train_accuracy))
+
+    test_cost, test_accuracy = net.get_statistics(model, x_test, y_test)
+    print("Initial test cost: {:.3f}, test accuracy: {:.3f}".format(test_cost, test_accuracy))
+
     model.fit(
         x_train_flat, y_train_categorical, epochs=10, learning_rate=0.1,
         x_test=x_test_flat, y_test=y_test_categorical)
