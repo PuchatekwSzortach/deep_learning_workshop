@@ -19,7 +19,7 @@ Major dependiencies are:
 You can use conda to install all the dependencies:
 ```bash
 conda env create -f environment_osx.yml
-source activate deep_learning_workshop
+source activate deep_learning_workshop_osx
 ```
 
 Make sure your `PYTHONPATH` environmental variable contains current directory, so Python can find modules you are trying to run. You can set PYTHONPATH by adding following to your `.bash_profile` (OSX) or `.bash_rc` (LINUX) scripts:  

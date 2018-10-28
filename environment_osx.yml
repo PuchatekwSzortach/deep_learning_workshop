@@ -1,4 +1,4 @@
-name: deep_learning_workshop
+name: deep_learning_workshop_osx
 channels:
   - menpo
   - defaults
@@ -56,5 +56,5 @@ dependencies:
     - visual-logging==1.0
     - wcwidth==0.1.7
     - werkzeug==0.12.2
-prefix: /Users/Kuba/anaconda3/envs/deep_learning_workshop
+prefix: /Users/Kuba/anaconda3/envs/deep_learning_workshop_osx
 
