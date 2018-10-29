@@ -10,7 +10,8 @@ Interesting files:
 
 ### Environment definition
 
-You can use conda to install all the dependencies.  
+Environment management is done using Anaconda. Please make sure to install Anaconda on your system first.
+Once Anaconda is installed, you can use environment definition file for your operating system to install all project dependencies.
 
 On OSX:
 ```bash
@@ -24,6 +25,12 @@ conda env create -f environment_linux.yml
 source activate deep_learning_workshop_linux
 ```
 
+On Windows:
+```bash
+conda env create -f ./environment_windows.yml
+conda activate deep_learning_workshop_windows
+```
+
 Should you want to create your own environment from scratch, here are the major dependencies:  
 - python 3.5  
 - opencv  
@@ -31,7 +38,6 @@ Should you want to create your own environment from scratch, here are the major 
 - numpy  
 - tqdm  
 - visual-logging  
-
 
 Make sure your `PYTHONPATH` environmental variable contains current directory, so Python can find modules you are trying to run. You can set PYTHONPATH by adding following to your `.bash_profile` (OSX) or `.bash_rc` (LINUX) scripts:  
 `export PYTHONPATH="."`

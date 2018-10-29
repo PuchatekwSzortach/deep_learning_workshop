@@ -1,0 +1,59 @@
+name: deep_learning_workshop_windows
+channels:
+  - menpo
+  - defaults
+dependencies:
+  - blas=1.0=mkl
+  - certifi=2018.8.24=py35_1
+  - icc_rt=2017.0.4=h97af966_0
+  - intel-openmp=2019.0=118
+  - mkl=2019.0=118
+  - mkl_fft=1.0.6=py35hdbbee80_0
+  - mkl_random=1.0.1=py35h77b88f5_1
+  - numpy=1.15.2=py35ha559c80_0
+  - numpy-base=1.15.2=py35h8128ebf_0
+  - pip=10.0.1=py35_0
+  - python=3.5.6=he025d50_0
+  - setuptools=40.2.0=py35_0
+  - vc=14.1=h0510ff6_4
+  - vs2015_runtime=14.15.26706=h3a45250_0
+  - wheel=0.31.1=py35_0
+  - wincertstore=0.2=py35hfebbdb8_0
+  - opencv3=3.1.0=py35_0
+  - pip:
+    - absl-py==0.6.1
+    - astor==0.7.1
+    - backcall==0.1.0
+    - colorama==0.4.0
+    - decorator==4.3.0
+    - gast==0.2.0
+    - grpcio==1.16.0
+    - h5py==2.8.0
+    - ipython==7.1.1
+    - ipython-genutils==0.2.0
+    - jedi==0.13.1
+    - keras==2.2.4
+    - keras-applications==1.0.6
+    - keras-preprocessing==1.0.5
+    - markdown==3.0.1
+    - parso==0.3.1
+    - pickleshare==0.7.5
+    - prompt-toolkit==2.0.6
+    - protobuf==3.6.1
+    - pygments==2.2.0
+    - pyyaml==3.13
+    - scikit-learn==0.20.0
+    - scipy==1.1.0
+    - six==1.11.0
+    - sklearn==0.0
+    - tensorboard==1.11.0
+    - tensorflow==1.11.0
+    - termcolor==1.1.0
+    - tqdm==4.28.1
+    - traitlets==4.3.2
+    - visual-logging==1.0
+    - wcwidth==0.1.7
+    - werkzeug==0.14.1
+    - win-unicode-console==0.5
+prefix: C:\Users\kuba\Anaconda3\envs\deep_learning_workshop_windows
+
