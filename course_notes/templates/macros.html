@@ -1,3 +1,5 @@
+{% import "math_macros.html" as math_macros %}
+
 {% macro site_header() %}
 <div class="jumbotron text-center card mt-4 p-4 shadow-lg">
     <h1>Deep Learning Foundation</h1>
@@ -204,7 +206,22 @@
             <li class="list-group-item">Backward pass</li>
         </ul>
     </div>
-    <br>
+
+    $$
+    A = \begin{bmatrix}
+    a_{11} & a_{12} & a_{13} \\
+    a_{21} & a_{22} & a_{23} \\
+    a_{31} & a_{32} & a_{33} \\
+    \end{bmatrix}
+    $$
+
+    <hr>
+    {{ math_macros.matrix_multiplication() }}
+    <hr>
+    {{ math_macros.derivative_of_vector_with_respect_to_scalar() }}
+    <hr>
+    {{ math_macros.derivative_of_scalar_with_respect_to_vector() }}
+
 </div>
 {% endmacro %}
 

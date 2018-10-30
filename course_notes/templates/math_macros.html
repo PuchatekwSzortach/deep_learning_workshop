@@ -1,0 +1,103 @@
+{% macro matrix_multiplication() %}
+<div class="text-center">Matrix multiplication</div>
+
+$$
+A\mathbf{x} =
+
+\begin{bmatrix}
+a_{11} & a_{12} & a_{13} \\
+a_{21} & a_{22} & a_{23} \\
+a_{31} & a_{32} & a_{33} \\
+\end{bmatrix}
+
+\begin{bmatrix}
+x_{1} \\
+x_{2} \\
+x_{3} \\
+\end{bmatrix} =
+
+\begin{bmatrix}
+(a_{11} * x_{1}) + (a_{12} * x_{2}) + (a_{13}  x_{3}) \\
+(a_{21} * x_{1}) + (a_{22} * x_{2}) + (a_{23}  x_{3}) \\
+(a_{31} * x_{1}) + (a_{32} * x_{2}) + (a_{33}  x_{3}) \\
+\end{bmatrix}
+$$
+
+$$
+
+A\mathbf{x} =
+
+\begin{bmatrix}
+y_{1} \\
+y_{2} \\
+y_{3} \\
+\end{bmatrix} = \mathbf{y}
+
+$$
+{% endmacro %}
+
+
+{% macro derivative_of_vector_with_respect_to_scalar() %}
+<div class="text-center">Derivative of vector with respect to scalar</div>
+
+$$
+
+\mathbf{f} =
+
+\begin{bmatrix}
+f_{1} \\
+f_{2} \\
+f_{3} \\
+\end{bmatrix} =
+
+\begin{bmatrix}
+2x - 3 \\
+x^2 + 4 \\
+8 \\
+\end{bmatrix}
+
+$$
+
+$$
+
+\frac{ \partial{\mathbf{f}} }{ \partial{x} } =
+
+\begin{bmatrix}
+\frac{ \partial{f_{1}} }{ \partial{x} } \\
+\frac{ \partial{f_{2}} }{ \partial{x} } \\
+\frac{ \partial{f_{3}} }{ \partial{x} } \\
+\end{bmatrix} =
+
+\begin{bmatrix}
+2 \\
+2x \\
+0 \\
+\end{bmatrix}
+
+$$
+{% endmacro %}
+
+
+{% macro derivative_of_scalar_with_respect_to_vector() %}
+<div class="text-center">Derivative of scalar with respect to vector</div>
+
+$$ f = 3x_{1} - x_{2}^2 + 4 $$
+
+$$
+\nabla{_\mathbf{x} f} =
+
+\begin{bmatrix}
+\frac{ \partial{f} }{ \partial{x_{1}} } \\
+\frac{ \partial{f} }{ \partial{x_{2}} } \\
+\frac{ \partial{f} }{ \partial{x_{3}} } \\
+\end{bmatrix} =
+
+\begin{bmatrix}
+3 \\
+-2x_{2} \\
+0 \\
+\end{bmatrix}
+$$
+<br>
+
+{% endmacro %}
