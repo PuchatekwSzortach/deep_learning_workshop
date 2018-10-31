@@ -1,186 +1,223 @@
 {% macro matrix_multiplication() %}
 <div class="h5 text-center">Matrix multiplication</div>
 
-$$
-A\mathbf{x} =
+    $$
+        A\mathbf{x} =
 
-\begin{bmatrix}
-a_{11} & a_{12} & a_{13} \\
-a_{21} & a_{22} & a_{23} \\
-a_{31} & a_{32} & a_{33} \\
-\end{bmatrix}
+        \begin{bmatrix}
+            a_{11} & a_{12} & a_{13} \\
+            a_{21} & a_{22} & a_{23} \\
+            a_{31} & a_{32} & a_{33} \\
+        \end{bmatrix}
 
-\begin{bmatrix}
-x_{1} \\
-x_{2} \\
-x_{3} \\
-\end{bmatrix} =
+        \begin{bmatrix}
+            x_{1} \\
+            x_{2} \\
+            x_{3} \\
+        \end{bmatrix} =
 
-\begin{bmatrix}
-(a_{11} * x_{1}) + (a_{12} * x_{2}) + (a_{13}  x_{3}) \\
-(a_{21} * x_{1}) + (a_{22} * x_{2}) + (a_{23}  x_{3}) \\
-(a_{31} * x_{1}) + (a_{32} * x_{2}) + (a_{33}  x_{3}) \\
-\end{bmatrix}
-$$
+        \begin{bmatrix}
+            (a_{11} * x_{1}) + (a_{12} * x_{2}) + (a_{13}  x_{3}) \\
+            (a_{21} * x_{1}) + (a_{22} * x_{2}) + (a_{23}  x_{3}) \\
+            (a_{31} * x_{1}) + (a_{32} * x_{2}) + (a_{33}  x_{3}) \\
+        \end{bmatrix}
+    $$
 
-$$
+    $$
+        A\mathbf{x} =
 
-A\mathbf{x} =
-
-\begin{bmatrix}
-y_{1} \\
-y_{2} \\
-y_{3} \\
-\end{bmatrix} = \mathbf{y}
-
-$$
+        \begin{bmatrix}
+            y_{1} \\
+            y_{2} \\
+            y_{3} \\
+        \end{bmatrix} = \mathbf{y}
+    $$
 {% endmacro %}
 
 
 {% macro derivative_of_vector_with_respect_to_scalar() %}
 <div class="h5 text-center">Derivative of a vector with respect to a scalar</div>
 
-$$
+    $$
+        \mathbf{f} =
 
-\mathbf{f} =
+        \begin{bmatrix}
+            f_{1} \\
+            f_{2} \\
+            f_{3} \\
+        \end{bmatrix} =
 
-\begin{bmatrix}
-f_{1} \\
-f_{2} \\
-f_{3} \\
-\end{bmatrix} =
+        \begin{bmatrix}
+            2x - 3 \\
+            x^2 + 4 \\
+            8 \\
+        \end{bmatrix}
+    $$
 
-\begin{bmatrix}
-2x - 3 \\
-x^2 + 4 \\
-8 \\
-\end{bmatrix}
+    $$
+        \frac{ \partial{\mathbf{f}} }{ \partial{x} } =
 
-$$
+        \begin{bmatrix}
+            \frac{ \partial{f_{1}} }{ \partial{x} } \\
+            \frac{ \partial{f_{2}} }{ \partial{x} } \\
+            \frac{ \partial{f_{3}} }{ \partial{x} } \\
+        \end{bmatrix} =
 
-$$
-
-\frac{ \partial{\mathbf{f}} }{ \partial{x} } =
-
-\begin{bmatrix}
-\frac{ \partial{f_{1}} }{ \partial{x} } \\
-\frac{ \partial{f_{2}} }{ \partial{x} } \\
-\frac{ \partial{f_{3}} }{ \partial{x} } \\
-\end{bmatrix} =
-
-\begin{bmatrix}
-2 \\
-2x \\
-0 \\
-\end{bmatrix}
-
-$$
+        \begin{bmatrix}
+            2 \\
+            2x \\
+            0 \\
+        \end{bmatrix}
+    $$
 {% endmacro %}
 
 
 {% macro derivative_of_scalar_with_respect_to_vector() %}
-<div class="h5 text-center">Derivative of a scalar with respect to a vector</div>
+    <div class="h5 text-center">Derivative of a scalar with respect to a vector</div>
 
-$$ f = 3x_{1} - x_{2}^2 + 4 $$
+    $$ f = 3x_{1} - x_{2}^2 + 4 $$
 
-$$
-\nabla{_\mathbf{x} f} =
+    $$
+    \nabla{_\mathbf{x} f} =
 
-\begin{bmatrix}
-\frac{ \partial{f} }{ \partial{x_{1}} } \\
-\frac{ \partial{f} }{ \partial{x_{2}} } \\
-\frac{ \partial{f} }{ \partial{x_{3}} } \\
-\end{bmatrix} =
+    \begin{bmatrix}
+        \frac{ \partial{f} }{ \partial{x_{1}} } \\
+        \frac{ \partial{f} }{ \partial{x_{2}} } \\
+        \frac{ \partial{f} }{ \partial{x_{3}} } \\
+    \end{bmatrix} =
 
-\begin{bmatrix}
-3 \\
--2x_{2} \\
-0 \\
-\end{bmatrix}
-$$
-<br>
+    \begin{bmatrix}
+        3 \\
+        -2x_{2} \\
+        0 \\
+        \end{bmatrix}
+    $$
+    <br>
 
 {% endmacro %}
 
 
 {% macro matrix_notation_preactivation() %}
-<div class="h5 text-center">Preactivation</div>
+    <div class="h5 text-center">Preactivation</div>
 
-$$
-\mathbf{z^1} =
+    $$
+        \mathbf{z^1} =
 
-\begin{bmatrix}
-z_{1}^1 \\
-z_{2}^1 \\
-z_{3}^1 \\
-\end{bmatrix} =
+        \begin{bmatrix}
+            z_{1}^1 \\
+            z_{2}^1 \\
+            z_{3}^1 \\
+        \end{bmatrix} =
 
-\begin{bmatrix}
-(w_{1,1}^1 a_{1}^0) + (w_{1,2}^1 a_{2}^0) + b_{1}^1 \\
-(w_{2,1}^1 a_{1}^0) + (w_{2,2}^1 a_{2}^0) + b_{2}^1 \\
-(w_{3,1}^1 a_{1}^0) + (w_{3,2}^1 a_{2}^0) + b_{3}^1 \\
-\end{bmatrix}
-$$
+        \begin{bmatrix}
+            (w_{1,1}^1 a_{1}^0) + (w_{1,2}^1 a_{2}^0) + b_{1}^1 \\
+            (w_{2,1}^1 a_{1}^0) + (w_{2,2}^1 a_{2}^0) + b_{2}^1 \\
+            (w_{3,1}^1 a_{1}^0) + (w_{3,2}^1 a_{2}^0) + b_{3}^1 \\
+        \end{bmatrix}
+    $$
+    <hr>
+    $$
+        \mathbf{z^1} =
 
-<br>
+        \begin{bmatrix}
+            w_{1,1}^1 & w_{1,2}^1 \\
+            w_{2,1}^1 & w_{2,2}^1 \\
+            w_{3,1}^1 & w_{3,2}^1 \\
+        \end{bmatrix}
 
-$$
-\mathbf{z^1} =
+        \begin{bmatrix}
+            a_{1}^0 \\
+            a_{2}^0 \\
+        \end{bmatrix}
 
-\begin{bmatrix}
-w_{1,1}^1 & w_{1,2}^1 \\
-w_{2,1}^1 & w_{2,2}^1 \\
-w_{3,1}^1 & w_{3,2}^1 \\
-\end{bmatrix}
+        +
 
-\begin{bmatrix}
-a_{1}^0 \\
-a_{2}^0 \\
-\end{bmatrix}
+        \begin{bmatrix}
+            b_{1}^1 \\
+            b_{2}^1 \\
+            b_{3}^1 \\
+        \end{bmatrix}
+    $$
+    <hr>
+    $$ \mathbf{z^1} = W^1 \mathbf{a^0} + \mathbf{b^1} $$
+    <hr>
 
-+
-
-\begin{bmatrix}
-b_{1}^1 \\
-b_{2}^1 \\
-b_{3}^1 \\
-\end{bmatrix}
-$$
-
-<br>
-
-$$ \mathbf{z^1} = W^1 \mathbf{a^0} + \mathbf{b^1} $$
-
-<br>
-
-<div class="h6 text-center">Generic form</div>
-
-$$ \mathbf{z^k} = W^k \mathbf{a^{k-1}} + \mathbf{b^k} $$
+    <div class="h6 text-center">Generic form</div>
+    $$ \mathbf{z^k} = W^k \mathbf{a^{k-1}} + \mathbf{b^k} $$
 
 {% endmacro %}
 
 
 {% macro matrix_notation_activation() %}
-<div class="h5 text-center">Preactivation</div>
+    <div class="h5 text-center">Activation</div>
 
-$$
-\mathbf{a^k} =
+    $$
+        \mathbf{a^k} =
 
-\begin{bmatrix}
-a_{1}^k \\
-a_{2}^k \\
-a_{3}^k \\
-\end{bmatrix} =
+        \begin{bmatrix}
+            a_{1}^k \\
+            a_{2}^k \\
+            a_{3}^k \\
+        \end{bmatrix} =
 
-\begin{bmatrix}
-\sigma(z_{1}^k) \\
-\sigma(z_{2}^k) \\
-\sigma(z_{3}^k) \\
-\end{bmatrix}
-$$
+        \begin{bmatrix}
+            \sigma(z_{1}^k) \\
+            \sigma(z_{2}^k) \\
+            \sigma(z_{3}^k) \\
+        \end{bmatrix}
+    $$
+    <hr>
+    $$ \mathbf{a^k} = \sigma( \mathbf{z^k} ) $$
 
-$$ \mathbf{a^k} = \sigma( \mathbf{z^k} ) $$
+    <br>
 
-<br>
+{% endmacro %}
+
+
+{% macro derivative_of_cost_with_respect_to_last_activation_vector() %}
+    <div class="h5 text-center">Derivative of cost with respect to last activation vector</div>
+
+    $$
+        \nabla{_\mathbf{a^2} C} =
+
+        \begin{bmatrix}
+            \frac{ \partial{C} }{ \partial{a_{1}^2} } \\
+            \frac{ \partial{C} }{ \partial{a_{2}^2} } \\
+        \end{bmatrix}
+    $$
+    <hr>
+    $$
+        \nabla{_\mathbf{a^2} C} =
+
+        \begin{bmatrix}
+            \frac{ \partial{C} }{ \partial{C_{1}} } * \frac{ \partial{C_{1}} }{ \partial{a_{1}^2} } \\
+            \frac{ \partial{C} }{ \partial{C_{2}} } * \frac{ \partial{C_{2}} }{ \partial{a_{2}^2} } \\
+        \end{bmatrix}
+    $$
+    <hr>
+    $$
+        \nabla{_\mathbf{a^2} C} =
+
+        \begin{bmatrix}
+            \frac{1}{2} * (a_{1}^2 - y_{1}) \\
+            \frac{1}{2} * (a_{2}^2 - y_{2}) \\
+        \end{bmatrix}
+    $$
+    <hr>
+    $$
+        \nabla{_\mathbf{a^2} C} = \frac{1}{2} *
+
+        \begin{bmatrix}
+            a_{1}^2 - y_{1} \\
+            a_{2}^2 - y_{2} \\
+        \end{bmatrix}
+    $$
+    <hr>
+    $$ \nabla{_\mathbf{a^2} C} = \frac{1}{2} * (\mathbf{a^2} - \mathbf{y}) $$
+
+    <div class="h6 text-center">Generic form</div>
+    $$ \nabla{_\mathbf{a^K} C} = \frac{1}{m} * (\mathbf{a^K} - \mathbf{y}) $$
+
+    <br>
 
 {% endmacro %}

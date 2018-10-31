@@ -220,16 +220,11 @@
 {% endmacro %}
 
 
-{% macro deep_learning_with_matrix_notation() %}
+{% macro matrix_notation_backpropagation() %}
 <div class="shadow-lg">
-    <div class={{ card_header_style() }}>Deep learning - matrix notation</div>
-    <div class="m-4">
+    <div class={{ card_header_style() }}>Matrix notation - backpropagation</div><br>
 
-        <ul class="list-group">
-            <li class="list-group-item">Backward pass</li>
-        </ul>
-    </div>
-    <br>
+    {{ math_macros.derivative_of_cost_with_respect_to_last_activation_vector() }}
 </div>
 {% endmacro %}
 
