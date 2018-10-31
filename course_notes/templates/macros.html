@@ -194,34 +194,42 @@
 {% endmacro %}
 
 
-{% macro deep_learning_with_matrix_notation() %}
+{% macro matrix_review() %}
 <div class="shadow-lg">
-    <div class={{ card_header_style() }}>Deep learning - matrix notation</div>
-    <div class="m-4">
+    <div class={{ card_header_style() }}>Matrix review</div><br>
 
-        <ul class="list-group">
-            <li class="list-group-item">Matrix review</li>
-            <li class="list-group-item">Matrix derivative review</li>
-            <li class="list-group-item">Forward pass</li>
-            <li class="list-group-item">Backward pass</li>
-        </ul>
-    </div>
-
-    $$
-    A = \begin{bmatrix}
-    a_{11} & a_{12} & a_{13} \\
-    a_{21} & a_{22} & a_{23} \\
-    a_{31} & a_{32} & a_{33} \\
-    \end{bmatrix}
-    $$
-
-    <hr>
     {{ math_macros.matrix_multiplication() }}
     <hr>
     {{ math_macros.derivative_of_vector_with_respect_to_scalar() }}
     <hr>
     {{ math_macros.derivative_of_scalar_with_respect_to_vector() }}
 
+</div>
+{% endmacro %}
+
+
+{% macro matrix_notation_forward_pass() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>Matrix notation - forward pass</div><br>
+
+    {{ math_macros.matrix_notation_preactivation() }}
+    <hr>
+    {{ math_macros.matrix_notation_activation() }}
+
+</div>
+{% endmacro %}
+
+
+{% macro deep_learning_with_matrix_notation() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>Deep learning - matrix notation</div>
+    <div class="m-4">
+
+        <ul class="list-group">
+            <li class="list-group-item">Backward pass</li>
+        </ul>
+    </div>
+    <br>
 </div>
 {% endmacro %}
 

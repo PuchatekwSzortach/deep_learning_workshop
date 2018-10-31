@@ -1,5 +1,5 @@
 {% macro matrix_multiplication() %}
-<div class="text-center">Matrix multiplication</div>
+<div class="h5 text-center">Matrix multiplication</div>
 
 $$
 A\mathbf{x} =
@@ -38,7 +38,7 @@ $$
 
 
 {% macro derivative_of_vector_with_respect_to_scalar() %}
-<div class="text-center">Derivative of vector with respect to scalar</div>
+<div class="h5 text-center">Derivative of a vector with respect to a scalar</div>
 
 $$
 
@@ -79,7 +79,7 @@ $$
 
 
 {% macro derivative_of_scalar_with_respect_to_vector() %}
-<div class="text-center">Derivative of scalar with respect to vector</div>
+<div class="h5 text-center">Derivative of a scalar with respect to a vector</div>
 
 $$ f = 3x_{1} - x_{2}^2 + 4 $$
 
@@ -98,6 +98,89 @@ $$
 0 \\
 \end{bmatrix}
 $$
+<br>
+
+{% endmacro %}
+
+
+{% macro matrix_notation_preactivation() %}
+<div class="h5 text-center">Preactivation</div>
+
+$$
+\mathbf{z^1} =
+
+\begin{bmatrix}
+z_{1}^1 \\
+z_{2}^1 \\
+z_{3}^1 \\
+\end{bmatrix} =
+
+\begin{bmatrix}
+(w_{1,1}^1 a_{1}^0) + (w_{1,2}^1 a_{2}^0) + b_{1}^1 \\
+(w_{2,1}^1 a_{1}^0) + (w_{2,2}^1 a_{2}^0) + b_{2}^1 \\
+(w_{3,1}^1 a_{1}^0) + (w_{3,2}^1 a_{2}^0) + b_{3}^1 \\
+\end{bmatrix}
+$$
+
+<br>
+
+$$
+\mathbf{z^1} =
+
+\begin{bmatrix}
+w_{1,1}^1 & w_{1,2}^1 \\
+w_{2,1}^1 & w_{2,2}^1 \\
+w_{3,1}^1 & w_{3,2}^1 \\
+\end{bmatrix}
+
+\begin{bmatrix}
+a_{1}^0 \\
+a_{2}^0 \\
+\end{bmatrix}
+
++
+
+\begin{bmatrix}
+b_{1}^1 \\
+b_{2}^1 \\
+b_{3}^1 \\
+\end{bmatrix}
+$$
+
+<br>
+
+$$ \mathbf{z^1} = W^1 \mathbf{a^0} + \mathbf{b^1} $$
+
+<br>
+
+<div class="h6 text-center">Generic form</div>
+
+$$ \mathbf{z^k} = W^k \mathbf{a^{k-1}} + \mathbf{b^k} $$
+
+{% endmacro %}
+
+
+{% macro matrix_notation_activation() %}
+<div class="h5 text-center">Preactivation</div>
+
+$$
+\mathbf{a^k} =
+
+\begin{bmatrix}
+a_{1}^k \\
+a_{2}^k \\
+a_{3}^k \\
+\end{bmatrix} =
+
+\begin{bmatrix}
+\sigma(z_{1}^k) \\
+\sigma(z_{2}^k) \\
+\sigma(z_{3}^k) \\
+\end{bmatrix}
+$$
+
+$$ \mathbf{a^k} = \sigma( \mathbf{z^k} ) $$
+
 <br>
 
 {% endmacro %}
