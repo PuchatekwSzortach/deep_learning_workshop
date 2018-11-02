@@ -175,7 +175,6 @@
 
 
 {% macro derivative_of_cost_with_respect_to_last_activation_vector() %}
-    <div class="h5 text-center">Derivative of cost with respect to last activation vector</div>
 
     $$
         \nabla{_\mathbf{a^2} C} =
@@ -214,10 +213,133 @@
     $$
     <hr>
     $$ \nabla{_\mathbf{a^2} C} = \frac{1}{2} * (\mathbf{a^2} - \mathbf{y}) $$
+    <hr>
 
     <div class="h6 text-center">Generic form</div>
     $$ \nabla{_\mathbf{a^K} C} = \frac{1}{m} * (\mathbf{a^K} - \mathbf{y}) $$
 
     <br>
+
+{% endmacro %}
+
+
+{% macro derivative_of_cost_with_respect_to_preactivation_vector() %}
+
+    $$
+        \nabla{_\mathbf{z^2} C} =
+
+        \begin{bmatrix}
+            \frac{ \partial{C} }{ \partial{z_{1}^2} } \\
+            \frac{ \partial{C} }{ \partial{z_{2}^2} } \\
+        \end{bmatrix}
+    $$
+    <hr>
+    $$
+        \nabla{_\mathbf{z^2} C} =
+
+        \begin{bmatrix}
+            \frac{ \partial{C} }{ \partial{a_{1}^2} } * \frac{ \partial{a_{1}^2} }{ \partial{z_{1}^2} } \\
+            \frac{ \partial{C} }{ \partial{a_{2}^2} } * \frac{ \partial{a_{2}^2} }{ \partial{z_{2}^2} } \\
+        \end{bmatrix}
+    $$
+    <hr>
+    $$
+        \nabla{_\mathbf{z^2} C} =
+
+        \begin{bmatrix}
+            \frac{ \partial{C} }{ \partial{a_{1}^2} } * a_{1}^2 * (1 - a_{1}^2) \\
+            \frac{ \partial{C} }{ \partial{a_{2}^2} } * a_{2}^2 * (1 - a_{2}^2) \\
+        \end{bmatrix}
+    $$
+    <hr>
+    $$ \nabla{_\mathbf{z^2} C} = \nabla{_\mathbf{a^2} C} \odot (\mathbf{1} - \mathbf{a^2}) $$
+    <hr>
+
+    <div class="h6 text-center">Generic form</div>
+    $$ \nabla{_\mathbf{z^k} C} = \nabla{_\mathbf{a^k} C} \odot (\mathbf{1} - \mathbf{a^k}) $$
+
+    <br>
+
+{% endmacro %}
+
+
+{% macro derivative_of_cost_with_respect_to_hidden_layer_activation_vector() %}
+
+    $$
+        \nabla{_\mathbf{a^1} C} =
+
+        \begin{bmatrix}
+            \frac{ \partial{C} }{ \partial{a_{1}^1} } \\
+            \frac{ \partial{C} }{ \partial{a_{2}^1} } \\
+            \frac{ \partial{C} }{ \partial{a_{3}^1} } \\
+        \end{bmatrix}
+    $$
+    <hr>
+    $$
+        \nabla{_\mathbf{a^1} C} =
+
+        \begin{bmatrix}
+            (\frac{ \partial{C} }{ \partial{z_{1}^2} } * \frac{ \partial{z_{1}^2} }{ \partial{a_{1}^1} }) +
+            (\frac{ \partial{C} }{ \partial{z_{2}^2} } * \frac{ \partial{z_{2}^2} }{ \partial{a_{1}^1} }) \\
+
+            (\frac{ \partial{C} }{ \partial{z_{1}^2} } * \frac{ \partial{z_{1}^2} }{ \partial{a_{2}^1} }) +
+            (\frac{ \partial{C} }{ \partial{z_{2}^2} } * \frac{ \partial{z_{2}^2} }{ \partial{a_{2}^1} }) \\
+
+            (\frac{ \partial{C} }{ \partial{z_{1}^2} } * \frac{ \partial{z_{1}^2} }{ \partial{a_{3}^1} }) +
+            (\frac{ \partial{C} }{ \partial{z_{2}^2} } * \frac{ \partial{z_{2}^2} }{ \partial{a_{3}^1} }) \\
+        \end{bmatrix}
+    $$
+    <hr>
+    $$
+        \nabla{_\mathbf{a^1} C} =
+
+        \begin{bmatrix}
+            (\frac{ \partial{C} }{ \partial{z_{1}^2} } * w_{11}^2) +
+            (\frac{ \partial{C} }{ \partial{z_{2}^2} } * w_{21}^2) \\
+            (\frac{ \partial{C} }{ \partial{z_{1}^2} } * w_{12}^2) +
+            (\frac{ \partial{C} }{ \partial{z_{2}^2} } * w_{22}^2) \\
+            (\frac{ \partial{C} }{ \partial{z_{1}^2} } * w_{13}^2) +
+            (\frac{ \partial{C} }{ \partial{z_{2}^2} } * w_{23}^2) \\
+        \end{bmatrix}
+    $$
+    <hr>
+    $$
+        \nabla{_\mathbf{a^1} C} =
+
+        \begin{bmatrix}
+            w_{11}^2 & w_{21}^2 \\
+            w_{12}^2 & w_{22}^2 \\
+            w_{13}^2 & w_{23}^2 \\
+        \end{bmatrix} *
+
+        \begin{bmatrix}
+            \frac{ \partial{C} }{ \partial{z_{1}^2} } \\
+            \frac{ \partial{C} }{ \partial{z_{2}^2} }
+        \end{bmatrix}
+    $$
+    <hr>
+    $$
+        \nabla{_\mathbf{a^1} C} =
+
+        \begin{bmatrix}
+            w_{11}^2 & w_{12}^2 & w_{13}^2 \\
+            w_{21}^2 & w_{22}^2 & w_{23}^2 \\
+        \end{bmatrix}^T *
+
+        \begin{bmatrix}
+            \frac{ \partial{C} }{ \partial{z_{1}^2} } \\
+            \frac{ \partial{C} }{ \partial{z_{2}^2} }
+        \end{bmatrix}
+    $$
+    <hr>
+    $$ \nabla{_\mathbf{a^1} C} = W^2 * \nabla{_\mathbf{z^2} C} $$
+    <hr>
+
+    <div class="h6 text-center">Generic form</div>
+    $$ \nabla{_\mathbf{a^k} C} = W^{k+1} * \nabla{_\mathbf{z^{k+1}} C} $$
+
+    <br>
+
+
 
 {% endmacro %}

@@ -220,11 +220,35 @@
 {% endmacro %}
 
 
-{% macro matrix_notation_backpropagation() %}
+{% macro matrix_notation_backpropagation_error_with_respect_to_output_activation_vector() %}
 <div class="shadow-lg">
-    <div class={{ card_header_style() }}>Matrix notation - backpropagation</div><br>
+    <div class={{ card_header_style() }}>
+        Matrix notation backpropagation<br>
+        Derivative of cost w.r.t. last activation vector</div><br>
 
     {{ math_macros.derivative_of_cost_with_respect_to_last_activation_vector() }}
+</div>
+{% endmacro %}
+
+
+{% macro matrix_notation_backpropagation_error_with_respect_to_preactivation_vector() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>
+        Matrix notation backpropagation<br>
+        Derivative of cost w.r.t. preactivation vector</div><br>
+
+    {{ math_macros.derivative_of_cost_with_respect_to_preactivation_vector() }}
+</div>
+{% endmacro %}
+
+
+{% macro matrix_notation_backpropagation_error_with_respect_to_hidden_layer_activation_vector() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>
+        Matrix notation backpropagation<br>
+        Derivative of cost w.r.t. hidden layer's activation vector</div><br>
+
+    {{ math_macros.derivative_of_cost_with_respect_to_hidden_layer_activation_vector() }}
 </div>
 {% endmacro %}
 
