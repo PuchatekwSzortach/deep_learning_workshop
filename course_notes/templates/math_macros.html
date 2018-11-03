@@ -340,6 +340,87 @@
 
     <br>
 
+{% endmacro %}
 
+
+{% macro derivative_of_cost_with_respect_to_weights_matrix() %}
+
+    $$
+        \frac{ \partial{C} }{ \partial{W^2} } =
+
+        \begin{bmatrix}
+            \frac{ \partial{C} }{ \partial{W_{11}^2} } & \frac{ \partial{C} }{ \partial{W_{12}^2} } & \frac{ \partial{C} }{ \partial{W_{13}^2} } \\
+            \frac{ \partial{C} }{ \partial{W_{21}^2} } & \frac{ \partial{C} }{ \partial{W_{22}^2} } & \frac{ \partial{C} }{ \partial{W_{23}^2} } \\
+        \end{bmatrix}
+    $$
+    <hr>
+    $$
+        \frac{ \partial{C} }{ \partial{W^2} } =
+
+        \begin{bmatrix}
+            \frac{ \partial{C} }{ \partial{z_{1}^2} } * \frac{ \partial{z_{1}^2} }{ \partial{W_{11}^2} } &
+            \frac{ \partial{C} }{ \partial{z_{1}^2} } * \frac{ \partial{z_{1}^2} }{ \partial{W_{12}^2} } &
+            \frac{ \partial{C} }{ \partial{z_{1}^2} } * \frac{ \partial{z_{1}^2} }{ \partial{W_{13}^2} } \\
+
+            \frac{ \partial{C} }{ \partial{z_{2}^2} } * \frac{ \partial{z_{2}^2} }{ \partial{W_{21}^2} } &
+            \frac{ \partial{C} }{ \partial{z_{2}^2} } * \frac{ \partial{z_{2}^2} }{ \partial{W_{22}^2} } &
+            \frac{ \partial{C} }{ \partial{z_{2}^2} } * \frac{ \partial{z_{2}^2} }{ \partial{W_{23}^2} } \\
+        \end{bmatrix}
+    $$
+    <hr>
+    $$
+        \frac{ \partial{C} }{ \partial{W^2} } =
+
+        \begin{bmatrix}
+            \frac{ \partial{C} }{ \partial{z_{1}^2} } * a_{1}^1 &
+            \frac{ \partial{C} }{ \partial{z_{1}^2} } * a_{2}^1 &
+            \frac{ \partial{C} }{ \partial{z_{1}^2} } * a_{3}^1 \\
+
+            \frac{ \partial{C} }{ \partial{z_{2}^2} } * a_{1}^1 &
+            \frac{ \partial{C} }{ \partial{z_{2}^2} } * a_{2}^1 &
+            \frac{ \partial{C} }{ \partial{z_{2}^2} } * a_{3}^1 \\
+        \end{bmatrix}
+    $$
+    <hr>
+    $$
+        \frac{ \partial{C} }{ \partial{W^2} } =
+
+        \begin{bmatrix}
+            \frac{ \partial{C} }{ \partial{z_{1}^2} } \\
+            \frac{ \partial{C} }{ \partial{z_{2}^2} } \\
+        \end{bmatrix} *
+
+        \begin{bmatrix}
+            a_{1}^1 & a_{2}^1 & a_{3}^1 \\
+        \end{bmatrix}
+    $$
+    <hr>
+    $$
+        \frac{ \partial{C} }{ \partial{W^2} } =
+
+        \begin{bmatrix}
+            \frac{ \partial{C} }{ \partial{z_{1}^2} } \\
+            \frac{ \partial{C} }{ \partial{z_{2}^2} } \\
+        \end{bmatrix} *
+
+        \begin{bmatrix}
+            a_{1}^1 \\
+            a_{2}^1 \\
+            a_{3}^1 \\
+        \end{bmatrix}^T
+    $$
+    <hr>
+    $$ \frac{ \partial{C} }{ \partial{W^2} } = \nabla{_\mathbf{z^2} C} * \mathbf{a^1}^T $$
+    <hr>
+
+    <div class="h6 text-center">Generic form</div>
+    $$ \frac{ \partial{C} }{ \partial{W^k} } = \nabla{_\mathbf{z^k} C} * \mathbf{a^{k-1}}^T $$
+
+    <hr>
+
+    <div class="h6 text-center">Weights updates</div>
+    $$ W^{k'} = W^k - \alpha * \frac{ \partial{C} }{ \partial{W^k} } $$
+
+    <br>
 
 {% endmacro %}
