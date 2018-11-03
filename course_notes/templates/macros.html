@@ -264,6 +264,17 @@
 {% endmacro %}
 
 
+{% macro matrix_notation_backpropagation_error_with_respect_to_biases_vector() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>
+        Matrix notation backpropagation<br>
+        Derivative of cost w.r.t. biases vector</div><br>
+
+    {{ math_macros.derivative_of_cost_with_respect_to_biases_vector() }}
+</div>
+{% endmacro %}
+
+
 {% macro simple_neural_network_implementation() %}
 <div class="shadow-lg">
     <div class={{ card_header_style() }}>A simple neural network implementation</div>
