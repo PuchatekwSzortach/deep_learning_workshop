@@ -511,3 +511,59 @@
 {% macro finishing_slide() %}
 <img src="/static/images/ai_okinawa_finishing_slide.jpg" width="100%" class="shadow-lg"></div>
 {% endmacro %}
+
+
+{% macro introduction_chapter() %}
+    {{ kuba_profile() }}
+    <br><br>
+    {{ what_this_course_is_about() }}
+    <br><br>
+    {{ deep_learning_overview() }}
+    <br><br>
+    {{ ask_questions_take_notes() }}
+{% endmacro %}
+
+
+{% macro backpropagation_chapter() %}
+    {{ cost_function() }}
+    <br><br>
+    {{ backpropagation_in_simple_networks() }}
+    <br><br>
+    {{ networks_with_multiple_outputs() }}
+    <br><br>
+    {{ backpropagation_in_complex_networks() }}
+{% endmacro %}
+
+
+{% macro matrix_notation_chapter() %}
+
+    {{ matrix_review() }}
+    <br><br>
+    {{ matrix_notation_forward_pass() }}
+    <br><br>
+    {{ matrix_notation_backpropagation_error_with_respect_to_output_activation_vector() }}
+    <br><br>
+    {{ matrix_notation_backpropagation_error_with_respect_to_preactivation_vector() }}
+    <br><br>
+    {{ matrix_notation_backpropagation_error_with_respect_to_hidden_layer_activation_vector() }}
+    <br><br>
+    {{ matrix_notation_backpropagation_error_with_respect_to_weights_matrix() }}
+    <br><br>
+    {{ matrix_notation_backpropagation_error_with_respect_to_biases_vector() }}
+
+{% endmacro %}
+
+
+{% macro deep_learning_improvements_chapter() %}
+
+    {{ macros.batching() }}
+    <br><br>
+    {{ macros.optimizing_cost_function() }}
+    <br><br>
+    {{ macros.softmax() }}
+    <br><br>
+    {{ macros.optimizing_hidden_layer_activation_function() }}
+    <br><br>
+    {{ macros.importance_of_weights_initialization_scheme() }}
+
+{% endmacro %}
