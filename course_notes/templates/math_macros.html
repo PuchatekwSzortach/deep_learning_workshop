@@ -572,5 +572,37 @@
     $$
         \frac{ \partial{a} }{ \partial{z} } = a * (1 - a)
     $$
+{% endmacro %}
+
+
+
+{% macro cost_derivative_with_respect_to_activation() %}
+
+    $$ C = \frac{1}{2} (y - a)^2 $$
+    <hr>
+    <div class="h6 text-center">Call</div>
+    $$ u = y - a $$
+    <div class="h6 text-center">Then</div>
+    $$ C = \frac{1}{2} u^2 $$
+
+    $$
+        \frac{ \partial{C} }{ \partial{a} } = \frac{ \partial{C} }{ \partial{u} } * \frac{ \partial{u} }{ \partial{a} }
+    $$
+
+    $$
+        \frac{ \partial{C} }{ \partial{u} } = \frac{1}{2} * 2u = u
+    $$
+
+    $$
+        \frac{ \partial{u} }{ \partial{a} } = -1
+    $$
+
+    $$
+        \frac{ \partial{C} }{ \partial{a} } = -u = -(y - a) = a - y
+    $$
+    <hr>
+    $$
+        \frac{ \partial{C} }{ \partial{a} } = a - y
+    $$
 
 {% endmacro %}
