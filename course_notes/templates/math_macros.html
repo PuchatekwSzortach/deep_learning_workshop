@@ -161,13 +161,13 @@
         \end{bmatrix} =
 
         \begin{bmatrix}
-            \sigma(z_{1}^k) \\
-            \sigma(z_{2}^k) \\
-            \sigma(z_{3}^k) \\
+            a(z_{1}^k) \\
+            a(z_{2}^k) \\
+            a(z_{3}^k) \\
         \end{bmatrix}
     $$
     <hr>
-    $$ \mathbf{a^k} = \sigma( \mathbf{z^k} ) $$
+    $$ \mathbf{a^k} = a( \mathbf{z^k} ) $$
 
     <br>
 
@@ -493,5 +493,84 @@
     <div class="h6 text-center">Weights updates</div>
     $$ \mathbf{b}^{k'} = \mathbf{b}^k - \alpha * \nabla{_\mathbf{b^k} C} $$
     <br>
+
+{% endmacro %}
+
+
+{% macro sigmoid_derivative_computations() %}
+
+    $$
+    a = \frac{1}{ 1 + e^{-z} }
+    $$
+    <hr>
+    <div class="h6 text-center">Call</div>
+    $$ f = 1 $$
+    $$ g = 1 + e^{-z} $$
+    $$ a = \frac{f}{g} $$<br>
+    <div class="h6 text-center">Then</div>
+    $$
+        \frac{ \partial{a} }{ \partial{z} } =
+        \frac{ \frac{\partial{f}}{\partial{z}} * g - f * \frac{\partial{g}}{\partial{z}}}{g^2}
+    $$
+    <hr>
+    $$
+        \frac{ \partial{f} }{ \partial{z} } = 0
+    $$
+    <hr>
+    <div class="h6 text-center">Call</div>
+    $$ u = -z $$
+    <div class="h6 text-center">Then</div>
+    $$ g = 1 + e^u $$
+    $$
+        \frac{ \partial{g} }{ \partial{z} } = \frac{ \partial{g} }{ \partial{u} } * \frac{ \partial{u} }{ \partial{z} }
+    $$
+    $$
+        \frac{ \partial{g} }{ \partial{u} } = e^u
+    $$
+    $$
+        \frac{ \partial{u} }{ \partial{z} } = -1
+    $$
+    $$
+        \frac{ \partial{g} }{ \partial{z} } = e^u * (-1)
+    $$
+    $$
+        \frac{ \partial{g} }{ \partial{z} } = -e^{-z}
+    $$
+    <hr>
+    $$
+        \frac{ \partial{a} }{ \partial{z} } =
+        \frac{ \frac{\partial(f)}{\partial(z)} * g - f * \frac{\partial(g)}{\partial(z)}}{g^2}
+    $$
+    $$
+        \frac{ \partial{a} }{ \partial{z} } = \frac { 0 - 1 * (-e^{-z})} { (1 + e^{-z})^2 }
+    $$
+    $$
+        \frac{ \partial{a} }{ \partial{z} } = \frac { e^{-z}} { (1 + e^{-z})^2 }
+    $$
+    <hr>
+    $$
+    a * (1 - a) = \frac{1}{ 1 + e^{-z} } * (1 - \frac{1}{ 1 + e^{-z} })
+    $$
+
+    $$
+    a * (1 - a) = \frac{1}{ 1 + e^{-z} } * (\frac {1 + e^{-z} }{ 1 + e^{-z} } - \frac{1}{ 1 + e^{-z} })
+    $$
+
+    $$
+    a * (1 - a) = \frac{1}{ 1 + e^{-z} } * \frac{ 1 + e^{-z} - 1 }{ 1 + e^{-z} }
+    $$
+
+    $$
+    a * (1 - a) = \frac{1}{ 1 + e^{-z} } * \frac{ e^{-z} }{ 1 + e^{-z} }
+    $$
+
+    $$
+    a * (1 - a) = \frac{ e^{-z} }{ (1 + e^{-z})^2 }
+    $$
+    <hr>
+    <div class="h6 text-center">Therefore</div>
+    $$
+        \frac{ \partial{a} }{ \partial{z} } = a * (1 - a)
+    $$
 
 {% endmacro %}

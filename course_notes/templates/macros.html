@@ -107,26 +107,28 @@
 {% endmacro %}
 
 
-{% macro forward_propagation() %}
-<div class="shadow-lg">
-    <div class={{ card_header_style() }}>Forward propagation</div>
-    <div class="m-4">
+{% macro forward_propagation_chapter() %}
 
-        <img src="/static/images/neural_network_example.png" width="80%"><br>
-        <div class="h5 text-center text-secondary small">neuralnetworksanddeeplearning.com</div><br>
+    <div class="shadow-lg">
+        <div class={{ card_header_style() }}>Forward propagation</div>
+        <div class="m-4">
 
-        <ul class="list-group">
-            <li class="list-group-item">Simple neural network</li>
-            <li class="list-group-item">Inputs and outputs</li>
-            <li class="list-group-item">Weights and biases</li>
-            <li class="list-group-item">Preactivation</li>
-            <li class="list-group-item">Generic activation</li>
-            <li class="list-group-item">Sigmoid function</li>
-            <li class="list-group-item">Sample computation</li>
-        </ul>
+            <img src="/static/images/neural_network_example.png" width="80%"><br>
+            <div class="h5 text-center text-secondary small">neuralnetworksanddeeplearning.com</div><br>
+
+            <ul class="list-group">
+                <li class="list-group-item">Simple neural network</li>
+                <li class="list-group-item">Inputs and outputs</li>
+                <li class="list-group-item">Weights and biases</li>
+                <li class="list-group-item">Preactivation</li>
+                <li class="list-group-item">Generic activation</li>
+                <li class="list-group-item">Sigmoid function</li>
+                <li class="list-group-item">Sample computations</li>
+            </ul>
+        </div>
+        <br>
     </div>
-    <br>
-</div>
+
 {% endmacro %}
 
 
@@ -146,21 +148,67 @@
 {% endmacro %}
 
 
-{% macro backpropagation_in_simple_networks() %}
+{% macro cost_derivative_with_respect_to_activation() %}
 <div class="shadow-lg">
-    <div class={{ card_header_style() }}>Backpropagation - simple networks</div>
-    <div class="m-4">
+    <div class={{ card_header_style() }}>Cost derivative with respect to activation</div>
+</div>
 
-        <ul class="list-group">
-            <li class="list-group-item">Cost derivative w.r.t. activation</li>
-            <li class="list-group-item">Cost derivative w.r.t. preactivation</li>
-            <li class="list-group-item">Cost derivative w.r.t. bias and weights</li>
-            <li class="list-group-item">One step update of weights and biases</li>
-        </ul>
-    </div>
+
+
+{% endmacro %}
+
+
+{% macro cost_derivative_with_respect_to_preactivation() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>Cost derivative with respect to preactivation</div>
+    $$ \frac { \partial{C} }{ \partial{z} } = \frac { \partial{C} }{ \partial{a} } * \frac { \partial{a} }{ \partial{z} }$$
+    <hr>
+    {{ math_macros.sigmoid_derivative_computations() }}
+    <hr>
+    $$ \frac { \partial{C} }{ \partial{z} } = \frac { \partial{C} }{ \partial{a} } * a * (1 - a) $$
     <br>
 </div>
 {% endmacro %}
+
+
+{% macro cost_derivative_with_respect_to_parameters() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>Cost derivative with respect to parameters</div>
+
+    <div class="m-4">
+
+        <ul class="list-group">
+            <li class="list-group-item">Cost derivative with respect to weights</li>
+            <li class="list-group-item">Cost derivative with respect to bias</li>
+        </ul>
+    </div>
+    <br>
+
+</div>
+{% endmacro %}
+
+
+{% macro parameters_update() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>Parameters update</div>
+
+    <div class="m-4">
+
+        <ul class="list-group">
+            <li class="list-group-item">Learning rate</li>
+            <li class="list-group-item">Weights update</li>
+            <li class="list-group-item">Bias update</li>
+        </ul>
+    </div>
+    <br>
+
+</div>
+{% endmacro %}
+
+
+
+
+
 
 
 {% macro networks_with_multiple_outputs() %}
@@ -527,7 +575,13 @@
 {% macro backpropagation_chapter() %}
     {{ cost_function() }}
     <br><br>
-    {{ backpropagation_in_simple_networks() }}
+    {{ cost_derivative_with_respect_to_activation() }}
+    <br><br>
+    {{ cost_derivative_with_respect_to_preactivation() }}
+    <br><br>
+    {{ cost_derivative_with_respect_to_parameters() }}
+    <br><br>
+    {{ parameters_update() }}
     <br><br>
     {{ networks_with_multiple_outputs() }}
     <br><br>
@@ -556,14 +610,14 @@
 
 {% macro deep_learning_improvements_chapter() %}
 
-    {{ macros.batching() }}
+    {{ batching() }}
     <br><br>
-    {{ macros.optimizing_cost_function() }}
+    {{ optimizing_cost_function() }}
     <br><br>
-    {{ macros.softmax() }}
+    {{ softmax() }}
     <br><br>
-    {{ macros.optimizing_hidden_layer_activation_function() }}
+    {{ optimizing_hidden_layer_activation_function() }}
     <br><br>
-    {{ macros.importance_of_weights_initialization_scheme() }}
+    {{ importance_of_weights_initialization_scheme() }}
 
 {% endmacro %}
