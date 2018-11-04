@@ -252,11 +252,34 @@
         \end{bmatrix}
     $$
     <hr>
-    $$ \nabla{_\mathbf{z^2} C} = \nabla{_\mathbf{a^2} C} \odot (\mathbf{1} - \mathbf{a^2}) $$
+    $$
+        \nabla{_\mathbf{z^2} C} =
+
+        \begin{bmatrix}
+            \frac{ \partial{C} }{ \partial{a_{1}^2} } \\
+            \frac{ \partial{C} }{ \partial{a_{2}^2} } \\
+        \end{bmatrix}
+
+        \odot
+
+        \begin{bmatrix}
+            a_{1}^2 \\
+            a_{2}^2 \\
+        \end{bmatrix}
+
+        \odot
+
+        \begin{bmatrix}
+            1 - a_{1}^2 \\
+            1 - a_{2}^2 \\
+        \end{bmatrix}
+    $$
+    <hr>
+    $$ \nabla{_\mathbf{z^2} C} = \nabla{_\mathbf{a^2} C} \odot \mathbf{a^2} \odot (\mathbf{1} - \mathbf{a^2}) $$
     <hr>
 
     <div class="h6 text-center">Generic form</div>
-    $$ \nabla{_\mathbf{z^k} C} = \nabla{_\mathbf{a^k} C} \odot (\mathbf{1} - \mathbf{a^k}) $$
+    $$ \nabla{_\mathbf{z^k} C} = \nabla{_\mathbf{a^k} C} \odot \mathbf{a^k} \odot (\mathbf{1} - \mathbf{a^k}) $$
 
     <br>
 
@@ -436,7 +459,7 @@
         \end{bmatrix}
     $$
     <hr>
-    $$
+    $$erivative of cost
         \nabla{_\mathbf{b^2} C} =
 
         \begin{bmatrix}

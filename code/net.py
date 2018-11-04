@@ -51,21 +51,24 @@ class Network:
     def __init__(self, layers):
 
         # Subtract input layer
-        self.layers_count = len(layers) - 1
+        self.layers_count = len(layers)
         self.weights, self.biases = self._initialize_parameters(layers)
 
     def _initialize_parameters(self, layers):
 
-        weights = []
-        biases = []
+        weights = [None for _ in range(self.layers_count)]
+        biases = [None for _ in range(self.layers_count)]
 
-        for input_size, output_size in zip(layers[:-1], layers[1:]):
+        for index in range(1, self.layers_count):
+
+            input_size = layers[index - 1]
+            output_size = layers[index]
 
             weights_kernel = np.random.randn(output_size, input_size)
             bias_kernel = np.zeros(shape=(output_size, 1), dtype=np.float32)
 
-            weights.append(weights_kernel)
-            biases.append(bias_kernel)
+            weights[index] = weights_kernel
+            biases[index] = bias_kernel
 
         return weights, biases
 
@@ -73,7 +76,7 @@ class Network:
 
         activations = [x]
 
-        for index in range(self.layers_count):
+        for index in range(1, self.layers_count):
 
             weights = self.weights[index]
             bias = self.biases[index]
@@ -99,17 +102,17 @@ class Network:
         weights_errors = [0] * self.layers_count
         biases_errors = [0] * self.layers_count
 
-        for index in reversed(range(self.layers_count)):
+        for index in reversed(range(1, self.layers_count)):
 
             # Use offset of +1 for activations index, since they are enumerated from input layer up
-            preactivation_error = activation_error * activations[index + 1] * (1 - activations[index + 1])
+            preactivation_error = activation_error * activations[index] * (1 - activations[index])
 
-            weights_errors[index] = np.dot(preactivation_error, activations[index].T)
+            weights_errors[index] = np.dot(preactivation_error, activations[index - 1].T)
             biases_errors[index] = preactivation_error
 
             activation_error = np.dot(self.weights[index].T, preactivation_error)
 
-        for index in range(self.layers_count):
+        for index in range(1, self.layers_count):
 
             self.weights[index] -= learning_rate * weights_errors[index]
             self.biases[index] -= learning_rate * biases_errors[index]
