@@ -1,0 +1,287 @@
+{% import "sections_macros.html" as sections_macros %}
+{% import "math_macros.html" as math_macros %}
+
+
+{% macro site_header() %}
+<div class="jumbotron text-center card mt-4 p-4 shadow-lg">
+    <h1>Deep Learning Foundation</h1>
+    <h2>AI Okinawa</h2>
+    <h2>Jakub “Kuba” Kolodziejczyk</h2>
+</div>
+{% endmacro %}
+
+
+{% macro card_header_style() %}
+"h3 card-header text-center bg-success text-white"
+{% endmacro %}
+
+
+{% macro introduction_chapter() %}
+    {{ sections_macros.kuba_profile() }}
+    <br><br>
+    {{ sections_macros.what_this_course_is_about() }}
+    <br><br>
+    {{ sections_macros.deep_learning_overview() }}
+    <br><br>
+    {{ sections_macros.ask_questions_take_notes() }}
+{% endmacro %}
+
+
+
+{% macro derivatives_review() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>Derivatives review</div>
+    <div class="m-4">
+        <ul class="list-group">
+            <li class="list-group-item">Derivatives notation</li>
+            <li class="list-group-item">Derivative definition</li>
+            <li class="list-group-item">Differentiation of polynomials</li>
+            <li class="list-group-item">Second derivatives</li>
+            <li class="list-group-item">What information derivatives give us?</li>
+            <li class="list-group-item">Derivative of \( y = e^x \)</li>
+            <li class="list-group-item">Derivative of a product of functions</li>
+            <li class="list-group-item">Derivative of a quotient of functions</li>
+            <li class="list-group-item">Derivative of a function of a function</li>
+
+            <li class="list-group-item">Derivative of \( y = ln(x) \)</li>
+            <li class="list-group-item">Derivative of \( y = ln(u) \)</li>
+        </ul>
+    </div>
+    <br>
+</div>
+{% endmacro %}
+
+
+{% macro forward_propagation_chapter() %}
+
+    <div class="shadow-lg">
+        <div class={{ card_header_style() }}>Forward propagation</div>
+        <div class="m-4">
+
+            <img src="/static/images/neural_network_example.png" width="80%"><br>
+            <div class="h5 text-center text-secondary small">neuralnetworksanddeeplearning.com</div><br>
+
+            <ul class="list-group">
+                <li class="list-group-item">Simple neural network</li>
+                <li class="list-group-item">Inputs and outputs</li>
+                <li class="list-group-item">Weights and biases</li>
+                <li class="list-group-item">Preactivation</li>
+                <li class="list-group-item">Generic activation</li>
+                <li class="list-group-item">Sigmoid function</li>
+                <li class="list-group-item">Sample computations</li>
+            </ul>
+        </div>
+        <br>
+    </div>
+    <br><br>
+    {{ sections_macros.sample_forward_propagation_computations() }}
+{% endmacro %}
+
+
+{% macro backpropagation_chapter() %}
+    {{ sections_macros.cost_function() }}
+    <br><br>
+    {{ sections_macros.cost_derivative_with_respect_to_activation() }}
+    <br><br>
+    {{ sections_macros.cost_derivative_with_respect_to_preactivation() }}
+    <br><br>
+    {{ sections_macros.cost_derivative_with_respect_to_parameters() }}
+    <br><br>
+    {{ sections_macros.parameters_update() }}
+    <br><br>
+    {{ sections_macros.networks_with_multiple_outputs() }}
+    <br><br>
+    {{ sections_macros.backpropagation_in_complex_networks() }}
+{% endmacro %}
+
+
+{% macro matrix_notation_chapter() %}
+    {{ sections_macros.matrix_review() }}
+    <br><br>
+    {{ sections_macros.matrix_notation_forward_pass() }}
+    <br><br>
+    {{ sections_macros.matrix_notation_backpropagation_error_with_respect_to_output_activation_vector() }}
+    <br><br>
+    {{ sections_macros.matrix_notation_backpropagation_error_with_respect_to_preactivation_vector() }}
+    <br><br>
+    {{ sections_macros.matrix_notation_backpropagation_error_with_respect_to_hidden_layer_activation_vector() }}
+    <br><br>
+    {{ sections_macros.matrix_notation_backpropagation_error_with_respect_to_weights_matrix() }}
+    <br><br>
+    {{ sections_macros.matrix_notation_backpropagation_error_with_respect_to_biases_vector() }}
+{% endmacro %}
+
+
+{% macro simple_neural_network_implementation() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>A simple neural network implementation</div>
+    <div class="m-4">
+
+        <div class="row text-center">
+            <div class="col">
+                <a href="https://github.com/PuchatekwSzortach/deep_learning_workshop"
+                   class="btn btn-primary btn-lg" role="button" target="_blank">
+                    github.com/PuchatekwSzortach/deep_learning_workshop</a>
+            </div>
+        </div>
+
+        <br>
+
+        <ul class="list-group">
+            <li class="list-group-item">MNIST dataset</li>
+            <li class="list-group-item">Training data vs test data</li>
+            <li class="list-group-item">Shuffling</li>
+            <li class="list-group-item">Forward stage</li>
+            <li class="list-group-item">Backpropagation</li>
+            <li class="list-group-item">Three qualities of deep learning</li>
+        </ul>
+    </div>
+    <br>
+</div>
+{% endmacro %}
+
+
+{% macro neural_network_as_a_universal_function_approximator() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>Neural network as universal function approximator</div>
+    <div class="m-4">
+
+        <div class="row text-center">
+            <div class="col">
+                <a href="http://neuralnetworksanddeeplearning.com/chap4.html"
+                   class="btn btn-primary btn-lg" role="button" target="_blank">
+                    neuralnetworksanddeeplearning.com/chap4.html</a>
+            </div>
+        </div>
+
+        <br>
+
+        <ul class="list-group">
+            <li class="list-group-item">Approximating a function with strips</li>
+            <li class="list-group-item">Influence of weight on sigmoid output</li>
+            <li class="list-group-item">Influence of bias on sigmoid output</li>
+            <li class="list-group-item">Rectangular strip with a pair of neurons</li>
+            <li class="list-group-item">Multiple strips</li>
+            <li class="list-group-item">Computing preactivation for desired sigmoid output</li>
+            <li class="list-group-item">Limitations of neural networks</li>
+        </ul>
+    </div>
+    <br>
+</div>
+{% endmacro %}
+
+
+{% macro deep_learning_improvements_chapter() %}
+
+    {{ sections_macros.batching() }}
+    <br><br>
+    {{ sections_macros.optimizing_cost_function() }}
+    <br><br>
+    {{ sections_macros.softmax() }}
+    <br><br>
+    {{ sections_macros.optimizing_hidden_layer_activation_function() }}
+    <br><br>
+    {{ sections_macros.importance_of_weights_initialization_scheme() }}
+
+{% endmacro %}
+
+
+{% macro networks_architectures() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>Networks architectures</div>
+    <div class="m-4">
+        <ul class="list-group">
+            <li class="list-group-item">Why deep networks?</li>
+            <li class="list-group-item">How broad should my layers be?</li>
+            <li class="list-group-item">Should I just use a big network for everything?</li>
+        </ul>
+    </div>
+    <br>
+</div>
+{% endmacro %}
+
+
+{% macro tensorflow_basics() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>Tensorflow basics</div>
+    <div class="m-4">
+        <ul class="list-group">
+            <li class="list-group-item">Why Tensorflow? Popularity, GPU processing, automatic differentiation</li>
+            <li class="list-group-item">Computational graph model</li>
+            <li class="list-group-item">Session</li>
+            <li class="list-group-item">Placeholders</li>
+            <li class="list-group-item">Variables</li>
+        </ul>
+    </div>
+    <br>
+</div>
+{% endmacro %}
+
+
+{% macro good_neural_network_implementation() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>A good neural network implementation</div>
+    <div class="m-4">
+
+        <div class="row text-center">
+            <div class="col">
+                <a href="https://github.com/PuchatekwSzortach/deep_learning_workshop"
+                   class="btn btn-primary btn-lg" role="button" target="_blank">
+                    github.com/PuchatekwSzortach/deep_learning_workshop</a>
+            </div>
+        </div>
+
+        <br>
+
+        <ul class="list-group">
+            <li class="list-group-item">ReLU</li>
+            <li class="list-group-item">Softmax</li>
+            <li class="list-group-item">Cross-entropy cost function</li>
+        </ul>
+    </div>
+    <br>
+</div>
+{% endmacro %}
+
+
+{% macro training_tips() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>Training tips</div>
+    <div class="m-4">
+
+        <img src="/static/images/training_accuracy_vs_test_accuracy.jpg" width="60%"><br>
+        <div class="h5 text-center text-secondary small">neuralnetworksanddeeplearning.com</div><br>
+
+        <ul class="list-group">
+            <li class="list-group-item">Check input and labels</li>
+            <li class="list-group-item">Check model</li>
+            <li class="list-group-item">Check loss definition</li>
+            <li class="list-group-item">Check learning rate</li>
+            <li class="list-group-item">Validation and overfitting</li>
+        </ul>
+    </div>
+    <br>
+</div>
+{% endmacro %}
+
+
+{% macro beyond_categorization_networks() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>Beyond categorization networks</div>
+    <div class="m-4">
+
+        <ul class="list-group">
+            <li class="list-group-item">Regression - real value prediction</li>
+            <li class="list-group-item">Mixing real values and categorical inputs</li>
+            <li class="list-group-item">Convolutional networks</li>
+            <li class="list-group-item">Recurrent networks</li>
+        </ul>
+    </div>
+    <br>
+</div>
+{% endmacro %}
+
+
+{% macro finishing_slide() %}
+<img src="/static/images/ai_okinawa_finishing_slide.jpg" width="100%" class="shadow-lg"></div>
+{% endmacro %}
