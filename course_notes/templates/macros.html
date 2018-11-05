@@ -128,9 +128,80 @@
         </div>
         <br>
     </div>
-
+    <br><br>
+    {{ sample_forward_propagation_computations() }}
 {% endmacro %}
 
+
+{% macro sample_forward_propagation_computations() %}
+    <div class="shadow-lg">
+        <div class={{ card_header_style() }}>Sample forward propagation computations</div>
+
+        <div class="m-4">
+
+            <div class="row">
+
+                <div class="col"></div>
+                <div class="col">
+                    <table class="table table-bordered text-center">
+                        <div class="caption text-center h6">Inputs</div>
+                        <tbody>
+                            <tr>
+                                <td>\( x_1 \)</td>
+                                <td>\( 4 \)</td>
+                            </tr>
+                            <tr>
+                                <td>\( x_2 \)</td>
+                                <td>\( 0.5 \)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col"></div>
+
+            </div>
+            <hr>
+            <div class="row">
+
+                <div class="col"></div>
+                <div class="col">
+                    <table class="table table-bordered text-center">
+                        <div class="caption text-center h6">Parameters</div>
+                        <tbody>
+                            <tr>
+                                <td>\( w_1 \)</td>
+                                <td>\( 1 \)</td>
+                            </tr>
+                            <tr>
+                                <td>\( w_2 \)</td>
+                                <td>\( -1 \)</td>
+                            </tr>
+                            <tr>
+                                <td>\( b \)</td>
+                                <td>\( -2 \)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col"></div>
+
+            </div>
+            <hr>
+
+            <div class="text-center h6">Preactivation</div>
+            $$ z = (w_1 * x_1) + (w_2 * x_2) + b $$
+            $$ z = (1 * 4) + (-1 * 0.5) - 2 $$
+            $$ z = 4 - 0.5 - 2 = 1.5 $$
+            <hr>
+            <div class="text-center h6">Activation</div>
+            $$ a = \sigma(z) = \frac{1}{1 + e^{-z}} $$
+            $$ a = \sigma(1.5) = \frac{1}{1 + e^{-1.5}} $$
+            $$ a = 0.82 $$
+
+        </div>
+        <br>
+    </div>
+{% endmacro %}
 
 {% macro cost_function() %}
 <div class="shadow-lg">
