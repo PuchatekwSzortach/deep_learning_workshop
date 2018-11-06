@@ -16,7 +16,7 @@
 {% endmacro %}
 
 
-{% macro introduction_chapter() %}
+{% macro introduction() %}
     {{ sections_macros.kuba_profile() }}
     <br><br>
     {{ sections_macros.what_this_course_is_about() }}
@@ -52,8 +52,7 @@
 {% endmacro %}
 
 
-{% macro forward_propagation_chapter() %}
-
+{% macro forward_propagation() %}
     <div class="shadow-lg">
         <div class={{ card_header_style() }}>Forward propagation</div>
         <div class="m-4">
@@ -74,11 +73,19 @@
         <br>
     </div>
     <br><br>
-    {{ sections_macros.sample_forward_propagation_computations() }}
+
+    <div class="shadow-lg">
+        <div class={{ card_header_style() }}>Sample forward propagation computations</div>
+
+        <div class="m-4">
+            {{ sections_macros.sample_forward_propagation_computations() }}
+        </div>
+        <br>
+    </div>
 {% endmacro %}
 
 
-{% macro backpropagation_chapter() %}
+{% macro backpropagation() %}
     {{ sections_macros.cost_function() }}
     <br><br>
     {{ sections_macros.cost_derivative_with_respect_to_activation() }}
@@ -95,7 +102,23 @@
 {% endmacro %}
 
 
-{% macro matrix_notation_chapter() %}
+{% macro one_step_of_training_algorithm_with_mean_error_loss() %}
+    <div class="shadow-lg">
+        <div class={{ card_header_style() }}>One step of training algorithm</div>
+        <div class="m-4">
+
+            {{ sections_macros.sample_forward_propagation_computations() }}
+            <hr>
+            {{ sections_macros.sample_mean_error_loss_computations() }}
+            <hr>
+            {{ sections_macros.sample_backward_propagation_computations_with_mean_error_loss() }}
+        </div>
+        <br>
+    </div>
+{% endmacro %}
+
+
+{% macro matrix_notation() %}
     {{ sections_macros.matrix_review() }}
     <br><br>
     {{ sections_macros.matrix_notation_forward_pass() }}
@@ -171,7 +194,7 @@
 {% endmacro %}
 
 
-{% macro deep_learning_improvements_chapter() %}
+{% macro deep_learning_improvements() %}
 
     {{ sections_macros.batching() }}
     <br><br>

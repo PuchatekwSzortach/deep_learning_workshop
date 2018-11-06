@@ -78,73 +78,64 @@
 
 
 {% macro sample_forward_propagation_computations() %}
-    <div class="shadow-lg">
-        <div class={{ card_header_style() }}>Sample forward propagation computations</div>
+    <div class="row">
 
-        <div class="m-4">
-
-            <div class="row">
-
-                <div class="col"></div>
-                <div class="col">
-                    <table class="table table-bordered text-center">
-                        <div class="caption text-center h6">Inputs</div>
-                        <tbody>
-                            <tr>
-                                <td>\( x_1 \)</td>
-                                <td>\( 4 \)</td>
-                            </tr>
-                            <tr>
-                                <td>\( x_2 \)</td>
-                                <td>\( 0.5 \)</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="col"></div>
-
-            </div>
-            <hr>
-            <div class="row">
-
-                <div class="col"></div>
-                <div class="col">
-                    <table class="table table-bordered text-center">
-                        <div class="caption text-center h6">Parameters</div>
-                        <tbody>
-                            <tr>
-                                <td>\( w_1 \)</td>
-                                <td>\( 1 \)</td>
-                            </tr>
-                            <tr>
-                                <td>\( w_2 \)</td>
-                                <td>\( -1 \)</td>
-                            </tr>
-                            <tr>
-                                <td>\( b \)</td>
-                                <td>\( -2 \)</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="col"></div>
-
-            </div>
-            <hr>
-
-            <div class="text-center h6">Preactivation</div>
-            $$ z = (w_1 * x_1) + (w_2 * x_2) + b $$
-            $$ z = (1 * 4) + (-1 * 0.5) - 2 $$
-            $$ z = 4 - 0.5 - 2 = 1.5 $$
-            <hr>
-            <div class="text-center h6">Activation</div>
-            $$ a = \sigma(z) = \frac{1}{1 + e^{-z}} $$
-            $$ a = \sigma(1.5) = \frac{1}{1 + e^{-1.5}} $$
-            $$ a = 0.82 $$
-
+        <div class="col"></div>
+        <div class="col">
+            <table class="table table-bordered text-center">
+                <div class="caption text-center h6">Inputs</div>
+                <tbody>
+                    <tr>
+                        <td>\( x_1 \)</td>
+                        <td>\( 4 \)</td>
+                    </tr>
+                    <tr>
+                        <td>\( x_2 \)</td>
+                        <td>\( 0.5 \)</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-        <br>
+        <div class="col"></div>
+
     </div>
+    <hr>
+    <div class="row">
+
+        <div class="col"></div>
+        <div class="col">
+            <table class="table table-bordered text-center">
+                <div class="caption text-center h6">Parameters</div>
+                <tbody>
+                    <tr>
+                        <td>\( w_1 \)</td>
+                        <td>\( 1 \)</td>
+                    </tr>
+                    <tr>
+                        <td>\( w_2 \)</td>
+                        <td>\( -1 \)</td>
+                    </tr>
+                    <tr>
+                        <td>\( b \)</td>
+                        <td>\( -2 \)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col"></div>
+
+    </div>
+    <hr>
+
+    <div class="text-center h6">Preactivation</div>
+    $$ z = (w_1 * x_1) + (w_2 * x_2) + b $$
+    $$ z = (1 * 4) + (-1 * 0.5) - 2 $$
+    $$ z = 4 - 0.5 - 2 = 1.5 $$
+    <hr>
+    <div class="text-center h6">Activation</div>
+    $$ a = \sigma(z) = \frac{1}{1 + e^{-z}} $$
+    $$ a = \sigma(1.5) = \frac{1}{1 + e^{-1.5}} $$
+    $$ a = 0.82 $$
 {% endmacro %}
 
 
@@ -218,6 +209,62 @@
     <br>
 
 </div>
+{% endmacro %}
+
+
+{% macro sample_mean_error_loss_computations() %}
+
+    <div class="text-center h6">Ground truth</div>
+    $$ y = 1 $$
+    <hr>
+    <div class="text-center h6">Cost</div>
+    $$ C = \frac {1}{2} (y - a)^2 $$
+    $$ C = \frac {1}{2} (1 - 0.82)^2 = \frac {1}{2} (0.18)^2 = \frac {1}{2} * 0.0324 $$
+    $$ C = 0.0162 $$
+
+{% endmacro %}
+
+
+{% macro sample_backward_propagation_computations_with_mean_error_loss() %}
+
+    <div class="text-center h6">Cost derivative with respect to activation</div>
+    $$ \frac { \partial{C} }{ \partial{a} } = a - y $$
+    $$ \frac { \partial{C} }{ \partial{a} } = 0.82 - 1 $$
+    $$ \frac { \partial{C} }{ \partial{a} } = -0.18 $$
+    <hr>
+    <div class="text-center h6">Cost derivative with respect to preactivation</div>
+    $$ \frac { \partial{C} }{ \partial{z} } = \frac { \partial{C} }{ \partial{a} } * \frac { \partial{a} }{ \partial{z} } $$
+    <hr>
+    $$ \frac { \partial{C} }{ \partial{a} } = -0.18 $$
+    <hr>
+    $$ \frac { \partial{a} }{ \partial{z} } = a * (1 - a) $$
+    $$ \frac { \partial{a} }{ \partial{z} } = 0.82 * (1 - 0.82) = 0.82 * 0.18 $$
+    $$ \frac { \partial{a} }{ \partial{z} } \approx 0.15 $$
+    <hr>
+    $$ \frac { \partial{C} }{ \partial{z} } = \frac { \partial{C} }{ \partial{a} } * \frac { \partial{a} }{ \partial{z} } $$
+    $$ \frac { \partial{C} }{ \partial{z} } = -0.18 * 0.15 $$
+    $$ \frac { \partial{C} }{ \partial{z} } = -0.027 $$
+    <hr>
+    <div class="text-center h6">Cost derivative with respect to weight \( w_1 \)</div>
+    $$ \frac { \partial{C} }{ \partial{w_1} } = \frac { \partial{C} }{ \partial{z} } * \frac { \partial{z} }{ \partial{w_1} } $$
+    <hr>
+    $$ \frac { \partial{C} }{ \partial{z} } = -0.027 $$
+    $$ \frac { \partial{z} }{ \partial{w_1} } = x_1 = 4$$
+    $$ \frac { \partial{C} }{ \partial{w_1} } = -0.027 * 4 = -0.108 $$
+    <hr>
+    <div class="text-center h6">Cost derivative with respect to weight \( w_2 \)</div>
+    $$ \frac { \partial{C} }{ \partial{w_2} } = \frac { \partial{C} }{ \partial{z} } * \frac { \partial{z} }{ \partial{w_2} } $$
+    <hr>
+    $$ \frac { \partial{C} }{ \partial{z} } = -0.027 $$
+    $$ \frac { \partial{z} }{ \partial{w_2} } = x_2 = 0.5 $$
+    $$ \frac { \partial{C} }{ \partial{w_2} } = -0.027 * 0.5 = -0.0135 $$
+    <hr>
+    <div class="text-center h6">Cost derivative with respect bias </div>
+    $$ \frac { \partial{C} }{ \partial{b} } = \frac { \partial{C} }{ \partial{z} } * \frac { \partial{z} }{ \partial{b} } $$
+    $$ \frac { \partial{C} }{ \partial{z} } = -0.027 $$
+    $$ \frac { \partial{z} }{ \partial{b} } = 1 $$
+    $$ \frac { \partial{C} }{ \partial{b} } = -0.027 * 1 = -0.027 $$
+
 {% endmacro %}
 
 
