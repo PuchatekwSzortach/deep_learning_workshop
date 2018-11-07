@@ -259,12 +259,92 @@
     $$ \frac { \partial{z} }{ \partial{w_2} } = x_2 = 0.5 $$
     $$ \frac { \partial{C} }{ \partial{w_2} } = -0.027 * 0.5 = -0.0135 $$
     <hr>
-    <div class="text-center h6">Cost derivative with respect bias </div>
+    <div class="text-center h6">Cost derivative with respect to bias </div>
     $$ \frac { \partial{C} }{ \partial{b} } = \frac { \partial{C} }{ \partial{z} } * \frac { \partial{z} }{ \partial{b} } $$
     $$ \frac { \partial{C} }{ \partial{z} } = -0.027 $$
     $$ \frac { \partial{z} }{ \partial{b} } = 1 $$
     $$ \frac { \partial{C} }{ \partial{b} } = -0.027 * 1 = -0.027 $$
 
+{% endmacro %}
+
+
+{% macro sample_parameters_update_computations_with_mean_error_loss() %}
+
+    <div class="text-center h6">Parameters updates</div>
+    $$ \alpha = 1 $$
+    <hr>
+    $$ w_1' = w_1 - \alpha * \frac { \partial{C} }{ \partial{w_1} } $$
+    $$ w_1' = 1 - 1 * (-0.108) = 1.108 $$
+    <hr>
+    $$ w_2' = w_2 - \alpha * \frac { \partial{C} }{ \partial{w_2} } $$
+    $$ w_2' = -1 - 1 * (-0.0135) = -0.9865 $$
+    <hr>
+    $$ b' = b - \alpha * \frac { \partial{C} }{ \partial{b} } $$
+    $$ b' = -2 - 1 * (-0.027) = -1.973 $$
+
+{% endmacro %}
+
+
+{% macro sample_forward_propagation_computations_after_one_step_of_training_with_mean_loss() %}
+    <div class="text-center h6">After one step of training</div>
+    <div class="row">
+
+        <div class="col"></div>
+        <div class="col">
+            <table class="table table-bordered text-center">
+                <div class="caption text-center h6">Inputs</div>
+                <tbody>
+                    <tr>
+                        <td>\( x_1 \)</td>
+                        <td>\( 4 \)</td>
+                    </tr>
+                    <tr>
+                        <td>\( x_2 \)</td>
+                        <td>\( 0.5 \)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col"></div>
+
+    </div>
+    <hr>
+    <div class="row">
+
+        <div class="col"></div>
+        <div class="col">
+            <table class="table table-bordered text-center">
+                <div class="caption text-center h6">Parameters</div>
+                <tbody>
+                    <tr>
+                        <td>\( w_1 \)</td>
+                        <td>\( 1.108 \)</td>
+                    </tr>
+                    <tr>
+                        <td>\( w_2 \)</td>
+                        <td>\( -0.9865 \)</td>
+                    </tr>
+                    <tr>
+                        <td>\( b \)</td>
+                        <td>\( -1.973 \)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col"></div>
+
+    </div>
+    <hr>
+
+    <div class="text-center h6">Preactivation</div>
+    $$ z = (w_1 * x_1) + (w_2 * x_2) + b $$
+    $$ z = (1.108 * 4) + (-0.9865 * 0.5) - 1.973 $$
+    $$ z = 4.432 - 0.49325 - 1.973 = 1.96575 $$
+    <hr>
+    <div class="text-center h6">Activation</div>
+    $$ a = \sigma(z) = \frac{1}{1 + e^{-z}} $$
+    $$ a = \sigma(1.96575) = \frac{1}{1 + e^{-1.96575}} $$
+    $$ a = 0.88 $$
 {% endmacro %}
 
 
