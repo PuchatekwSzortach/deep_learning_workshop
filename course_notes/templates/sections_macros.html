@@ -212,7 +212,7 @@
 {% endmacro %}
 
 
-{% macro sample_mean_error_loss_computations() %}
+{% macro sample_mean_square_error_loss_computations() %}
 
     <div class="text-center h6">Ground truth</div>
     $$ y = 1 $$
@@ -225,7 +225,7 @@
 {% endmacro %}
 
 
-{% macro sample_backward_propagation_computations_with_mean_error_loss() %}
+{% macro sample_backward_propagation_computations_with_mean_square_error_loss() %}
 
     <div class="text-center h6">Cost derivative with respect to activation</div>
     $$ \frac { \partial{C} }{ \partial{a} } = a - y $$
@@ -268,7 +268,7 @@
 {% endmacro %}
 
 
-{% macro sample_parameters_update_computations_with_mean_error_loss() %}
+{% macro sample_parameters_update_computations_with_mean_square_error_loss() %}
 
     <div class="text-center h6">Parameters updates</div>
     $$ \alpha = 1 $$
@@ -285,7 +285,7 @@
 {% endmacro %}
 
 
-{% macro sample_forward_propagation_computations_after_one_step_of_training_with_mean_loss() %}
+{% macro sample_forward_propagation_computations_after_one_step_of_training_with_mean_square_error_loss() %}
     <div class="text-center h6">After one step of training</div>
     <div class="row">
 
@@ -457,6 +457,255 @@
 
     {{ math_macros.derivative_of_cost_with_respect_to_biases_vector() }}
 </div>
+{% endmacro %}
+
+
+{% macro influence_of_weight_on_sigmoid_output_at_weight_equal_to_1() %}
+
+    <div class="caption text-center h5">Weight \( w = 1 \)</div>
+    <div class="row">
+
+        <div class="col"></div>
+        <div class="col">
+            <table class="table text-center">
+                <thead>
+                    <tr>
+                        <th>input</th>
+                        <th>preactivation</th>
+                        <th>activation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td> \( x = -10 \) </td>
+                        <td> \( z = -10 \) </td>
+                        <td> \( a = 0 \) </td>
+                    </tr>
+                    <tr>
+                        <td> \( x = -5 \) </td>
+                        <td> \( z = -5 \) </td>
+                        <td> \( a = 0.01 \) </td>
+                    </tr>
+                    <tr>
+                        <td> \( x = -1 \) </td>
+                        <td> \( z = -1 \) </td>
+                        <td> \( a = 0.27 \) </td>
+                    </tr>
+                    <tr>
+                        <td> \( x = -0.1 \) </td>
+                        <td> \( z = -0.1 \) </td>
+                        <td> \( a = 0.48 \) </td>
+                    </tr>
+                    <tr>
+                        <td> \( x = -0.01 \) </td>
+                        <td> \( z = -0.01 \) </td>
+                        <td> \( a = 0.498 \) </td>
+                    </tr>
+                    <tr>
+                        <td> \( x = 0 \) </td>
+                        <td> \( z = 0 \) </td>
+                        <td> \( a = 0.5 \) </td>
+                    </tr>
+                    <tr>
+                        <td> \( x = 0.01 \) </td>
+                        <td> \( z = 0.01 \) </td>
+                        <td> \( a = 0.502 \) </td>
+                    </tr>
+                    <tr>
+                        <td> \( x = 0.1 \) </td>
+                        <td> \( z = 0.1 \) </td>
+                        <td> \( a = 0.52 \) </td>
+                    </tr>
+                    <tr>
+                        <td> \( x = 1 \) </td>
+                        <td> \( z = 1 \) </td>
+                        <td> \( a = 0.73 \) </td>
+                    </tr>
+                    <tr>
+                        <td> \( x = 5 \) </td>
+                        <td> \( z = 5 \) </td>
+                        <td> \( a = 0.99 \) </td>
+                    </tr>
+                    <tr>
+                        <td> \( x = 10 \) </td>
+                        <td> \( z = 10 \) </td>
+                        <td> \( a = 1 \) </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col"></div>
+    </div>
+{% endmacro %}
+
+
+{% macro influence_of_weight_on_sigmoid_output_at_weight_equal_to_10() %}
+
+    <div class="caption text-center h5">Weight \( w = 10 \)</div>
+    <div class="row">
+
+        <div class="col"></div>
+        <div class="col">
+            <table class="table text-center">
+                <thead>
+                    <tr>
+                        <th>input</th>
+                        <th>preactivation</th>
+                        <th>activation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td> \( x = -10 \) </td>
+                        <td> \( z = -100 \) </td>
+                        <td> \( a = 0 \) </td>
+                    </tr>
+                    <tr>
+                        <td> \( x = -5 \) </td>
+                        <td> \( z = -50 \) </td>
+                        <td> \( a = 0 \) </td>
+                    </tr>
+                    <tr>
+                        <td> \( x = -1 \) </td>
+                        <td> \( z = -10 \) </td>
+                        <td> \( a = 0 \) </td>
+                    </tr>
+                    <tr>
+                        <td> \( x = -0.1 \) </td>
+                        <td> \( z = -1 \) </td>
+                        <td> \( a = 0.27 \) </td>
+                    </tr>
+                    <tr>
+                        <td> \( x = -0.01 \) </td>
+                        <td> \( z = -0.1 \) </td>
+                        <td> \( a = 0.48 \) </td>
+                    </tr>
+                    <tr>
+                        <td> \( x = 0 \) </td>
+                        <td> \( z = 0 \) </td>
+                        <td> \( a = 0.5 \) </td>
+                    </tr>
+                    <tr>
+                        <td> \( x = 0.01 \) </td>
+                        <td> \( z = 0.1 \) </td>
+                        <td> \( a = 0.502 \) </td>
+                    </tr>
+                    <tr>
+                        <td> \( x = 0.1 \) </td>
+                        <td> \( z = 1 \) </td>
+                        <td> \( a = 0.73 \) </td>
+                    </tr>
+                    <tr>
+                        <td> \( x = 1 \) </td>
+                        <td> \( z = 10 \) </td>
+                        <td> \( a = 1 \) </td>
+                    </tr>
+                    <tr>
+                        <td> \( x = 5 \) </td>
+                        <td> \( z = 50 \) </td>
+                        <td> \( a = 1 \) </td>
+                    </tr>
+                    <tr>
+                        <td> \( x = 10 \) </td>
+                        <td> \( z = 100 \) </td>
+                        <td> \( a = 1 \) </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col"></div>
+    </div>
+{% endmacro %}
+
+
+{% macro influence_of_weight_on_sigmoid_output_at_weight_equal_to_100() %}
+
+    <div class="caption text-center h5">Weight \( w = 100 \)</div>
+    <div class="row">
+
+        <div class="col"></div>
+        <div class="col">
+            <table class="table text-center">
+                <thead>
+                    <tr>
+                        <th>input</th>
+                        <th>preactivation</th>
+                        <th>activation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td> \( x = -10 \) </td>
+                        <td> \( z = -1000 \) </td>
+                        <td> \( a = 0 \) </td>
+                    </tr>
+                    <tr>
+                        <td> \( x = -5 \) </td>
+                        <td> \( z = -500 \) </td>
+                        <td> \( a = 0 \) </td>
+                    </tr>
+                    <tr>
+                        <td> \( x = -1 \) </td>
+                        <td> \( z = -100 \) </td>
+                        <td> \( a = 0 \) </td>
+                    </tr>
+                    <tr>
+                        <td> \( x = -0.1 \) </td>
+                        <td> \( z = -10 \) </td>
+                        <td> \( a = 0 \) </td>
+                    </tr>
+                    <tr>
+                        <td> \( x = -0.01 \) </td>
+                        <td> \( z = -1 \) </td>
+                        <td> \( a = 0.27 \) </td>
+                    </tr>
+                    <tr>
+                        <td> \( x = 0 \) </td>
+                        <td> \( z = 0 \) </td>
+                        <td> \( a = 0.5 \) </td>
+                    </tr>
+                    <tr>
+                        <td> \( x = 0.01 \) </td>
+                        <td> \( z = 1 \) </td>
+                        <td> \( a = 0.73 \) </td>
+                    </tr>
+                    <tr>
+                        <td> \( x = 0.1 \) </td>
+                        <td> \( z = 10 \) </td>
+                        <td> \( a = 1 \) </td>
+                    </tr>
+                    <tr>
+                        <td> \( x = 1 \) </td>
+                        <td> \( z = 100 \) </td>
+                        <td> \( a = 1 \) </td>
+                    </tr>
+                    <tr>
+                        <td> \( x = 5 \) </td>
+                        <td> \( z = 500 \) </td>
+                        <td> \( a = 1 \) </td>
+                    </tr>
+                    <tr>
+                        <td> \( x = 10 \) </td>
+                        <td> \( z = 1000 \) </td>
+                        <td> \( a = 1 \) </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col"></div>
+    </div>
+{% endmacro %}
+
+
+{% macro influence_of_weight_on_sigmoid_output() %}
+
+    <div class="caption text-center h4">Influence of weight on activation</div><br>
+    {{ influence_of_weight_on_sigmoid_output_at_weight_equal_to_1() }}
+    <br>
+    {{ influence_of_weight_on_sigmoid_output_at_weight_equal_to_10() }}
+    <br>
+    {{ influence_of_weight_on_sigmoid_output_at_weight_equal_to_100() }}
+
 {% endmacro %}
 
 
