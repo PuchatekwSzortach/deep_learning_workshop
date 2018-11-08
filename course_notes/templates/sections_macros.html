@@ -709,6 +709,166 @@
 {% endmacro %}
 
 
+{% macro influence_of_bias_on_sigmoid_output_at_bias_equal_to_0() %}
+
+    <div class="caption text-center h5">Bias \( b = 0 \)</div>
+    <div class="row">
+
+        <div class="col"></div>
+        <div class="col">
+            <table class="table text-center">
+                <thead>
+                    <tr>
+                        <th>input</th>
+                        <th>preactivation</th>
+                        <th>activation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td> \( x = -10 \) </td>
+                        <td> \( z = -10 \) </td>
+                        <td> \( a = 0 \) </td>
+                    </tr>
+                    <tr>
+                        <td> \( x = -5 \) </td>
+                        <td> \( z = -5 \) </td>
+                        <td> \( a = 0.01 \) </td>
+                    </tr>
+                    <tr>
+                        <td> \( x = 0 \) </td>
+                        <td> \( z = 0 \) </td>
+                        <td> \( a = 0.5 \) </td>
+                    </tr>
+                    <tr>
+                        <td> \( x = 5 \) </td>
+                        <td> \( z = 5 \) </td>
+                        <td> \( a = 0.99 \) </td>
+                    </tr>
+                    <tr>
+                        <td> \( x = 10 \) </td>
+                        <td> \( z = 10 \) </td>
+                        <td> \( a = 1 \) </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col"></div>
+    </div>
+{% endmacro %}
+
+
+{% macro influence_of_bias_on_sigmoid_output_at_bias_equal_to_5() %}
+
+    <div class="caption text-center h5">Bias \( b = 5 \)</div>
+    <div class="row">
+
+        <div class="col"></div>
+        <div class="col">
+            <table class="table text-center">
+                <thead>
+                    <tr>
+                        <th>input</th>
+                        <th>preactivation</th>
+                        <th>activation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td> \( x = -10 \) </td>
+                        <td> \( z = 5 \) </td>
+                        <td> \( a = 0.01 \) </td>
+                    </tr>
+                    <tr>
+                        <td> \( x = -5 \) </td>
+                        <td> \( z = 0 \) </td>
+                        <td> \( a = 0.5 \) </td>
+                    </tr>
+                    <tr>
+                        <td> \( x = 0 \) </td>
+                        <td> \( z = 5 \) </td>
+                        <td> \( a = 0.99 \) </td>
+                    </tr>
+                    <tr>
+                        <td> \( x = 5 \) </td>
+                        <td> \( z = 10 \) </td>
+                        <td> \( a = 1 \) </td>
+                    </tr>
+                    <tr>
+                        <td> \( x = 10 \) </td>
+                        <td> \( z = 15 \) </td>
+                        <td> \( a = 1 \) </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col"></div>
+    </div>
+{% endmacro %}
+
+
+{% macro influence_of_bias_on_sigmoid_output_at_bias_equal_to_minus_5() %}
+
+    <div class="caption text-center h5">Bias \( b = -5 \)</div>
+    <div class="row">
+
+        <div class="col"></div>
+        <div class="col">
+            <table class="table text-center">
+                <thead>
+                    <tr>
+                        <th>input</th>
+                        <th>preactivation</th>
+                        <th>activation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td> \( x = -10 \) </td>
+                        <td> \( z = -15 \) </td>
+                        <td> \( a = 0 \) </td>
+                    </tr>
+                    <tr>
+                        <td> \( x = -5 \) </td>
+                        <td> \( z = -10 \) </td>
+                        <td> \( a = 0 \) </td>
+                    </tr>
+                    <tr>
+                        <td> \( x = 0 \) </td>
+                        <td> \( z = -5 \) </td>
+                        <td> \( a = 0.01 \) </td>
+                    </tr>
+                    <tr>
+                        <td> \( x = 5 \) </td>
+                        <td> \( z = 0 \) </td>
+                        <td> \( a = 0.5 \) </td>
+                    </tr>
+                    <tr>
+                        <td> \( x = 10 \) </td>
+                        <td> \( z = 5 \) </td>
+                        <td> \( a = 0.99 \) </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col"></div>
+    </div>
+{% endmacro %}
+
+
+{% macro influence_of_bias_on_sigmoid_output() %}
+
+    <div class="caption text-center h4">Influence of bias on activation</div><br>
+    {{ influence_of_bias_on_sigmoid_output_at_bias_equal_to_0() }}
+    <br>
+    {{ influence_of_bias_on_sigmoid_output_at_bias_equal_to_5() }}
+    <br>
+    {{ influence_of_bias_on_sigmoid_output_at_bias_equal_to_minus_5() }}
+
+
+{% endmacro %}
+
+
 {% macro batching() %}
 <div class="shadow-lg">
     <div class={{ card_header_style() }}>Batching</div>
