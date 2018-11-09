@@ -3,6 +3,7 @@ channels:
   - menpo
   - defaults
 dependencies:
+  - blas=1.0=mkl
   - certifi=2016.2.28=py35_0
   - hdf5=1.8.17=2
   - mkl=2017.0.3=0
@@ -23,14 +24,20 @@ dependencies:
     - appnope==0.1.0
     - attrs==17.4.0
     - bleach==1.5.0
+    - click==7.0
     - decorator==4.2.1
     - enum34==1.1.6
+    - flask==1.0.2
+    - frozen-flask==0.15
     - html5lib==0.9999999
     - ipython==6.2.1
     - ipython-genutils==0.2.0
+    - itsdangerous==1.1.0
     - jedi==0.11.1
+    - jinja2==2.10
     - keras==2.0.9
     - markdown==2.6.9
+    - markupsafe==1.1.0
     - mock==2.0.0
     - parso==0.1.1
     - pbr==5.0.0
@@ -55,6 +62,6 @@ dependencies:
     - traitlets==4.3.2
     - visual-logging==1.0
     - wcwidth==0.1.7
-    - werkzeug==0.12.2
+    - werkzeug==0.14.1
 prefix: /Users/Kuba/anaconda3/envs/deep_learning_workshop_osx
 

@@ -2,22 +2,15 @@
 Module to run the server
 """
 
-import flask
-
-
-APP = flask.Flask("deep_learning_workshop")
-
-
-@APP.route("/")
-def render_index():
-
-    return flask.render_template("index.html")
+import application
 
 
 if __name__ == "__main__":
 
+    app = application.get_app()
+
     # To prevent loading model twice, set use_reloader to False
-    APP.run(host="0.0.0.0", use_reloader=True,
+    app.run(host="0.0.0.0", use_reloader=True,
             extra_files=[
                 "./templates/math_macros.html", "./templates/sections_macros.html",
                 "./templates/chapters_macros.html", "./templates/index.html"])
