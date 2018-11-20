@@ -50,7 +50,6 @@ class Network:
 
     def __init__(self, layers):
 
-        # Subtract input layer
         self.layers_count = len(layers)
         self.weights, self.biases = self._initialize_parameters(layers)
 
