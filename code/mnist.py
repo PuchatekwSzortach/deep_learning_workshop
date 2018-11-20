@@ -19,13 +19,13 @@ def log_predictions(logger, model, x_data, y_data, header):
     # Display a few samples
     for image, label in zip(x_data, y_data):
 
-        large_image = cv2.resize(image, (64, 64))
-
         prediction = model.predict(image.reshape(-1, 1))
         predicted_label = np.argmax(prediction)
 
         message = "True label: {}, predicted label: {}\nRaw predictions:\n{}".format(
             label, predicted_label, prediction)
+
+        large_image = cv2.resize(image, (64, 64))
 
         logger.info(vlogging.VisualRecord(header, large_image, message, fmt='jpg'))
 
@@ -62,18 +62,18 @@ def main():
     # Log untrained model predictions
     log_predictions(logger, model, x_test[:log_size], y_test[:log_size], header="Untrained model")
 
-    train_cost, train_accuracy = net.get_statistics(model, x_train_flat, y_train_categorical)
-    print("Initial training cost: {:.3f}, training accuracy: {:.3f}".format(train_cost, train_accuracy))
-
-    test_cost, test_accuracy = net.get_statistics(model, x_test_flat, y_test_categorical)
-    print("Initial test cost: {:.3f}, test accuracy: {:.3f}".format(test_cost, test_accuracy))
-
-    model.fit(
-        x_train_flat, y_train_categorical, epochs=10, learning_rate=0.1,
-        x_test=x_test_flat, y_test=y_test_categorical)
-
-    # Log trained model predictions
-    log_predictions(logger, model, x_test[:log_size], y_test[:log_size], header="Trained model")
+    # train_cost, train_accuracy = net.get_statistics(model, x_train_flat, y_train_categorical)
+    # print("Initial training cost: {:.3f}, training accuracy: {:.3f}".format(train_cost, train_accuracy))
+    #
+    # test_cost, test_accuracy = net.get_statistics(model, x_test_flat, y_test_categorical)
+    # print("Initial test cost: {:.3f}, test accuracy: {:.3f}".format(test_cost, test_accuracy))
+    #
+    # model.fit(
+    #     x_train_flat, y_train_categorical, epochs=10, learning_rate=0.1,
+    #     x_test=x_test_flat, y_test=y_test_categorical)
+    #
+    # # Log trained model predictions
+    # log_predictions(logger, model, x_test[:log_size], y_test[:log_size], header="Trained model")
 
 
 if __name__ == "__main__":
