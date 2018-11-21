@@ -98,12 +98,11 @@ class Network:
         activation_error = (activations[-1] - y) / y.size
 
         # Lists to store parameters errors
-        weights_errors = [0] * self.layers_count
-        biases_errors = [0] * self.layers_count
+        weights_errors = [None] * self.layers_count
+        biases_errors = [None] * self.layers_count
 
         for index in reversed(range(1, self.layers_count)):
 
-            # Use offset of +1 for activations index, since they are enumerated from input layer up
             preactivation_error = activation_error * activations[index] * (1 - activations[index])
 
             weights_errors[index] = np.dot(preactivation_error, activations[index - 1].T)
