@@ -606,3 +606,106 @@
     $$
 
 {% endmacro %}
+
+
+{% macro binary_cross_entropy_cost_function() %}
+    <div class="row">
+
+            <div class="col"></div>
+            <div class="col">
+                <table class="table text-center">
+                    <tbody>
+                        <tr>
+                            <td> \( x = -2 \) </td>
+                            <td> \( w = 3 \) </td>
+                            <td> \( b = -1 \) </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col"></div>
+    </div>
+
+    <div class="text-center h6">Prediction</div>
+    $$ z = wx + b $$
+    $$ z = (-2 * 3) - 1 $$
+    $$ z = -7 $$
+    $$ a = \sigma(-7) $$
+    $$ a = 0.000911 $$
+
+    <hr>
+
+    <div class="text-center h6">Training</div>
+    $$ y = 1 $$
+    $$ C = \frac{1}{2}(y - a)^2 $$
+    $$ \frac{ \partial{C} }{ \partial{a} } = a - y $$
+    $$ \frac{ \partial{C} }{ \partial{a} } = 0.000911 - 1 = -0.999089 $$
+
+    <hr>
+
+    $$ \frac{ \partial{C} }{ \partial{z} } =
+        \frac{ \partial{C} }{ \partial{a} } * \frac{ \partial{a} }{ \partial{z} } $$
+
+    $$ \frac{ \partial{C} }{ \partial{z} } = (a - y) * a * (1 - a) $$
+    $$ \frac{ \partial{C} }{ \partial{z} } = -0.999089 * 0.000911 * (1 - 0.000911) $$
+    $$ \frac{ \partial{C} }{ \partial{z} } = -0.00090934 $$
+
+    <hr>
+
+    $$ \frac{ \partial{C} }{ \partial{w} } =
+        \frac{ \partial{C} }{ \partial{a} } * \frac{ \partial{a} }{ \partial{z} } *
+        \frac{ \partial{z} }{ \partial{w} } $$
+
+    $$ \frac{ \partial{C} }{ \partial{w} } = (a - y) * a * (1 - a) * x $$
+    $$ \frac{ \partial{C} }{ \partial{w} } = -0.00090934 * -2 $$
+    $$ \frac{ \partial{C} }{ \partial{w} } = 0.00181868 $$
+
+    <hr>
+
+    $$ \frac{ \partial{C} }{ \partial{b} } =
+    \frac{ \partial{C} }{ \partial{a} } * \frac{ \partial{a} }{ \partial{z} } *
+    \frac{ \partial{z} }{ \partial{b} } $$
+
+    $$ \frac{ \partial{C} }{ \partial{b} } = (a - y) * a * (1 - a) * 1 $$
+    $$ \frac{ \partial{C} }{ \partial{b} } = -0.00090934 $$
+
+    <hr>
+
+    <div class="text-center h6">Updates</div>
+    $$ w = w - \alpha * \frac{ \partial{C} }{ \partial{w} } $$
+    $$ w = 3 - 1 * 0.00181868 $$
+    $$ w = 2.99818132 $$
+    <br>
+    $$ b = b - \alpha * \frac{ \partial{C} }{ \partial{b} } $$
+    $$ b = -1 - (1 * -0.00090934) $$
+    $$ b = -0.99909066 $$
+
+    <hr>
+
+    <div class="row">
+
+            <div class="col"></div>
+            <div class="col">
+                <table class="table text-center">
+                    <tbody>
+                        <tr>
+                            <td> \( x = -2 \) </td>
+                            <td> \( w = 2.99818132 \) </td>
+                            <td> \( b = -0.99909066 \) </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col"></div>
+    </div>
+
+    <div class="text-center h6">Prediction after updates</div>
+    $$ z = wx + b $$
+    $$ z = (-2 * 2.99818132) - 0.99909066 $$
+    $$ z = -6.9954533 $$
+    $$ a = \sigma(-6.9954533) $$
+    $$ a = 0.000915 $$
+
+
+
+{% endmacro %}

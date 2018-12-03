@@ -8,12 +8,10 @@ import tensorflow as tf
 
 def placeholders_example():
 
-    a = tf.placeholder(dtype=tf.float32, shape=3)
-    b = tf.placeholder(dtype=tf.float32, shape=3)
+    a = tf.placeholder(dtype=tf.float32, shape=3, name="node_a")
+    b = tf.placeholder(dtype=tf.float32, shape=3, name="node_b")
 
     c = a + b
-
-    print(c)
 
     with tf.Session() as session:
 
