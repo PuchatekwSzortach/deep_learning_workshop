@@ -705,6 +705,83 @@
     $$ z = -6.9954533 $$
     $$ a = \sigma(-6.9954533) $$
     $$ a = 0.000915 $$
+    <hr>
+
+    <div class="text-center h4">Binary cross-entropy</div>
+    $$ C = -( y*ln(a) + (1 - y)*ln(1 - a) ) $$
+    <hr>
+
+    <div class="text-center h5">Sample computations</div>
+    <div class="text-center">\( y = 0 \) and \( a = 0 \)</div>
+    $$ C = -( y*ln(a) + (1 - y)*ln(1 - a) ) $$
+    $$ C = -( 0 + 1 * ln(1) ) $$
+    $$ C = -( 0 ) $$
+    $$ C = 0 $$
+    <hr>
+    <div class="text-center">\( y = 0 \) and \( a = 1 \)</div>
+    $$ C = -( y*ln(a) + (1 - y)*ln(1 - a) ) $$
+    $$ C = -( 0 + 1 * ln(0) ) $$
+    $$ C = -( -\infty ) $$
+    $$ C = \infty $$
+    <hr>
+    <div class="text-center">\( y = 1 \) and \( a = 0 \)</div>
+    $$ C = -( y*ln(a) + (1 - y)*ln(1 - a) ) $$
+    $$ C = -( 1 * ln(0) + 0 ) $$
+    $$ C = -( -\infty ) $$
+    $$ C = \infty $$
+    <hr>
+    <div class="text-center">\( y = 1 \) and \( a = 1 \)</div>
+    $$ C = -( y*ln(a) + (1 - y)*ln(1 - a) ) $$
+    $$ C = -( 1 * ln(1) + 0 ) $$
+    $$ C = -( 0 ) $$
+    $$ C = 0 $$
+
+    <hr>
+    <div class="text-center h4">Cost derivative w.r.t. activation</div>
+
+    $$ C = -( y*ln(a) + (1 - y)*ln(1 - a) ) $$
+    <div class="text-center">Call</div>
+    $$ f = y*ln(a) $$
+    $$ g = (1 - y)*ln(1 - a) $$
+    <div class="text-center">Then</div>
+    $$ C = -( f + g ) $$
+    $$ \frac{ \partial{C} }{ \partial{a} } =
+        -( \frac{ \partial{f} }{ \partial{a} } + \frac{ \partial{g} } { \partial{a} } ) $$
+
+    <hr>
+
+    $$ f = y*ln(a) $$
+    $$ \frac{ \partial{f} }{ \partial{a} } = \frac{ y }{ a }$$
+
+    <hr>
+
+    $$ g = (1 - y)*ln(1 - a) $$
+    $$ u = (1 - a) $$
+    $$ g = (1 - y)*ln(u) $$
+    $$ \frac{ \partial{g} } { \partial{a} } =
+        \frac{ \partial{g} } { \partial{u} } * \frac{ \partial{u} } { \partial{a} } $$
+    $$ \frac{ \partial{g} } { \partial{a} } = \frac{ 1 - y } { u } * (-1) $$
+    $$ \frac{ \partial{g} } { \partial{a} } = - \frac{ 1 - y } { 1 - a } $$
+
+    <hr>
+
+    $$ \frac{ \partial{C} }{ \partial{a} } =
+        -( \frac{ \partial{f} }{ \partial{a} } + \frac{ \partial{g} } { \partial{a} } ) $$
+
+    $$ \frac{ \partial{C} }{ \partial{a} } = -( \frac{ y }{ a } - \frac{ 1 - y } { 1 - a } ) $$
+    $$ \frac{ \partial{C} }{ \partial{a} } = -( \frac{ y*(1 - a) - a*(1 - y) }{ a * (1 - a) } )$$
+    $$ \frac{ \partial{C} }{ \partial{a} } = -( \frac{ y - ay - a + ay }{ a * (1 - a) } )$$
+    $$ \frac{ \partial{C} }{ \partial{a} } = -( \frac{ y - a }{ a * (1 - a) } )$$
+    $$ \frac{ \partial{C} }{ \partial{a} } = \frac{ a - y }{ a * (1 - a) }$$
+
+    <hr>
+    <div class="text-center h4">Cost derivative w.r.t. preactivation</div>
+
+    $$ \frac{ \partial{C} }{ \partial{z} } =
+        \frac{ \partial{C} } { \partial{a} } * \frac{ \partial{a} } { \partial{z} } $$
+
+    $$ \frac{ \partial{C} }{ \partial{z} } = \frac{ a - y }{ a * (1 - a) } * a * (1 - a) $$
+    $$ \frac{ \partial{C} }{ \partial{z} } = a - y $$
 
 
 
