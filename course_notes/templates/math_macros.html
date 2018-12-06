@@ -667,7 +667,7 @@
     <div class="text-center h6">Cost derivative w.r.t. bias</div>
     $$ \frac{ \partial{C} }{ \partial{b} } = \frac{ \partial{C} }{ \partial{z} } * \frac{ \partial{z} }{ \partial{b} } $$
 
-    $$ \frac{ \partial{C} }{ \partial{b} } = \frac{ \partial{C} }{ \partial{z} } * 1 $$
+    $$ \frac{ \partial{C} }{ \partial{b} } = -0.00090934 * 1 $$
     $$ \frac{ \partial{C} }{ \partial{b} } = -0.00090934 $$
 
     <hr>
@@ -791,6 +791,104 @@
 
     $$ \frac{ \partial{C} }{ \partial{z} } = \frac{ a - y }{ a * (1 - a) } * a * (1 - a) $$
     $$ \frac{ \partial{C} }{ \partial{z} } = a - y $$
+    <br>
+
+{% endmacro %}
+
+
+{% macro training_with_saturated_sigmoid_and_binary_cross_entropy_cost_function() %}
+
+    <div class="row">
+
+            <div class="col"></div>
+            <div class="col">
+                <table class="table table-bordered text-center">
+                    <tbody>
+                        <tr>
+                            <td> \( x = -2 \) </td>
+                            <td> \( w = 3 \) </td>
+                            <td> \( b = -1 \) </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col"></div>
+    </div>
+
+    <div class="text-center h6">Prediction</div>
+    $$ z = wx + b $$
+    $$ z = (-2 * 3) - 1 $$
+    $$ z = -7 $$
+    $$ a = \sigma(-7) $$
+    $$ a = 0.000911 $$
+
+    <hr>
+
+    <div class="text-center h6">Cost derivative w.r.t. preactivation</div>
+    $$ y = 1 $$
+    $$ C = -( y*ln(a) + (1 - y)*ln(1 - a) ) $$
+    $$ \frac{ \partial{C} }{ \partial{z} } = a - y $$
+    $$ \frac{ \partial{C} }{ \partial{z} } = 0.000911 - 1 = -0.999089 $$
+
+    <hr>
+
+    <div class="text-center h6">Cost derivative w.r.t. weight</div>
+    $$ \frac{ \partial{C} }{ \partial{w} } = \frac{ \partial{C} }{ \partial{z} } *
+        \frac{ \partial{z} }{ \partial{w} } $$
+
+    $$ \frac{ \partial{C} }{ \partial{w} } = \frac{ \partial{C} }{ \partial{z} } * x $$
+    $$ \frac{ \partial{C} }{ \partial{w} } = -0.999089 * -2 $$
+    $$ \frac{ \partial{C} }{ \partial{w} } = 1.998178 $$
+
+    <hr>
+
+    <div class="text-center h6">Cost derivative w.r.t. bias</div>
+    $$ \frac{ \partial{C} }{ \partial{b} } = \frac{ \partial{C} }{ \partial{z} } * \frac{ \partial{z} }{ \partial{b} } $$
+
+    $$ \frac{ \partial{C} }{ \partial{b} } = -0.999089 * 1 $$
+    $$ \frac{ \partial{C} }{ \partial{b} } = -0.999089 $$
+
+    <hr>
+
+    <div class="text-center h6">Weight update</div>
+    $$ w = w - \alpha * \frac{ \partial{C} }{ \partial{w} } $$
+    $$ w = 3 - 1 * 1.998178 $$
+    $$ w = 1.001822 $$
+
+    <hr>
+
+    <div class="text-center h6">Bias update</div>
+    $$ b = b - \alpha * \frac{ \partial{C} }{ \partial{b} } $$
+    $$ b = -1 - (1 * -0.999089) $$
+    $$ b = -0.00091 $$
+
+    <hr>
+
+    <div class="text-center h5">Prediction after updates</div>
+    <br>
+    <div class="row">
+
+            <div class="col"></div>
+            <div class="col">
+                <table class="table table-bordered  text-center">
+                    <tbody>
+                        <tr>
+                            <td> \( x = -2 \) </td>
+                            <td> \( w = 1.001822 \) </td>
+                            <td> \( b = -0.00091 \) </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col"></div>
+    </div>
+
+    $$ z = wx + b $$
+    $$ z = (-2 * 1.001822) - -0.00091 $$
+    $$ z = -2.002734 $$
+    $$ a = \sigma(-2.002734) $$
+    $$ a = 0.1189 $$
+
     <br>
 
 {% endmacro %}

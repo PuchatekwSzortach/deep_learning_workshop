@@ -904,6 +904,15 @@
 {% endmacro %}
 
 
+{% macro training_with_saturated_sigmoid_and_binary_cross_entropy_cost_function() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>Training with saturated sigmoid and binary cross-entropy cost function</div>
+        <br>
+        {{ math_macros.training_with_saturated_sigmoid_and_binary_cross_entropy_cost_function() }}
+</div>
+{% endmacro %}
+
+
 {% macro softmax() %}
 <div class="shadow-lg">
     <div class={{ card_header_style() }}>Softmax</div>
