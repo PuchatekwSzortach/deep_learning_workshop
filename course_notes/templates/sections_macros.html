@@ -885,21 +885,21 @@
 {% endmacro %}
 
 
-{% macro optimizing_cost_function() %}
+
+{% macro training_with_saturated_sigmoid_and_mean_square_error_cost_function() %}
 <div class="shadow-lg">
-    <div class={{ card_header_style() }}>Optimizing cost function</div>
-    <div class="m-4">
-        <ul class="list-group">
-            <li class="list-group-item">Sigmoid derivative and slow learning with mean square error function</li>
-            <li class="list-group-item">Binary cross entropy</li>
-            <li class="list-group-item">Preactivation error with binary cross entropy cost function</li>
-        </ul>
-        <br><br>
+    <div class={{ card_header_style() }}>Training with saturated sigmoid and mean square error cost function</div>
+        <br>
+        {{ math_macros.training_with_saturated_sigmoid_and_mean_square_error_cost_function() }}
+</div>
+{% endmacro %}
 
+
+{% macro binary_cross_entropy_cost_function() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>Binary cross-entropy cost function</div>
+        <br>
         {{ math_macros.binary_cross_entropy_cost_function() }}
-    </div>
-    <br>
-
 </div>
 {% endmacro %}
 

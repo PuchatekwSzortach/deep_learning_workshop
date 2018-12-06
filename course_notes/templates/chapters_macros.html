@@ -211,7 +211,7 @@
 
     {{ sections_macros.batching() }}
     <br><br>
-    {{ sections_macros.optimizing_cost_function() }}
+    {{ optimizing_cost_function() }}
     <br><br>
     {{ sections_macros.softmax() }}
     <br><br>
@@ -220,6 +220,17 @@
     {{ sections_macros.importance_of_weights_initialization_scheme() }}
 
 {% endmacro %}
+
+
+{% macro optimizing_cost_function() %}
+
+    {{ sections_macros.training_with_saturated_sigmoid_and_mean_square_error_cost_function() }}
+    <br><br>
+    {{ sections_macros.binary_cross_entropy_cost_function() }}
+    <br><br>
+
+{% endmacro %}
+
 
 
 {% macro networks_architectures() %}
