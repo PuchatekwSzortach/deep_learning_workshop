@@ -685,6 +685,8 @@
 
     <hr>
 
+    <div class="text-center h5">Prediction after updates</div>
+    <br>
     <div class="row">
 
             <div class="col"></div>
@@ -702,7 +704,6 @@
             <div class="col"></div>
     </div>
 
-    <div class="text-center h6">Prediction after updates</div>
     $$ z = wx + b $$
     $$ z = (-2 * 2.99818132) - 0.99909066 $$
     $$ z = -6.9954533 $$
@@ -715,12 +716,11 @@
 
 {% macro binary_cross_entropy_cost_function() %}
 
-
-    <div class="text-center h4">Binary cross-entropy</div>
-    $$ C = -( y*ln(a) + (1 - y)*ln(1 - a) ) $$
+    <div class="text-center h4">$$ C = -( y*ln(a) + (1 - y)*ln(1 - a) ) $$</div>
     <hr>
 
     <div class="text-center h5">Sample computations</div>
+    <br>
     <div class="text-center">\( y = 0 \) and \( a = 0 \)</div>
     $$ C = -( y*ln(a) + (1 - y)*ln(1 - a) ) $$
     $$ C = -( 0 + 1 * ln(1) ) $$
@@ -791,7 +791,6 @@
 
     $$ \frac{ \partial{C} }{ \partial{z} } = \frac{ a - y }{ a * (1 - a) } * a * (1 - a) $$
     $$ \frac{ \partial{C} }{ \partial{z} } = a - y $$
-
-
+    <br>
 
 {% endmacro %}
