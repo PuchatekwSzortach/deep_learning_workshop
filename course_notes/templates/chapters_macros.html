@@ -215,6 +215,8 @@
     <br><br>
     {{ sections_macros.softmax() }}
     <br><br>
+    {{ softmax() }}
+    <br><br>
     {{ sections_macros.optimizing_hidden_layer_activation_function() }}
     <br><br>
     {{ sections_macros.importance_of_weights_initialization_scheme() }}
@@ -229,6 +231,22 @@
     {{ sections_macros.binary_cross_entropy_cost_function() }}
     <br><br>
     {{ sections_macros.training_with_saturated_sigmoid_and_binary_cross_entropy_cost_function() }}
+
+{% endmacro %}
+
+
+
+{% macro softmax() %}
+
+    {{ sections_macros.softmax_activation_function() }}
+    <!--
+    <br><br>
+     sections_macros.cross_entropy_cost_function()
+    <br><br>
+     sections_macros.derivative_of_cross_entropy_cost_function_with_respect_to_preactivation_of_active_node()
+    <br><br>
+     sections_macros.derivative_of_cross_entropy_cost_function_with_respect_to_preactivation_of_inactive_node()
+     --->
 
 {% endmacro %}
 

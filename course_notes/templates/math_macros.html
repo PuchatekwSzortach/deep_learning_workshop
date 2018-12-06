@@ -892,3 +892,31 @@
     <br>
 
 {% endmacro %}
+
+
+
+{% macro softmax_activation_function() %}
+
+    $$ a_i = \frac{ e^{z_i} } { \sum_{j} e^{z_j} } $$
+    <hr>
+    $$ a_1 = \frac{ e^{z_1} } { e^{z_1} + e^{z_2} + e^{z_3} } $$
+    $$ a_2 = \frac{ e^{z_2} } { e^{z_1} + e^{z_2} + e^{z_3} } $$
+    $$ a_3 = \frac{ e^{z_3} } { e^{z_1} + e^{z_2} + e^{z_3} } $$
+
+    <hr>
+    $$ e^{z_i} \ge 0 $$
+    $$ \sum_{j} e^{z_j} \ge 0 $$
+    $$ e^{z_i} \le e^{z_j} $$
+    $$ a_i \in \lt 0, 1 \gt $$
+
+    <hr>
+    $$ a_1 + a_2 + a_3 =
+        \frac{ e^{z_1} } { e^{z_1} + e^{z_2} + e^{z_3} } +
+        \frac{ e^{z_2} } { e^{z_1} + e^{z_2} + e^{z_3} } +
+        \frac{ e^{z_3} } { e^{z_1} + e^{z_2} + e^{z_3} } $$
+
+    $$ a_1 + a_2 + a_3 = \frac{ e^{z_1} + e^{z_2} + e^{z_3} } { e^{z_1} + e^{z_2} + e^{z_3} } $$
+    $$ a_1 + a_2 + a_3 = 1 $$
+    $$ \sum_{j} a_j = 1 $$
+
+{% endmacro %}

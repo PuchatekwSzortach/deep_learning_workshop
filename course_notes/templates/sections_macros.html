@@ -930,6 +930,19 @@
 {% endmacro %}
 
 
+{% macro softmax_activation_function() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>Softmax activation function</div>
+    <div class="m-4">
+
+        {{ math_macros.softmax_activation_function() }}
+
+    </div>
+    <br>
+</div>
+{% endmacro %}
+
+
 {% macro optimizing_hidden_layer_activation_function() %}
 <div class="shadow-lg">
     <div class={{ card_header_style() }}>Optimizing hidden layer activation function</div>
