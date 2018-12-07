@@ -539,7 +539,10 @@
     <hr>
     $$
         \frac{ \partial{a} }{ \partial{z} } =
-        \frac{ \frac{\partial(f)}{\partial(z)} * g - f * \frac{\partial(g)}{\partial(z)}}{g^2}
+            \frac{
+                \frac{ \partial{f} }{ \partial{z} } * g -
+                f * \frac{ \partial{g} }{ \partial{z} }
+            } {g^2}
     $$
     $$
         \frac{ \partial{a} }{ \partial{z} } = \frac { 0 - 1 * (-e^{-z})} { (1 + e^{-z})^2 }
@@ -918,5 +921,49 @@
     $$ a_1 + a_2 + a_3 = \frac{ e^{z_1} + e^{z_2} + e^{z_3} } { e^{z_1} + e^{z_2} + e^{z_3} } $$
     $$ a_1 + a_2 + a_3 = 1 $$
     $$ \sum_{j} a_j = 1 $$
+
+{% endmacro %}
+
+
+{% macro cross_entropy_cost_function() %}
+
+    <div class="text-center h5">$$ C = - (\sum_j y_j * ln(a_j)) $$</div>
+    <div class="text-center h5">$$ C = -y_i * ln(a_i) $$</div>
+    <div class="text-center h5">$$ C = -ln(a_i) $$</div>
+    <hr>
+    $$ \frac{ \partial{C} }{ \partial{a_i} } = - \frac{1}{a_i} $$
+    $$ \frac{ \partial{C} }{ \partial{a_1} } = - \frac{1}{a_1} $$
+    <hr>
+    $$ a_1 = \frac{ e^{z_1} } { \sum_{j} e^{z_j} } $$
+    <div class="text-center h6">Call</div>
+    $$ f = e^{z_1} $$
+    $$ g = \sum_{j} e^{z_j} $$
+    <div class="text-center h6">Then</div>
+    $$ a_1 = \frac{ f } { g } $$
+
+    $$
+        \frac{ \partial{a_1} }{ \partial{z_1} } =
+            \frac{
+                \frac{ \partial{f} }{ \partial{z_1} } * g -
+                f * \frac{ \partial{g} }{ \partial{z_1} }
+            } {g^2}
+    $$
+    <hr>
+    $$ \frac{ \partial{f} }{ \partial{z_1} } = e^{z_1} $$
+    $$ \frac{ \partial{g} }{ \partial{z_1} } = e^{z_1} $$
+    <hr>
+
+    $$ \frac{ \partial{a_1} }{ \partial{z_1} } =
+        \frac{ (e^{z_1} * \sum_{j} e^{z_j}) - (e^{z_1} * e^{z_1})} { (\sum_{j} e^{z_j})^2 } $$
+
+    $$ \frac{ \partial{a_1} }{ \partial{z_1} } =
+        \frac{ e^{z_1} * ( \sum_{j} e^{z_j} - e^{z_1} ) } { (\sum_{j} e^{z_j})^2 } $$
+
+    $$ \frac{ \partial{a_1} }{ \partial{z_1} } =
+        \frac{ e^{z_1} } { \sum_{j} e^{z_j} } * \frac{ \sum_{j} e^{z_j} - e^{z_1} } { \sum_{j} e^{z_j} } $$
+
+    $$ \frac{ \partial{a_1} }{ \partial{z_1} } = a_1 * (1 - \frac{ e^{z_1} } { \sum_{j} e^{z_j} }) $$
+
+
 
 {% endmacro %}
