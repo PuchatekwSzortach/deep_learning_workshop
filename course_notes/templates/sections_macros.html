@@ -956,6 +956,33 @@
 {% endmacro %}
 
 
+{% macro derivative_of_cross_entropy_cost_function_with_respect_to_preactivation_of_active_node() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>Derivative of cross-entropy cost function w.r.t. preactivation of an active node</div>
+    <div class="m-4">
+
+        {{ math_macros.derivative_of_cross_entropy_cost_function_with_respect_to_preactivation_of_active_node() }}
+
+    </div>
+    <br>
+</div>
+{% endmacro %}
+
+
+{% macro derivative_of_cross_entropy_cost_function_with_respect_to_preactivation_of_inactive_node() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>Derivative of cross-entropy cost function w.r.t. preactivation of an inactive node</div>
+    <div class="m-4">
+
+        {{ math_macros.derivative_of_cross_entropy_cost_function_with_respect_to_preactivation_of_inactive_node() }}
+
+    </div>
+    <br>
+</div>
+{% endmacro %}
+
+
+
 {% macro optimizing_hidden_layer_activation_function() %}
 <div class="shadow-lg">
     <div class={{ card_header_style() }}>Optimizing hidden layer activation function</div>

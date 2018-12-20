@@ -926,11 +926,14 @@
 
 
 {% macro cross_entropy_cost_function() %}
-
     <div class="text-center h5">$$ C = - (\sum_j y_j * ln(a_j)) $$</div>
     <div class="text-center h5">$$ C = -y_i * ln(a_i) $$</div>
     <div class="text-center h5">$$ C = -ln(a_i) $$</div>
-    <hr>
+{% endmacro %}
+
+
+{% macro derivative_of_cross_entropy_cost_function_with_respect_to_preactivation_of_active_node() %}
+
     $$ \frac{ \partial{C} }{ \partial{a_i} } = - \frac{1}{a_i} $$
     $$ \frac{ \partial{C} }{ \partial{a_1} } = - \frac{1}{a_1} $$
     <hr>
@@ -964,6 +967,81 @@
 
     $$ \frac{ \partial{a_1} }{ \partial{z_1} } = a_1 * (1 - \frac{ e^{z_1} } { \sum_{j} e^{z_j} }) $$
 
+    $$ \frac{ \partial{a_1} }{ \partial{z_1} } = a_1 * (1 - a_1) $$
 
+    <hr>
+
+    $$ \frac{ \partial{C} }{ \partial{z_1} } =
+        \frac{ \partial{C} }{ \partial{a_1} } * \frac{ \partial{a_1} }{ \partial{z_1} } $$
+
+    $$ \frac{ \partial{C} }{ \partial{a_1} } = - \frac{1}{a_1} $$
+    $$ \frac{ \partial{a_1} }{ \partial{z_1} } = a_1 * (1 - a_1) $$
+
+    $$ \frac{ \partial{C} }{ \partial{z_1} } = - \frac{1}{a_1} * a_1 * (1 - a_1) $$
+    $$ \frac{ \partial{C} }{ \partial{z_1} } = - (1 - a_1) $$
+    $$ \frac{ \partial{C} }{ \partial{z_1} } = a_1 - 1 $$
+    <div class="text-center h6">Generic form</div>
+    $$ \frac{ \partial{C} }{ \partial{z_i} } = a_i - 1 $$
+
+{% endmacro %}
+
+
+{% macro derivative_of_cross_entropy_cost_function_with_respect_to_preactivation_of_inactive_node() %}
+
+    $$ \frac{ \partial{C} }{ \partial{z_2} } =
+        \frac{ \partial{C} }{ \partial{a_1} } * \frac{ \partial{a_1} }{ \partial{z_2} } +
+        \frac{ \partial{C} }{ \partial{a_2} } * \frac{ \partial{a_2} }{ \partial{z_2} } $$
+
+    $$ C = -ln(a_1) $$
+    $$ \frac{ \partial{C} }{ \partial{a_2} } = 0 $$
+
+    $$ \frac{ \partial{C} }{ \partial{z_2} } =
+        \frac{ \partial{C} }{ \partial{a_1} } * \frac{ \partial{a_1} }{ \partial{z_2} } $$
+
+    <hr>
+
+    $$ a_1 = \frac{ e^{z_1} } { \sum_{j} e^{z_j} } $$
+
+    <div class="text-center h6">Call</div>
+    $$ f = e^{z_1} $$
+    $$ g = \sum_{j} e^{z_j} $$
+    <div class="text-center h6">Then</div>
+    $$ a_1 = \frac{ f } { g } $$
+
+    $$
+        \frac{ \partial{a_1} }{ \partial{z_2} } =
+            \frac{
+                \frac{ \partial{f} }{ \partial{z_2} } * g -
+                f * \frac{ \partial{g} }{ \partial{z_2} }
+            } {g^2}
+    $$
+
+    <hr>
+    $$ \frac{ \partial{f} }{ \partial{z_2} } = 0 $$
+    $$ \frac{ \partial{g} }{ \partial{z_2} } = e^{z_2} $$
+    <hr>
+
+    $$ \frac{ \partial{a_1} }{ \partial{z_2} } = \frac{ 0 - (e^{z_1} * e^{z_2}) } { (\sum_{j} e^{z_j})^2 } $$
+
+    $$ \frac{ \partial{a_1} }{ \partial{z_2} } =
+        - \frac{ e^{z_1} } { \sum_{j} e^{z_j} } * \frac{ e^{z_2} } { \sum_{j} e^{z_j} } $$
+
+    $$ a_1 = \frac{ e^{z_1} } { \sum_{j} e^{z_j} } $$
+    $$ a_2 = \frac{ e^{z_2} } { \sum_{j} e^{z_j} } $$
+
+    $$ \frac{ \partial{a_1} }{ \partial{z_2} } = - a_1 * a_2 $$
+
+    <hr>
+
+    $$ \frac{ \partial{C} }{ \partial{z_2} } =
+        \frac{ \partial{C} }{ \partial{a_1} } * \frac{ \partial{a_1} }{ \partial{z_2} } $$
+
+    $$ \frac{ \partial{C} }{ \partial{a_1} } = - \frac{1}{a_1} $$
+    $$ \frac{ \partial{a_1} }{ \partial{z_2} } = - a_1 * a_2 $$
+
+    $$ \frac{ \partial{C} }{ \partial{z_2} } = - \frac{1}{a_1} * (- a_1 * a_2) $$
+    $$ \frac{ \partial{C} }{ \partial{z_2} } = a_2 $$
+    <div class="text-center h6">Generic form</div>
+    $$ \frac{ \partial{C} }{ \partial{z_k} } = a_k $$
 
 {% endmacro %}
