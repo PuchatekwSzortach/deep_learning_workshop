@@ -55,8 +55,8 @@ class Network:
 
     def _initialize_parameters(self, layers):
 
-        weights = [None for _ in range(self.layers_count)]
-        biases = [None for _ in range(self.layers_count)]
+        weights = [None] * self.layers_count
+        biases = [None] * self.layers_count
 
         for index in range(1, self.layers_count):
 
@@ -94,21 +94,24 @@ class Network:
 
     def _backpropagation(self, activations, y, learning_rate):
 
-        # Get cost derivative w.r.t. to output layer activations
-        activation_error = (activations[-1] - y) / y.size
+        activation_errors = [None] * self.layers_count
+        preactivation_errors = [None] * self.layers_count
 
         # Lists to store parameters errors
         weights_errors = [None] * self.layers_count
         biases_errors = [None] * self.layers_count
 
+        # Get cost derivative w.r.t. to output layer activations
+        activation_errors[-1] = (activations[-1] - y) / y.size
+
         for index in reversed(range(1, self.layers_count)):
 
-            preactivation_error = activation_error * activations[index] * (1 - activations[index])
+            preactivation_errors[index] = activation_errors[index] * activations[index] * (1 - activations[index])
 
-            weights_errors[index] = np.dot(preactivation_error, activations[index - 1].T)
-            biases_errors[index] = preactivation_error
+            weights_errors[index] = np.dot(preactivation_errors[index], activations[index - 1].T)
+            biases_errors[index] = preactivation_errors[index]
 
-            activation_error = np.dot(self.weights[index].T, preactivation_error)
+            activation_errors[index - 1] = np.dot(self.weights[index].T, preactivation_errors[index])
 
         for index in range(1, self.layers_count):
 
