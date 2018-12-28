@@ -7,7 +7,7 @@ dependencies:
   - certifi=2018.8.24=py35_1
   - icc_rt=2017.0.4=h97af966_0
   - intel-openmp=2019.0=118
-  - mkl=2019.0=118
+  - mkl=2018.0.3=1
   - mkl_fft=1.0.6=py35hdbbee80_0
   - mkl_random=1.0.1=py35h77b88f5_1
   - numpy=1.15.2=py35ha559c80_0
@@ -46,8 +46,8 @@ dependencies:
     - scipy==1.1.0
     - six==1.11.0
     - sklearn==0.0
-    - tensorboard==1.11.0
-    - tensorflow==1.11.0
+    - tensorboard==1.12.1
+    - tensorflow==1.12.0
     - termcolor==1.1.0
     - tqdm==4.28.1
     - traitlets==4.3.2
