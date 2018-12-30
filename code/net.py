@@ -77,10 +77,7 @@ class Network:
 
         for index in range(1, self.layers_count):
 
-            weights = self.weights[index]
-            bias = self.biases[index]
-
-            z = np.dot(weights, activations[-1]) + bias
+            z = np.dot(self.weights[index], activations[index - 1]) + self.biases[index]
             a = sigmoid(z)
 
             activations.append(a)
