@@ -19,7 +19,7 @@ def log_predictions(logger, model, x_data, y_data, header):
     # Display a few samples
     for image, label in zip(x_data, y_data):
 
-        prediction = model.predict(image.reshape(-1, 1))
+        prediction = model.predict(image.reshape(784, 1))
         predicted_label = np.argmax(prediction)
 
         message = "True label: {}, predicted label: {}\nRaw predictions:\n{}".format(
@@ -49,12 +49,12 @@ def main():
     utilities.log_samples(logger, x_test[:log_size], y_test[:log_size])
 
     # Reshape 28x28 matrices to vectors 784 elements vectors
-    x_train_flat = x_train.reshape(-1, 784, 1)
-    x_test_flat = x_test.reshape(-1, 784, 1)
+    x_train_flat = x_train.reshape(60000, 784, 1)
+    x_test_flat = x_test.reshape(10000, 784, 1)
 
     # ys are scalars, convert them to one-hot encoded vectors
-    y_train_categorical = keras.utils.to_categorical(y_train, num_classes=10).reshape(-1, 10, 1)
-    y_test_categorical = keras.utils.to_categorical(y_test, num_classes=10).reshape(-1, 10, 1)
+    y_train_categorical = keras.utils.to_categorical(y_train, num_classes=10).reshape(60000, 10, 1)
+    y_test_categorical = keras.utils.to_categorical(y_test, num_classes=10).reshape(10000, 10, 1)
 
     model = net.Network(layers=[784, 100, 50, 10])
 
