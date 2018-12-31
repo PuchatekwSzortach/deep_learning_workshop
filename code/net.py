@@ -24,7 +24,7 @@ def get_statistics(model, x_data, y_data):
 
     costs = []
 
-    labels = []
+    ground_truth_labels = []
     predicted_labels = []
 
     for x, y in zip(x_data, y_data):
@@ -34,14 +34,14 @@ def get_statistics(model, x_data, y_data):
         sample_cost = get_cost(y, prediction)
         costs.append(sample_cost)
 
-        label = np.argmax(y)
-        labels.append(label)
+        ground_truth_label = np.argmax(y)
+        ground_truth_labels.append(ground_truth_label)
 
         predicted_label = np.argmax(prediction)
         predicted_labels.append(predicted_label)
 
     cost = np.mean(costs)
-    accuracy = np.mean((np.array(labels) == np.array(predicted_labels)).astype(np.float32))
+    accuracy = np.mean((np.array(ground_truth_labels) == np.array(predicted_labels)).astype(np.float32))
 
     return cost, accuracy
 
@@ -91,29 +91,29 @@ class Network:
 
     def _backpropagation(self, activations, y, learning_rate):
 
-        activation_errors = [None] * self.layers_count
-        preactivation_errors = [None] * self.layers_count
+        # Initialize lists for storing errors
+        activations_errors = [None] * self.layers_count
+        preactivations_errors = [None] * self.layers_count
 
-        # Lists to store parameters errors
         weights_errors = [None] * self.layers_count
         biases_errors = [None] * self.layers_count
 
         # Get cost derivative w.r.t. to output layer activations
-        activation_errors[-1] = (activations[-1] - y) / y.size
+        activations_errors[-1] = (activations[-1] - y) / y.size
 
         for index in reversed(range(1, self.layers_count)):
 
-            preactivation_errors[index] = activation_errors[index] * activations[index] * (1 - activations[index])
+            preactivations_errors[index] = activations_errors[index] * activations[index] * (1 - activations[index])
 
-            weights_errors[index] = np.dot(preactivation_errors[index], activations[index - 1].T)
-            biases_errors[index] = preactivation_errors[index]
+            weights_errors[index] = np.dot(preactivations_errors[index], activations[index - 1].T)
+            biases_errors[index] = preactivations_errors[index]
 
-            activation_errors[index - 1] = np.dot(self.weights[index].T, preactivation_errors[index])
+            activations_errors[index - 1] = np.dot(self.weights[index].T, preactivations_errors[index])
 
         for index in range(1, self.layers_count):
 
-            self.weights[index] -= learning_rate * weights_errors[index]
-            self.biases[index] -= learning_rate * biases_errors[index]
+            self.weights[index] = self.weights[index] - (learning_rate * weights_errors[index])
+            self.biases[index] = self.biases[index] - (learning_rate * biases_errors[index])
 
     def fit(self, x_train, y_train, epochs, learning_rate, x_test, y_test):
 
