@@ -22,7 +22,7 @@ def placeholders_example():
 
         result = session.run(c, feed_dictionary)
         print(result)
-    #
+
     d = tf.placeholder(dtype=tf.float32, shape=[None, 3])
     e = tf.placeholder(dtype=tf.float32, shape=[None, 3])
     f = d + e
