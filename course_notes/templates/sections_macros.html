@@ -912,27 +912,15 @@
 {% endmacro %}
 
 
-{% macro softmax() %}
-<div class="shadow-lg">
-    <div class={{ card_header_style() }}>Softmax</div>
-    <div class="m-4">
-        <ul class="list-group">
-            <li class="list-group-item">Interpreting result of neural network with multiple output nodes</li>
-            <li class="list-group-item">Softmax function</li>
-            <li class="list-group-item">Cross entropy cost</li>
-            <li class="list-group-item">Cost derivative w.r.t. active node</li>
-            <li class="list-group-item">Cost derivative w.r.t. inactive node</li>
-        </ul>
-    </div>
-    <br>
-</div>
-{% endmacro %}
-
-
 {% macro softmax_activation_function() %}
 <div class="shadow-lg">
     <div class={{ card_header_style() }}>Softmax activation function</div>
     <div class="m-4">
+
+        <ul class="list-group">
+            <li class="list-group-item">Interpreting result of neural network with multiple output nodes</li>
+            <li class="list-group-item">Softmax function</li>
+        </ul>
 
         {{ math_macros.softmax_activation_function() }}
 
