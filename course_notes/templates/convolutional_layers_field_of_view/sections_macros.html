@@ -1,0 +1,108 @@
+{% macro site_header() %}
+<div class="jumbotron text-center card mt-4 p-4 shadow-lg">
+    <h1>Convolutional layers - field of view</h1>
+    <h2>AI Okinawa</h2>
+    <h2>Jakub “Kuba” Kolodziejczyk</h2>
+</div>
+{% endmacro %}
+
+
+{% macro card_header_style() %}
+"h3 card-header text-center bg-success text-white"
+{% endmacro %}
+
+
+{% macro single_shot_detector() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>Single shot detector</div>
+    <div class="m-4">
+        <img src="/static/images/single_shot_detector_sample_detections.jpg" width="80%"><br>
+        <div class="h5 text-center text-secondary small">SSD: Single Shot MultiBox Detector - sample detections</div>
+
+        <br>
+        <hr>
+
+        <br>
+
+        <img src="/static/images/single_shot_detector_architecture.jpg" width="80%"><br>
+        <div class="h5 text-center text-secondary small">SSD: Single Shot MultiBox Detector - architecture</div>
+
+        <br><br>
+    </div>
+</div>
+{% endmacro %}
+
+
+{% macro convolutional_layers() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>Convolutional layers</div>
+    <div class="m-4">
+
+        <br>
+
+        $$ I_j^{l+1} = \sum_{j} ( I_{j + z}^l * k_z ) + b $$
+
+        <br><br>
+
+        <div class="row">
+            <div class="col">
+
+                <table class="table table-bordered text-center">
+                    <div class="caption text-center h6">Inputs</div>
+                    <tbody>
+                    <tr>
+                        <td>\( I_1^1 \)</td>
+                        <td>\( I_2^1 \)</td>
+                        <td>\( I_3^1 \)</td>
+                        <td>\( I_4^1 \)</td>
+                        <td>\( I_5^1 \)</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="col">
+                <table class="table table-bordered text-center">
+                    <div class="caption text-center h6">Kernel</div>
+                    <tbody>
+                    <tr>
+                        <td>\( k_1 \)</td>
+                        <td>\( k_2 \)</td>
+                        <td>\( k_3 \)</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <br><br>
+
+        <table class="table table-bordered text-center">
+            <div class="caption text-center h6">Outputs</div>
+            <tbody>
+            <tr>
+                <td>\( I_1^2 \)</td>
+                <td>\( I_2^2 \)</td>
+                <td>\( I_3^2 \)</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <br>
+
+        <table class="table table-bordered text-center">
+            <div class="caption text-center h6">Or</div>
+            <tbody>
+            <tr>
+                <td>\( (I_1^1 * k_1) + (I_2^1 * k_2) + (I_3^1 * k_3) + b \)</td>
+                <td>\( (I_2^1 * k_1) + (I_3^1 * k_2) + (I_4^1 * k_3) + b \)</td>
+                <td>\( (I_3^1 * k_1) + (I_4^1 * k_2) + (I_5^1 * k_3) + b \)</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <br><br>
+
+    </div>
+</div>
+{% endmacro %}
