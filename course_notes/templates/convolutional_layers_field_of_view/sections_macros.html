@@ -33,14 +33,14 @@
 {% endmacro %}
 
 
-{% macro convolutional_layers() %}
+{% macro convolutions() %}
 <div class="shadow-lg">
-    <div class={{ card_header_style() }}>Convolutional layers</div>
+    <div class={{ card_header_style() }}>Convolutions</div>
     <div class="m-4">
 
         <br>
 
-        $$ I_j^{l+1} = \sum_{j} ( I_{j + z}^l * k_z ) + b $$
+        $$ I_j^{l+1} = f( \sum_{j} ( I_{j + z}^l * k_z ) + b ) $$
 
         <br><br>
 
@@ -51,11 +51,11 @@
                     <div class="caption text-center h6">Inputs</div>
                     <tbody>
                     <tr>
+                        <td>\( I_0^1 \)</td>
                         <td>\( I_1^1 \)</td>
                         <td>\( I_2^1 \)</td>
                         <td>\( I_3^1 \)</td>
                         <td>\( I_4^1 \)</td>
-                        <td>\( I_5^1 \)</td>
                     </tr>
                     </tbody>
                 </table>
@@ -66,9 +66,9 @@
                     <div class="caption text-center h6">Kernel</div>
                     <tbody>
                     <tr>
+                        <td>\( k_0 \)</td>
                         <td>\( k_1 \)</td>
                         <td>\( k_2 \)</td>
-                        <td>\( k_3 \)</td>
                     </tr>
                     </tbody>
                 </table>
@@ -81,9 +81,9 @@
             <div class="caption text-center h6">Outputs</div>
             <tbody>
             <tr>
+                <td>\( I_0^2 \)</td>
                 <td>\( I_1^2 \)</td>
                 <td>\( I_2^2 \)</td>
-                <td>\( I_3^2 \)</td>
             </tr>
             </tbody>
         </table>
@@ -94,9 +94,9 @@
             <div class="caption text-center h6">Or</div>
             <tbody>
             <tr>
-                <td>\( (I_1^1 * k_1) + (I_2^1 * k_2) + (I_3^1 * k_3) + b \)</td>
-                <td>\( (I_2^1 * k_1) + (I_3^1 * k_2) + (I_4^1 * k_3) + b \)</td>
-                <td>\( (I_3^1 * k_1) + (I_4^1 * k_2) + (I_5^1 * k_3) + b \)</td>
+                <td>\( f( (I_0^1 * k_0) + (I_1^1 * k_1) + (I_2^1 * k_2) + b ) \)</td>
+                <td>\( f( (I_1^1 * k_0) + (I_2^1 * k_1) + (I_3^1 * k_0) + b ) \)</td>
+                <td>\( f( (I_2^1 * k_0) + (I_3^1 * k_1) + (I_4^1 * k_0) + b ) \)</td>
             </tr>
             </tbody>
         </table>
@@ -107,9 +107,184 @@
             <div class="caption text-center h6">Simplifying</div>
             <tbody>
             <tr>
+                <td>\( I_0^1 \sim I_2^1 \)</td>
                 <td>\( I_1^1 \sim I_3^1 \)</td>
-                <td>\( I_2^1 \sim I_5^1 \)</td>
-                <td>\( I_3^1 \sim I_5^1 \)</td>
+                <td>\( I_2^1 \sim I_4^1 \)</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <br><br>
+
+    </div>
+</div>
+{% endmacro %}
+
+
+{% macro convolutions_more_layers() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>Convolutions - more layers</div>
+    <div class="m-4">
+
+        <table class="table table-bordered text-center">
+            <div class="caption text-center h6">Layer 1</div>
+            <tbody>
+            <tr>
+                <td>\( I_0^1 \)</td>
+                <td>\( I_1^1 \)</td>
+                <td>\( I_2^1 \)</td>
+                <td>\( I_3^1 \)</td>
+                <td>\( I_4^1 \)</td>
+            </tr>
+            </tbody>
+        </table>
+
+
+        <br><br>
+
+
+        <table class="table table-bordered text-center">
+            <div class="caption text-center h6">Layer 2</div>
+            <tbody>
+            <tr>
+                <td>\( I_0^1 \sim I_2^1 \)</td>
+                <td>\( I_1^1 \sim I_3^1 \)</td>
+                <td>\( I_2^1 \sim I_4^1 \)</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <br><br>
+
+        <table class="table table-bordered text-center">
+            <div class="caption text-center h6">Layer 3</div>
+            <tbody>
+            <tr>
+                <td>\( I_0^1 \sim I_4^1 \)</td>
+                <td>\( I_1^1 \sim I_5^1 \)</td>
+                <td>\( I_2^1 \sim I_6^1 \)</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <br><br>
+
+    </div>
+</div>
+{% endmacro %}
+
+
+{% macro pooling() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>Pooling</div>
+    <div class="m-4">
+
+        <br>
+
+        $$ I_j^{l+1} = max(I_{2j}^l, I_{2j+1}^l) $$
+
+
+        <br><br>
+
+        <table class="table table-bordered text-center">
+            <div class="caption text-center h6">Inputs</div>
+            <tbody>
+            <tr>
+                <td>\( I_0^1 \)</td>
+                <td>\( I_1^1 \)</td>
+                <td>\( I_2^1 \)</td>
+                <td>\( I_3^1 \)</td>
+                <td>\( I_4^1 \)</td>
+                <td>\( I_5^1 \)</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <br><br>
+
+        <table class="table table-bordered text-center">
+            <div class="caption text-center h6">Outputs</div>
+            <tbody>
+            <tr>
+                <td>\( I_0^2 \)</td>
+                <td>\( I_1^2 \)</td>
+                <td>\( I_2^2 \)</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-bordered text-center">
+            <div class="caption text-center h6">Or</div>
+            <tbody>
+            <tr>
+                <td>\( max(I_0^1, I_1^1) \)</td>
+                <td>\( max(I_2^1, I_3^1) \)</td>
+                <td>\( max(I_4^1, I_5^1) \)</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <br><br>
+
+        <table class="table table-bordered text-center">
+            <div class="caption text-center h6">Simplifying</div>
+            <tbody>
+            <tr>
+                <td>\( I_0^1 \sim I_1^1 \)</td>
+                <td>\( I_2^1 \sim I_3^1 \)</td>
+                <td>\( I_4^1 \sim I_5^1 \)</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <br><br>
+
+    </div>
+</div>
+{% endmacro %}
+
+
+{% macro pooling_more_layers() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>Pooling - more layers</div>
+    <div class="m-4">
+
+        <table class="table table-bordered text-center">
+            <div class="caption text-center h6">Layer 1</div>
+            <tbody>
+            <tr>
+                <td>\( I_0^1 \)</td>
+                <td>\( I_1^1 \)</td>
+                <td>\( I_2^1 \)</td>
+                <td>\( I_3^1 \)</td>
+                <td>\( I_4^1 \)</td>
+                <td>\( I_5^1 \)</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <br><br>
+
+        <table class="table table-bordered text-center">
+            <div class="caption text-center h6">Layer 2</div>
+            <tbody>
+            <tr>
+                <td>\( I_0^1 \sim I_1^1 \)</td>
+                <td>\( I_2^1 \sim I_3^1 \)</td>
+                <td>\( I_4^1 \sim I_5^1 \)</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <br><br>
+
+        <table class="table table-bordered text-center">
+            <div class="caption text-center h6">Layer 3</div>
+            <tbody>
+            <tr>
+                <td>\( I_0^1 \sim I_3^1 \)</td>
+                <td>\( I_4^1 \sim I_7^1 \)</td>
+                <td>\( I_8^1 \sim I_{11}^1 \)</td>
             </tr>
             </tbody>
         </table>
