@@ -294,3 +294,102 @@
     </div>
 </div>
 {% endmacro %}
+
+
+{% macro one_convolutional_block() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>Two convolutional blocks</div>
+    <div class="m-4">
+
+        <table class="table table-bordered text-center">
+            <div class="caption text-center h6">Convolutional block</div>
+            <tbody>
+            <tr>
+                <td>convolution 3x3</td>
+            </tr>
+            <tr>
+                <td>convolution 3x3</td>
+            </tr>
+            <tr>
+                <td>convolution 3x3</td>
+            </tr>
+            <tr>
+                <td>pooling 2x2</td>
+            </tr>
+            </tr>
+            </tbody>
+        </table>
+
+        <br><br>
+
+        <table class="table table-bordered text-center">
+            <div class="caption text-center h6">Input</div>
+            <tbody>
+            <tr>
+                <td>\( I_0^1 \)</td>
+                <td>\( I_1^1 \)</td>
+                <td>\( I_2^1 \)</td>
+                <td>\( I_3^1 \)</td>
+                <td>\( I_4^1 \)</td>
+                <td>\( I_5^1 \)</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <br><hr><br>
+
+        <table class="table table-bordered text-center">
+            <div class="caption text-center h6">Block 1 layer 1 - after first convolution</div>
+            <tbody>
+            <tr>
+                <td>\( I_0^1 \sim I_2^1 \)</td>
+                <td>\( I_1^1 \sim I_3^1 \)</td>
+                <td>\( I_2^1 \sim I_4^1 \)</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <br><br>
+
+        <table class="table table-bordered text-center">
+            <div class="caption text-center h6">Block 1 layer 2 - after second convolution</div>
+            <tbody>
+            <tr>
+                <td>\( I_0^1 \sim I_4^1 \)</td>
+                <td>\( I_1^1 \sim I_5^1 \)</td>
+                <td>\( I_2^1 \sim I_6^1 \)</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <br><br>
+
+        <table class="table table-bordered text-center">
+            <div class="caption text-center h6">Block 1 layer 3 - after third convolution</div>
+            <tbody>
+            <tr>
+                <td>\( I_0^1 \sim I_6^1 \)</td>
+                <td>\( I_1^1 \sim I_7^1 \)</td>
+                <td>\( I_2^1 \sim I_8^1 \)</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <br><br>
+
+        <table class="table table-bordered text-center">
+            <div class="caption text-center h6">Block 1 layer 4 - after pooling</div>
+            <tbody>
+            <tr>
+                <td>\( I_0^1 \sim I_7^1 \)</td>
+                <td>\( I_2^1 \sim I_9^1 \)</td>
+                <td>\( I_4^1 \sim I_{11}^1 \)</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <br><br>
+
+    </div>
+</div>
+{% endmacro %}
