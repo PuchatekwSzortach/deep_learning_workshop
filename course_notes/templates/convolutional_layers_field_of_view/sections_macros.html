@@ -91,13 +91,11 @@
         <br>
 
         <table class="table table-bordered text-center">
-            <div class="caption text-center h6">Or</div>
+            <div class="caption text-center h6">Where</div>
             <tbody>
-            <tr>
-                <td>\( f( (I_0^1 * k_0) + (I_1^1 * k_1) + (I_2^1 * k_2) + b ) \)</td>
-                <td>\( f( (I_1^1 * k_0) + (I_2^1 * k_1) + (I_3^1 * k_0) + b ) \)</td>
-                <td>\( f( (I_2^1 * k_0) + (I_3^1 * k_1) + (I_4^1 * k_0) + b ) \)</td>
-            </tr>
+                <tr><td>\( I_0^2 = f( (I_0^1 * k_0) + (I_1^1 * k_1) + (I_2^1 * k_2) + b ) \)</td></tr>
+                <tr><td>\( I_1^2 = f( (I_1^1 * k_0) + (I_2^1 * k_1) + (I_3^1 * k_0) + b ) \)</td></tr>
+                <tr><td>\( I_2^2 = f( (I_2^1 * k_0) + (I_3^1 * k_1) + (I_4^1 * k_0) + b ) \)</td></tr>
             </tbody>
         </table>
 
@@ -214,13 +212,11 @@
         </table>
 
         <table class="table table-bordered text-center">
-            <div class="caption text-center h6">Or</div>
+            <div class="caption text-center h6">Where</div>
             <tbody>
-            <tr>
-                <td>\( max(I_0^1, I_1^1) \)</td>
-                <td>\( max(I_2^1, I_3^1) \)</td>
-                <td>\( max(I_4^1, I_5^1) \)</td>
-            </tr>
+                <tr><td>\( I_0^2 = max(I_0^1, I_1^1) \)</td></tr>
+                <tr><td>\( I_1^2 = max(I_2^1, I_3^1) \)</td></tr>
+                <tr><td>\( I_2^2 = max(I_4^1, I_5^1) \)</td></tr>
             </tbody>
         </table>
 
@@ -387,6 +383,184 @@
             </tr>
             </tbody>
         </table>
+
+        <br><hr><br>
+
+        <table class="table table-bordered text-center">
+            <div class="caption text-center h6">Block 2 layer 1 - after first convolution</div>
+            <tbody>
+            <tr>
+                <td>\( I_0^1 \sim I_{11}^1 \)</td>
+                <td>\( I_2^1 \sim I_{13}^1 \)</td>
+                <td>\( I_4^1 \sim I_{15}^1 \)</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <br><br>
+
+        <table class="table table-bordered text-center">
+            <div class="caption text-center h6">Block 2 layer 2 - after second convolution</div>
+            <tbody>
+            <tr>
+                <td>\( I_0^1 \sim I_{15}^1 \)</td>
+                <td>\( I_2^1 \sim I_{17}^1 \)</td>
+                <td>\( I_4^1 \sim I_{19}^1 \)</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <br><br>
+
+        <table class="table table-bordered text-center">
+            <div class="caption text-center h6">Block 2 layer 3 - after third convolution</div>
+            <tbody>
+            <tr>
+                <td>\( I_0^1 \sim I_{19}^1 \)</td>
+                <td>\( I_2^1 \sim I_{21}^1 \)</td>
+                <td>\( I_4^1 \sim I_{23}^1 \)</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <br><br>
+
+        <table class="table table-bordered text-center">
+            <div class="caption text-center h6">Block 2 layer 3 - after pooling</div>
+            <tbody>
+            <tr>
+                <td>\( I_0^1 \sim I_{21}^1 \)</td>
+                <td>\( I_4^1 \sim I_{25}^1 \)</td>
+                <td>\( I_8^1 \sim I_{29}^1 \)</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <br><br>
+
+    </div>
+</div>
+{% endmacro %}
+
+
+{% macro single_shot_detector_fields_of_view() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>Single shot detector - objects sizes vs fields of view</div>
+    <div class="m-4">
+
+        <img src="/static/images/single_shot_detector_accuracy_across_objects_areas.jpg" width="80%"><br>
+        <div class="h5 text-center text-secondary small">
+            SSD: Single Shot MultiBox Detector - classification accuracy across objects sizes on VOC dataset</div>
+
+        <br><br>
+
+        <img src="/static/images/single_shot_detector_recall_across_areas.jpg" width="80%"><br>
+        <div class="h5 text-center text-secondary small">
+            SSD: Single Shot MultiBox Detector - recall accuracy across objects sizes on COCO dataset</div>
+
+        <br><br>
+
+        <img src="/static/images/single_shot_detector_architecture.jpg" width="80%"><br>
+        <div class="h5 text-center text-secondary small">SSD: Single Shot MultiBox Detector - architecture</div>
+
+        <br><br>
+
+        <table class="table table-bordered text-center">
+            <div class="caption text-center h6">Fields of view after 5th convolutional block</div>
+            <tbody>
+            <tr>
+                <td>\( I_0^1 \sim I_{212}^1 \)</td>
+                <td>\( I_{33}^1 \sim I_{224}^1 \)</td>
+                <td>\( I_{65}^1 \sim I_{276}^1 \)</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <br><br>
+
+        <ul class="list-group text-center">
+            <div class="caption text-center h6">Pascal VOC objects sizes analysis</div>
+            <li class="list-group-item">max(width, height) > 100 px: <code>8.9%</code></li>
+            <li class="list-group-item">max(width, height) < 50 px: <code>70.6%</code></li>
+        </ul>
+
+        <br><br>
+
+        <ul class="list-group text-center">
+            <div class="caption text-center h6">Object size to total field of view size for a single cell</div>
+            <li class="list-group-item">At 100 px: <code>(100 * 100) / (213 * 213) = 22.0%</code></li>
+            <li class="list-group-item">At 50 px: <code>(50 * 50) / (213 * 213) = 5.5%</code></li>
+        </ul>
+
+        <br><br>
+
+    </div>
+</div>
+{% endmacro %}
+
+
+{% macro anectdotal_experience() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>Anecdotal experience</div>
+    <div class="m-4">
+
+        <ul class="list-group text-center">
+            <div class="caption text-center h6">Dataset sizes (similar to VOC)</div>
+            <li class="list-group-item">max(width, height) > 100 px: <code>~5%</code></li>
+            <li class="list-group-item">max(width, height) < 50 px: <code>~80%</code></li>
+        </ul>
+
+        <br><br>
+
+        <ul class="list-group text-center">
+            <div class="caption text-center h6">Precision and recall for default SSD architecture, prediction threshold at 0.5</div>
+            <li class="list-group-item">Precision: <code>~70%</code></li>
+            <li class="list-group-item">Recall: <code>~20%</code></li>
+        </ul>
+
+        <br><br>
+
+        <div class="text-center h4 text-primary">Solution</div>
+        <div class="text-center h6">Add prediction head at block with fields of view slightly above desired object sizes</div>
+
+        <br><br>
+
+        <table class="table table-bordered text-center">
+            <div class="caption text-center h6">Fields of view after 3rd convolutional block</div>
+            <tbody>
+            <tr>
+                <td>\( I_0^1 \sim I_{75}^1 \)</td>
+                <td>\( I_{8}^1 \sim I_{83}^1 \)</td>
+                <td>\( I_{17}^1 \sim I_{91}^1 \)</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <br><br>
+
+        <ul class="list-group text-center">
+            <div class="caption text-center h6">Precision and recall after adding prediction head to block 3 of SSD architecture, prediction threshold at 0.5</div>
+            <li class="list-group-item">Precision: <code>~80%</code></li>
+            <li class="list-group-item">Recall: <code>~80%</code></li>
+        </ul>
+
+        <br><br>
+
+    </div>
+</div>
+{% endmacro %}
+
+
+{% macro summary() %}
+<div class="shadow-lg">
+    <div class={{ card_header_style() }}>Summary</div>
+    <div class="m-4">
+
+        <ul class="list-group text-center">
+            <li class="list-group-item">Convolutional layers have associated fields of views</li>
+            <li class="list-group-item"><code>Small objects can be detected if you use layers with appropriate fields of views for the task</code></li>
+            <li class="list-group-item">Aim for field of view 1.2x~1.5x of objects sizes to provide layers some context</li>
+        </ul>
 
         <br><br>
 
