@@ -1,8 +1,10 @@
 {% macro site_header() %}
 <div class="jumbotron text-center card mt-4 p-4 shadow-lg">
-    <h1>Convolutional layers - field of view</h1>
+    <h1>Detecting small objects</h1>
+    <h2>Why field of view matters</h2>
+    <br>
     <h2>AI Okinawa</h2>
-    <h2>Jakub “Kuba” Kolodziejczyk</h2>
+    <h2>Kuba Kolodziejczyk</h2>
 </div>
 {% endmacro %}
 
@@ -102,7 +104,7 @@
         <br><br>
 
         <table class="table table-bordered text-center">
-            <div class="caption text-center h6">Simplifying</div>
+            <div class="caption text-center h6">Field of view</div>
             <tbody>
             <tr>
                 <td>\( I_0^1 \sim I_2^1 \)</td>
@@ -223,7 +225,7 @@
         <br><br>
 
         <table class="table table-bordered text-center">
-            <div class="caption text-center h6">Simplifying</div>
+            <div class="caption text-center h6">Field of view</div>
             <tbody>
             <tr>
                 <td>\( I_0^1 \sim I_1^1 \)</td>
@@ -558,6 +560,7 @@
 
         <ul class="list-group text-center">
             <li class="list-group-item">Convolutional layers have associated fields of views</li>
+            <li class="list-group-item">Convolutional layers are compressing data <br>The larger your field of view, the less fine-grained information you retain</li>
             <li class="list-group-item"><code>Small objects can be detected if you use layers with appropriate fields of views for the task</code></li>
             <li class="list-group-item">Aim for field of view 1.2x~1.5x of objects sizes to provide layers some context</li>
         </ul>

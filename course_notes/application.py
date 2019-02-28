@@ -13,8 +13,8 @@ def get_app():
     def render_index_page():
         return flask.render_template("index.html")
 
-    @app.route("/convolutional_layers_field_of_view.html")
+    @app.route("/detecting_small_objects.html")
     def render_convolutional_layers_field_of_view_page():
-        return flask.render_template("convolutional_layers_field_of_view/index.html")
+        return flask.render_template("detecting_small_objects/index.html")
 
     return app
